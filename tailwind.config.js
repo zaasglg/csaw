@@ -1,0 +1,78 @@
+/** @type {import("tailwindcss").Config} */
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: "#F4F7FB",
+          100: "#E5ECF4",
+          200: "#C9D7E8",
+          300: "#A3BCD5",
+          400: "#6F94B8",
+          500: "#41688E",
+          600: "#294D75",
+          700: "#1A365D",
+          800: "#102A49",
+          900: "#0B1D33",
+          DEFAULT: "#1A365D",
+          foreground: "#FFFFFF",
+        },
+        accent: {
+          50: "#FCF9EC",
+          100: "#F8F0CE",
+          200: "#F0DF9A",
+          300: "#E7CC65",
+          400: "#DDBA43",
+          500: "#D4AF37",
+          600: "#B99028",
+          700: "#936E20",
+          800: "#76571F",
+          900: "#63491F",
+          DEFAULT: "#D4AF37",
+          foreground: "#102239",
+        },
+        surface: {
+          canvas: "var(--surface-canvas)",
+          DEFAULT: "var(--surface-primary)",
+          subdued: "var(--surface-secondary)",
+          inverse: "var(--surface-inverse)",
+        },
+        card: {
+          DEFAULT: "var(--card)",
+          subtle: "var(--card-muted)",
+          elevated: "var(--card-elevated)",
+          foreground: "var(--card-foreground)",
+        },
+        border: {
+          subtle: "var(--border-subtle)",
+          DEFAULT: "var(--border)",
+          strong: "var(--border-strong)",
+          focus: "var(--border-focus)",
+        },
+        action: {
+          primary: "var(--button-primary-bg)",
+          "primary-hover": "var(--button-primary-hover)",
+          "primary-active": "var(--button-primary-active)",
+          "primary-foreground": "var(--button-primary-foreground)",
+          accent: "var(--button-accent-bg)",
+          "accent-hover": "var(--button-accent-hover)",
+          "accent-active": "var(--button-accent-active)",
+          "accent-foreground": "var(--button-accent-foreground)",
+          disabled: "var(--button-disabled-bg)",
+          "disabled-foreground": "var(--button-disabled-foreground)",
+        },
+      },
+      boxShadow: {
+        card: "0 16px 40px rgb(26 54 93 / 0.10)",
+        "card-hover": "0 20px 52px rgb(26 54 93 / 0.16)",
+        focus: "0 0 0 3px rgb(212 175 55 / 0.30)",
+      },
+    },
+  },
+  plugins: [],
+}

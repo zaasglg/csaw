@@ -1,0 +1,346 @@
+{
+  "common": {
+    "countries": ["Kazakhstan", "Azerbaijan", "Russia", "Turkmenistan", "Iran", "Other"],
+    "languageSwitcherLabel": "Choose language"
+  },
+  "hero": {
+    "homeLabel": "Caspian Sea Action Week home",
+    "dateShort": "6–12 August 2026",
+    "placeShort": "Aktau, Kazakhstan",
+    "badgeKicker": "2026 • UN INTERNATIONAL YEAR OF VOLUNTEERS",
+    "badgeAttribution": "Initiated by President Kassym-Jomart Tokayev",
+    "titleLine1": "A platform for international",
+    "titleLine2": "volunteer action",
+    "description": "An international action week for volunteers, environmental experts and young leaders from across the Caspian region.",
+    "register": "Register for free",
+    "program": "Week program"
+  },
+  "about": {
+    "overline": "CSAW 2026 • AKTAU",
+    "heading": "About the International Week",
+    "paragraph1": "The «Caspian Sea Action Week» international action week is a platform for international cooperation that unites the efforts of Caspian littoral states. It works to raise environmental responsibility, support volunteer initiatives, exchange experience and best practices, and develop joint projects aimed at preserving the Caspian Sea ecosystem.",
+    "paragraph2": "The goal is to strengthen international cooperation among Caspian littoral states, build the capacity of the volunteer movement, support joint initiatives to preserve the Caspian Sea ecosystem, and foster environmental responsibility and a sustainable ecological culture in society.",
+    "programLink": "Week program",
+    "metricsLabel": "Key figures of the week",
+    "metrics": [
+      { "code": "01", "label": "Duration", "template": "{a}–{b} August", "from": 6, "to": 12 },
+      { "code": "02", "label": "Caspian littoral states", "template": "{n}+ countries", "from": 5 },
+      { "code": "03", "label": "Volunteers and environmentalists", "template": "{n}+", "from": 500 },
+      { "code": "04", "label": "Full program and activities", "template": "{n} days", "from": 7 }
+    ]
+  },
+  "register": {
+    "overline": "PARTICIPANT REGISTRATION • CSAW 2026",
+    "heading": "Register for the «Caspian Sea Action Week» international week",
+    "description": "Fill out the application to take part in the week. After registration you will receive an official badge and a participant kit.",
+    "cardKicker": "CSAW 2026 · Registration",
+    "stepLabel": "Step",
+    "steps": [
+      "Personal details and citizenship",
+      "Participant category and organization",
+      "Contact information"
+    ],
+    "surname": "Last name",
+    "firstName": "First name",
+    "patronymic": "Patronymic",
+    "patronymicPlaceholder": "if applicable",
+    "birthDate": "Date of birth",
+    "citizenship": "Citizenship",
+    "citizenshipPlaceholder": "Select citizenship",
+    "country": "Country",
+    "countryPlaceholder": "Select a country",
+    "region": "Region / province / state",
+    "regionPlaceholder": "e.g. Mangystau Region",
+    "category": "Participant category",
+    "categoryPlaceholder": "Select a category",
+    "categories": [
+      "Government body",
+      "International organization",
+      "Scientific organization",
+      "University",
+      "College",
+      "NGO",
+      "Volunteer organization",
+      "Business community",
+      "Startup",
+      "Media",
+      "Student",
+      "Individual participant",
+      "Other"
+    ],
+    "badgeName": "Name for your badge (in Latin script)",
+    "badgeNamePlaceholder": "FIRSTNAME LASTNAME",
+    "infoLanguage": "Language for information",
+    "infoLanguageOptions": [
+      { "value": "kk", "label": "Қазақ тілінде" },
+      { "value": "ru", "label": "На Русском языке" },
+      { "value": "en", "label": "In English" }
+    ],
+    "phone": "Phone number",
+    "email": "Email address",
+    "back": "Back",
+    "next": "Next step",
+    "sending": "Sending...",
+    "submit": "Submit application",
+    "successTitle": "Application accepted",
+    "successDescription": "We'll send the confirmation and your official badge details by email.",
+    "newApplication": "Submit a new application"
+  },
+  "hackathon": {
+    "overline": "IT & ECOLOGY TRACK • CSAW 2026",
+    "titleLine1": "«Caspian Hackathon»",
+    "titleLine2": "1st International Hackathon",
+    "description": "An international IT hackathon focused on solving the environmental, technological and regional challenges of the Caspian Sea. A platform for ideas for startups, IT specialists and environmentalists.",
+    "prizeFund": "Prize Fund",
+    "prizeCaption": "Ten million tenge",
+    "prizeDescription": "Over three days, teams compete for the best technological solution for the Caspian ecosystem.",
+    "registerTeam": "Register your team",
+    "ticker": ["Eco-tech", "Caspian", "3 days", "Aktau", "Open call", "Teams"]
+  },
+  "hackathonRegister": {
+    "overline": "CASPIAN HACKATHON 2026",
+    "heading": "Apply to take part in the hackathon",
+    "statusBadge": "Rules",
+    "cardKicker": "Caspian Hackathon · Team application",
+    "block1Title": "01 · General team information",
+    "teamName": "Team name",
+    "teamCountry": "Participating country",
+    "teamCountryPlaceholder": "Select a country",
+    "region": "Region or city",
+    "regionPlaceholder": "e.g. Aktau",
+    "captainName": "Team captain's full name",
+    "captainNamePlaceholder": "Full name",
+    "block2Title": "02 · Team member information",
+    "addMember": "Add member",
+    "memberCaptainTab": "Member 1 (Captain)",
+    "memberTab": "Member {n}",
+    "removeMember": "Remove member {n}",
+    "memberFullName": "Full name",
+    "memberFullNamePlaceholder": "Full name",
+    "memberCountryNationality": "Country and nationality",
+    "memberCountryNationalityPlaceholder": "e.g. Kazakhstan, Kazakh",
+    "memberOrganization": "Organization / University",
+    "memberOrganizationPlaceholder": "e.g. L.N. Gumilyov Eurasian National University",
+    "memberSpecialty": "Specialty / role",
+    "memberSpecialtyPlaceholder": "e.g. Backend developer, designer",
+    "sending": "Sending...",
+    "submit": "Submit application",
+    "successTitle": "Application accepted",
+    "successDescription": "Your team's application has been registered. We'll send the hackathon rules and next steps by email.",
+    "newApplication": "Submit a new application"
+  },
+  "speakers": {
+    "overline": "SPEAKERS • CSAW 2026",
+    "headingPrefix": "Forum",
+    "headingAccent": "speakers",
+    "comingSoon": "Coming soon",
+    "namePlaceholder": "Speaker name",
+    "rolePlaceholder": "Title, organization"
+  },
+  "program": {
+    "overline": "PROGRAM • CSAW 2026",
+    "headingAccent": "7 days.",
+    "headingRest": "1 sea.",
+    "description": "PROGRAM OF THE «CASPIAN SEA ACTION WEEK 2026» ACTION WEEK ON THE CASPIAN SEA, HELD AS PART OF THE INTERNATIONAL YEAR OF VOLUNTEERS",
+    "tabsAriaLabel": "Week program by day",
+    "eventCountAriaLabel": "{n} events",
+    "allDay": "All day",
+    "days": [
+      {
+        "date": "06",
+        "weekday": "Thursday",
+        "items": [
+          {
+            "time": "17:00–18:00",
+            "title": "Registration of participants for the «Caspian Sea Action Week 2026» opening ceremony",
+            "details": "Welcoming guests; photos at the memorial photo zone."
+          },
+          {
+            "time": "18:00–18:05",
+            "title": "Official opening ceremony of «Caspian Sea Action Week 2026»",
+            "details": "National anthem; presentation of the week's goals and program."
+          },
+          {
+            "time": "18:05–18:15",
+            "title": "Screening of the week's official video",
+            "details": "The environmental significance of the Caspian Sea.",
+            "location": "Rixos Water World Aktau hotel"
+          },
+          {
+            "time": "18:15–18:30",
+            "title": "Address by N. Kilybay, Akim of Mangystau Region"
+          },
+          {
+            "time": "18:30–19:00",
+            "title": "Welcome remarks from leaders of Caspian regions (video link)",
+            "details": "Akimat of Atyrau Region (subject to confirmation); Baku City Administration, Republic of Azerbaijan (subject to confirmation); Astrakhan City Administration, Russian Federation (subject to confirmation)."
+          },
+          {
+            "time": "19:00–20:00",
+            "title": "Cultural and concert program"
+          }
+        ]
+      },
+      {
+        "date": "07",
+        "weekday": "Friday",
+        "items": [
+          {
+            "time": "09:00–13:00",
+            "title": "Expert discussion session: \"One Caspian – One Future\"",
+            "location": "Caspian Riviera Grand Palace hotel"
+          },
+          {
+            "time": "15:00–19:00",
+            "title": "\"Caspian Team Building\" team-building event",
+            "location": "O'Mir Glamping ethno-hotel"
+          },
+          {
+            "time": "21:00–23:00",
+            "title": "Informal program: \"Cultural block – delegation speeches, elements of national traditions and cultural exchange\"",
+            "location": "O'Mir Glamping ethno-hotel"
+          }
+        ]
+      },
+      {
+        "date": "08",
+        "weekday": "Saturday",
+        "items": [
+          {
+            "time": "08:00–11:00",
+            "title": "\"Caspian Clean Challenge\" international marathon",
+            "details": "A sports festival and cultural program in plogging format. The marathon is held in parallel along the coastal areas of the Republic of Kazakhstan (Atyrau Region), the Republic of Azerbaijan, the Russian Federation and Turkmenistan.",
+            "location": "Subject to confirmation"
+          },
+          {
+            "time": "11:00–12:00",
+            "title": "Presentation of the eco-village",
+            "details": "Eco-volunteer exhibitions, environmental innovations and green technologies, a waste-sorting area, a children's environmental play area, workshops and educational quizzes.",
+            "location": "Subject to confirmation"
+          },
+          {
+            "time": "19:00–20:00",
+            "title": "Opening ceremony of the \"Caspian Region Volunteers' Friendship Alley\"",
+            "location": "First President of Kazakhstan Park (40 ha)"
+          }
+        ]
+      },
+      {
+        "date": "09",
+        "weekday": "Sunday",
+        "items": [
+          {
+            "time": "allDay",
+            "title": "Guided excursion to Bozzhyra Canyon",
+            "location": "Bozzhyra Canyon"
+          }
+        ]
+      },
+      {
+        "date": "10",
+        "weekday": "Monday",
+        "items": [
+          {
+            "time": "10:00–18:00",
+            "title": "\"Caspian Innovation Lab\" international hackathon",
+            "location": "Rixos Water World Aktau hotel"
+          }
+        ]
+      },
+      {
+        "date": "11",
+        "weekday": "Tuesday",
+        "items": [
+          {
+            "time": "10:00–16:00",
+            "title": "Hackathon project defense",
+            "location": "Rixos Water World Aktau hotel"
+          },
+          {
+            "time": "17:00–19:00",
+            "title": "TED-format open mic",
+            "details": "Eco-volunteers meet with experts.",
+            "location": "Rixos Water World Aktau hotel"
+          }
+        ]
+      },
+      {
+        "date": "12",
+        "weekday": "Wednesday",
+        "items": [
+          {
+            "time": "11:00–13:00",
+            "title": "\"Caspian Talks\" International Volunteer Summit",
+            "details": "Awards ceremony for the winners of the \"Caspian Hackathon\" international hackathon.",
+            "location": "Rixos Water World Aktau hotel"
+          },
+          {
+            "time": "14:30–16:30",
+            "title": "Panel session on experience exchange and current environmental issues",
+            "location": "Rixos Water World Aktau hotel"
+          },
+          {
+            "time": "19:00–21:00",
+            "title": "Closing ceremony",
+            "details": "With an accompanying concert program.",
+            "location": "Subject to confirmation"
+          },
+          {
+            "time": "21:30–00:00",
+            "title": "Dinner hosted by the Mangystau Region leadership",
+            "location": "Subject to confirmation"
+          }
+        ]
+      }
+    ]
+  },
+  "mangystau": {
+    "kicker": "Mangystau",
+    "headingPrefix": "Where the sea",
+    "headingAccent": "meets the desert",
+    "tagline": "In Mangystau, the open horizon of the Caspian and the white peaks of Bozzhyra meet in a single landscape.",
+    "infoKicker": "About Mangystau Region",
+    "infoParagraph1": "Mangystau Region is a strategically important region located in the south-west of the Republic of Kazakhstan, on the eastern coast of the Caspian Sea. Its administrative center is the city of Aktau. The region stands out for its favorable position for geographic and economic ties with Caspian littoral countries. It is also considered Kazakhstan's sea gateway and a key hub for international transport and logistics routes.",
+    "infoParagraph2": "Mangystau is a land of unique nature and rich geological heritage. Distinctive landforms shaped over millions of years — the Ustyurt ridges, Bozzhyra Canyon, the Torysh stone spheres, Kyzylkup, Zhygylgan and other natural sites — have made the region one of the world's leading geotourism destinations. The region is also known for its historical and cultural monuments, underground mosques, sacred sites and Great Silk Road heritage. The state places particular emphasis on developing tourism infrastructure and is implementing a comprehensive plan to develop the Mangystau tourist zone.",
+    "bozzhyraTitle": "Bozzhyra",
+    "bozzhyraDescription": "The white chalk peaks preserve the geological history of the ancient Tethys Ocean.",
+    "bozzhyraTag": "Expedition day · 08 Aug",
+    "coastTitle": "Caspian coast",
+    "coastDescription": "Aktau's open horizon and unique marine ecosystem. This is where volunteer campaigns and collective action begin.",
+    "coastQuote": "The giant stone spheres of the Torysh valley complete Mangystau's geotourism map."
+  },
+  "manifesto": {
+    "kicker": "Shared sea. Shared future.",
+    "titleLine1": "KEEP CASPIAN",
+    "titleLine2": "ALIVE",
+    "description": "Action that begins on the coast becomes a shared movement across the entire Caspian region."
+  },
+  "footer": {
+    "address": "6-12 August 2026, Aktau, Mangystau Region, Kazakhstan.",
+    "organizersTitle": "Organizers",
+    "organizers": [
+      "Ministry of Culture and Information of the Republic of Kazakhstan",
+      "Akimat of Mangystau Region",
+      "Department of Youth Policy",
+      "«Zhagymdy Zhanalyk» Foundation"
+    ],
+    "contactTitle": "Contact",
+    "copyright": "© 2026 Caspian Sea Action Week",
+    "place": "Aktau, Kazakhstan"
+  },
+  "registerDialog": {
+    "participant": {
+      "badge": "Participant",
+      "title": "Register as a participant",
+      "description": "Join the forum, environmental campaigns and cultural program."
+    },
+    "nameLabel": "Your full name",
+    "namePlaceholder": "Full name",
+    "emailLabel": "Email address",
+    "sending": "Sending...",
+    "submit": "Submit application",
+    "successTitle": "Application accepted",
+    "successDescription": "We'll send the confirmation and next steps by email.",
+    "done": "Done"
+  }
+}
