@@ -1,8 +1,17 @@
 "use client"
 
+import { Eye } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
+import { useState } from "react"
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog"
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -18,6 +27,8 @@ const speakerSlots = [
 export function Speakers() {
   const reduceMotion = useReducedMotion()
   const t = useTranslations("speakers")
+  const [activeId, setActiveId] = useState<number | null>(null)
+  const activeSlot = speakerSlots.find((slot) => slot.id === activeId) ?? null
 
   return (
     <section
@@ -59,14 +70,16 @@ export function Speakers() {
           className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {speakerSlots.map((slot) => (
-            <motion.div
+            <motion.button
               key={slot.id}
+              type="button"
+              onClick={() => setActiveId(slot.id)}
               variants={{
                 hidden: { opacity: 0, y: 24 },
                 visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.6, ease }}
-              className="group relative overflow-hidden border border-accent/20 bg-primary-800/40 transition-colors duration-300 hover:border-accent/50"
+              className="group relative overflow-hidden border border-accent/20 bg-primary-800/40 text-left transition-colors duration-300 hover:border-accent/50 focus-visible:border-accent/50 focus-visible:outline-none"
             >
               <div className="relative aspect-[4/5] overflow-hidden bg-primary-900/60">
                 <Image
@@ -80,6 +93,15 @@ export function Speakers() {
                   aria-hidden
                   className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-900/85 via-primary-900/10 to-transparent"
                 />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 flex items-center justify-center bg-primary-900/60 opacity-0 backdrop-blur-[1px] transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+                >
+                  <span className="inline-flex items-center gap-2 rounded-sm border border-accent/50 bg-primary-900/80 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-accent-300">
+                    <Eye className="size-3.5" />
+                    {t("viewDetails")}
+                  </span>
+                </div>
                 <span className="absolute left-3 top-3 rounded-sm border border-accent/40 bg-primary-900/80 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-accent-300">
                   {t("comingSoon")}
                 </span>
@@ -92,10 +114,59 @@ export function Speakers() {
                   {t("rolePlaceholder")}
                 </p>
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </motion.div>
       </div>
+
+      <Dialog
+        open={activeSlot !== null}
+        onOpenChange={(open) => {
+          if (!open) setActiveId(null)
+        }}
+      >
+        <DialogContent
+          data-lenis-prevent
+          showCloseButton
+          className="max-h-[calc(100dvh-2rem)] w-full max-w-3xl overflow-y-auto rounded-sm border border-accent/40 bg-primary-800 p-0 text-primary-50 shadow-[0_30px_100px_rgba(11,29,51,0.72)] sm:max-w-3xl"
+        >
+          {activeSlot ? (
+            <div className="grid gap-0 sm:grid-cols-[minmax(0,220px)_1fr]">
+              <div className="relative aspect-[4/5] overflow-hidden bg-primary-900/60 sm:aspect-auto sm:h-full">
+                <Image
+                  src={activeSlot.avatar}
+                  alt=""
+                  fill
+                  sizes="220px"
+                  className="object-cover grayscale"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-900/70 via-transparent to-transparent sm:bg-gradient-to-r"
+                />
+                <span className="absolute left-3 top-3 rounded-sm border border-accent/40 bg-primary-900/80 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-accent-300">
+                  {t("comingSoon")}
+                </span>
+              </div>
+
+              <div className="flex flex-col justify-center px-8 py-10">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent-300">
+                  {t("overline")}
+                </p>
+                <DialogTitle className="mt-4 text-3xl font-black tracking-[-0.03em] text-primary-50">
+                  {t("namePlaceholder")}
+                </DialogTitle>
+                <p className="mt-1.5 text-[15px] font-semibold text-accent-300">
+                  {t("rolePlaceholder")}
+                </p>
+                <DialogDescription className="mt-5 max-w-md text-[15px] leading-[1.6] text-primary-200">
+                  {t("modalBio")}
+                </DialogDescription>
+              </div>
+            </div>
+          ) : null}
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }

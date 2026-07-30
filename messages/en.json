@@ -135,7 +135,9 @@
     "headingAccent": "speakers",
     "comingSoon": "Coming soon",
     "namePlaceholder": "Speaker name",
-    "rolePlaceholder": "Title, organization"
+    "rolePlaceholder": "Title, organization",
+    "viewDetails": "View details",
+    "modalBio": "Speaker details will be announced soon. Stay tuned for CSAW 2026 updates."
   },
   "program": {
     "overline": "PROGRAM • CSAW 2026",
