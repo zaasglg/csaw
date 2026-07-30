@@ -28,9 +28,9 @@ export function Mangystau() {
     <section
       ref={section}
       id="mangystau"
-      className="relative overflow-hidden border-y border-accent/20 bg-primary-900 px-5 py-24 lg:px-10 lg:py-36"
+      className="relative overflow-hidden border-y border-accent/20 bg-white px-5 py-24 lg:px-10 lg:py-36"
     >
-      <div className="brand-grid pointer-events-none absolute inset-0 opacity-35" />
+      <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
       <div className="relative mx-auto max-w-[1480px]">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-12">
           <motion.div
@@ -40,10 +40,10 @@ export function Mangystau() {
             transition={{ duration: 0.85, ease }}
             className="lg:col-span-8"
           >
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent-300">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent-700">
               {t("kicker")}
             </p>
-            <h2 className="mt-5 max-w-[12ch] text-[clamp(2.8rem,6.5vw,6.4rem)] leading-[0.9] font-black tracking-[-0.065em] text-primary-50">
+            <h2 className="mt-5 max-w-[12ch] text-[clamp(2.8rem,6.5vw,6.4rem)] leading-[0.9] font-black tracking-[-0.065em] text-primary-900">
               {t("headingPrefix")} <span className="text-accent">{t("headingAccent")}</span>
             </h2>
           </motion.div>
@@ -53,7 +53,7 @@ export function Mangystau() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.8, ease, delay: 0.08 }}
-            className="max-w-[34ch] border-l border-accent/40 pl-5 text-[15px] leading-[1.55] text-primary-200 lg:col-span-4 lg:justify-self-end lg:pb-2 lg:text-base"
+            className="max-w-[34ch] border-l border-accent/40 pl-5 text-[15px] leading-[1.55] text-primary-600 lg:col-span-4 lg:justify-self-end lg:pb-2 lg:text-base"
           >
             {t("tagline")}
           </motion.p>
@@ -66,10 +66,10 @@ export function Mangystau() {
           transition={{ duration: 0.85, ease, delay: 0.1 }}
           className="mt-10 lg:mt-12"
         >
-          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent-300">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent-700">
             {t("infoKicker")}
           </p>
-          <div className="mt-5 max-w-[68ch] space-y-6 border-l border-accent/35 pl-5 text-sm leading-[1.85] text-primary-200 sm:pl-7 sm:text-base">
+          <div className="mt-5 max-w-[68ch] space-y-6 border-l border-accent/35 pl-5 text-sm leading-[1.85] text-primary-600 sm:pl-7 sm:text-base">
             <p>{t("infoParagraph1")}</p>
             <p>{t("infoParagraph2")}</p>
           </div>
@@ -80,7 +80,7 @@ export function Mangystau() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1, ease }}
-          className="relative mt-14 overflow-hidden border border-accent/25 bg-primary-800 p-2 lg:mt-16"
+          className="relative mt-14 overflow-hidden border border-accent/25 bg-primary-50 p-2 lg:mt-16"
         >
           <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-[21/9]">
             <motion.div
@@ -127,7 +127,7 @@ export function Mangystau() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.85, ease }}
-            className="relative aspect-[4/3] overflow-hidden border border-accent/25 bg-primary-800 p-2 lg:col-span-5"
+            className="relative aspect-[4/3] overflow-hidden border border-accent/25 bg-primary-50 p-2 lg:col-span-5"
           >
             <motion.div
               className="absolute -inset-y-[6%] inset-x-0"
@@ -153,20 +153,20 @@ export function Mangystau() {
           >
             <div className="flex items-start gap-3">
               <Waves
-                className="mt-1 size-5 shrink-0 text-accent-300"
+                className="mt-1 size-5 shrink-0 text-accent-700"
                 strokeWidth={1.75}
               />
               <div>
-                <h3 className="text-2xl font-bold tracking-[-0.04em] text-primary-50 sm:text-3xl">
+                <h3 className="text-2xl font-bold tracking-[-0.04em] text-primary-900 sm:text-3xl">
                   {t("coastTitle")}
                 </h3>
-                <p className="mt-3 max-w-[42ch] text-[15px] leading-[1.55] text-primary-200 sm:text-base">
+                <p className="mt-3 max-w-[42ch] text-[15px] leading-[1.55] text-primary-600 sm:text-base">
                   {t("coastDescription")}
                 </p>
               </div>
             </div>
 
-            <p className="mt-10 max-w-[48ch] border-l-2 border-accent pl-5 text-lg leading-relaxed text-primary-50 sm:text-xl">
+            <p className="mt-10 max-w-[48ch] border-l-2 border-accent pl-5 text-lg leading-relaxed text-primary-900 sm:text-xl">
               {t("coastQuote")}
             </p>
           </motion.div>

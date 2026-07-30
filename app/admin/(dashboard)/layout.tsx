@@ -29,10 +29,10 @@ export default async function AdminDashboardLayout({
         <div className="flex items-center gap-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/logo-mark.svg"
+            src="/logo.svg"
             alt="Caspian Sea Action Week 2026"
-            width={360}
-            height={230}
+            width={420}
+            height={440}
             className="h-11 w-auto shrink-0"
           />
           <p className="font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-accent-300">

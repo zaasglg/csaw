@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import { Clock3, MapPin } from "lucide-react"
+import { MapPin } from "lucide-react"
 import {
   AnimatePresence,
   motion,
@@ -59,13 +59,13 @@ export function Program() {
     <section
       ref={sectionRef}
       id="program"
-      className="relative overflow-hidden border-y border-accent/25 bg-primary-900 px-5 py-24 lg:px-10 lg:py-36"
+      className="relative overflow-hidden border-y border-accent/25 bg-white px-5 py-24 lg:px-10 lg:py-36"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_8%,rgba(212,175,55,0.12),transparent_38%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_8%,rgba(212,175,55,0.1),transparent_38%)]"
       />
-      <div className="brand-grid pointer-events-none absolute inset-0 opacity-35" />
+      <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
 
       <div className="relative mx-auto max-w-[1480px]">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10">
@@ -76,7 +76,7 @@ export function Program() {
             transition={{ duration: 0.75, ease }}
             className="lg:col-span-7"
           >
-            <p className="max-w-lg border-l border-accent/40 pl-4 text-2xl leading-relaxed text-[#E2E8F0]">
+            <p className="max-w-lg border-l border-accent/40 pl-4 text-2xl leading-relaxed text-primary-800">
               {t("description")}
             </p>
           </motion.div>
@@ -120,7 +120,7 @@ export function Program() {
                 className={`group relative flex flex-col items-center gap-1 border px-2 py-3 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E0A82E] ${
                   selected
                     ? "border-[#E0A82E] bg-[#E0A82E] text-primary-900"
-                    : "border-accent/20 bg-primary-800/30 text-primary-300 hover:border-[#E0A82E]/50 hover:text-primary-50"
+                    : "border-accent/20 bg-primary-50 text-primary-500 hover:border-[#E0A82E]/50 hover:text-primary-900"
                 }`}
               >
                 <span className="font-mono text-lg font-bold tabular-nums sm:text-xl">
@@ -128,7 +128,7 @@ export function Program() {
                 </span>
                 <span
                   className={`text-[10px] font-semibold uppercase tracking-[0.06em] ${
-                    selected ? "text-primary-900/70" : "text-primary-400"
+                    selected ? "text-primary-900/70" : "text-primary-500"
                   }`}
                 >
                   {day.weekday}
@@ -152,28 +152,22 @@ export function Program() {
             {active.items.map((item) => (
               <div
                 key={`${active.date}-${item.time}-${item.title}`}
-                className="grid gap-2 py-6 sm:grid-cols-[9rem_1fr] sm:gap-8"
+                className="py-6"
               >
-                <div className="flex items-center gap-2 font-mono text-sm font-semibold text-accent tabular-nums sm:text-base">
-                  <Clock3 className="size-4 shrink-0 text-accent-300" />
-                  {item.time === "allDay" ? t("allDay") : item.time}
-                </div>
-                <div>
-                  <p className="text-[16px] font-bold leading-[1.35] tracking-[-0.01em] text-primary-50 sm:text-lg">
-                    {item.title}
+                <p className="text-[16px] font-bold leading-[1.35] tracking-[-0.01em] text-primary-900 sm:text-lg">
+                  {item.title}
+                </p>
+                {item.details ? (
+                  <p className="mt-2 max-w-3xl text-sm leading-[1.6] text-primary-600">
+                    {item.details}
                   </p>
-                  {item.details ? (
-                    <p className="mt-2 max-w-3xl text-sm leading-[1.6] text-primary-300">
-                      {item.details}
-                    </p>
-                  ) : null}
-                  {item.location ? (
-                    <p className="mt-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.06em] text-primary-400">
-                      <MapPin className="size-3.5 shrink-0 text-accent-300" />
-                      {item.location}
-                    </p>
-                  ) : null}
-                </div>
+                ) : null}
+                {item.location ? (
+                  <p className="mt-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.06em] text-primary-500">
+                    <MapPin className="size-3.5 shrink-0 text-accent-700" />
+                    {item.location}
+                  </p>
+                ) : null}
               </div>
             ))}
           </motion.div>

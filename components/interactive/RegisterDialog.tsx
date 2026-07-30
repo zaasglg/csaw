@@ -49,7 +49,7 @@ export function RegisterDialog({
       <DialogTrigger render={children} />
       <DialogContent
         data-lenis-prevent
-        className="max-h-[calc(100dvh-2rem)] max-w-xl overflow-y-auto rounded-sm border border-accent/40 bg-primary-800 p-0 text-primary-50 shadow-[0_30px_100px_rgba(11,29,51,0.72)] sm:max-w-xl"
+        className="max-h-[calc(100dvh-2rem)] max-w-xl overflow-y-auto rounded-sm border border-accent/40 bg-white p-0 text-primary-900 shadow-[0_30px_100px_rgba(11,29,51,0.18)] sm:max-w-xl"
       >
         {status === "success" ? (
           <div className="grid min-h-80 place-items-center px-8 py-10 text-center">
@@ -57,10 +57,10 @@ export function RegisterDialog({
               <div className="mx-auto mb-5 grid size-14 place-items-center border border-accent-200 bg-accent text-primary-900">
                 <Check className="size-6" />
               </div>
-              <DialogTitle className="text-3xl font-black tracking-[-0.04em] text-primary-50">
+              <DialogTitle className="text-3xl font-black tracking-[-0.04em] text-primary-900">
                 {t("successTitle")}
               </DialogTitle>
-              <DialogDescription className="mx-auto mt-3 max-w-sm text-[16px] leading-[1.45] text-primary-200">
+              <DialogDescription className="mx-auto mt-3 max-w-sm text-[16px] leading-[1.45] text-primary-600">
                 {t("successDescription")}
               </DialogDescription>
               <DialogClose
@@ -74,33 +74,33 @@ export function RegisterDialog({
           </div>
         ) : (
           <form onSubmit={submit}>
-            <div className="border-b border-accent/35 bg-primary-900 px-8 py-4">
-              <p className="font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-accent-300">
+            <div className="border-b border-accent/35 bg-primary-50 px-8 py-4">
+              <p className="font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-accent-700">
                 CSAW 2026 · {badge}
               </p>
             </div>
 
             <DialogHeader className="px-8 pt-7">
-              <DialogTitle className="max-w-[16ch] text-[clamp(2rem,3.4vw,2.8rem)] leading-[0.93] font-black tracking-[-0.045em] text-primary-50">
+              <DialogTitle className="max-w-[16ch] text-[clamp(2rem,3.4vw,2.8rem)] leading-[0.93] font-black tracking-[-0.045em] text-primary-900">
                 {content.title}
               </DialogTitle>
-              <DialogDescription className="max-w-[35ch] text-[16px] leading-[1.5] text-primary-200">
+              <DialogDescription className="max-w-[35ch] text-[16px] leading-[1.5] text-primary-600">
                 {content.description}
               </DialogDescription>
             </DialogHeader>
 
             <div className="mt-7 grid gap-5 px-8 pb-1">
-              <label className="grid gap-2.5 text-[15px] font-semibold text-primary-100">
+              <label className="grid gap-2.5 text-[15px] font-semibold text-primary-700">
                 {t("nameLabel")}
                 <Input
                   required
                   name="name"
                   autoComplete="name"
                   placeholder={t("namePlaceholder")}
-                  className="h-13 rounded-sm border border-accent/25 bg-primary-900/45 px-4 text-primary-50 placeholder:text-primary-400 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
+                  className="h-13 rounded-sm border border-primary-200 bg-primary-50 px-4 text-primary-900 placeholder:text-primary-400 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
                 />
               </label>
-              <label className="grid gap-2.5 text-[15px] font-semibold text-primary-100">
+              <label className="grid gap-2.5 text-[15px] font-semibold text-primary-700">
                 {t("emailLabel")}
                 <Input
                   required
@@ -108,12 +108,12 @@ export function RegisterDialog({
                   type="email"
                   autoComplete="email"
                   placeholder="name@example.com"
-                  className="h-13 rounded-sm border border-accent/25 bg-primary-900/45 px-4 text-primary-50 placeholder:text-primary-400 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
+                  className="h-13 rounded-sm border border-primary-200 bg-primary-50 px-4 text-primary-900 placeholder:text-primary-400 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
                 />
               </label>
             </div>
 
-            <DialogFooter className="mt-8 border-t border-accent/20 bg-primary-900 px-8 py-6">
+            <DialogFooter className="mt-8 border-t border-accent/20 bg-primary-50 px-8 py-6">
               <Button
                 type="submit"
                 disabled={status === "sending"}

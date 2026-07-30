@@ -39,7 +39,6 @@ function PrizeCard({
   const numberParallaxX = useTransform(springX, (value) => value * 0.35)
 
   const numberY = useTransform(progress, [0.1, 0.75], [48, -20])
-  const washOpacity = useTransform(progress, [0, 0.4, 1], [0.4, 0.85, 0.5])
   const ringsScale = useTransform(progress, [0.15, 0.55, 0.9], [0.92, 1, 0.96])
   const ringsY = useTransform(progress, [0, 1], [40, -80])
 
@@ -105,21 +104,15 @@ function PrizeCard({
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 1, ease }}
-      className="relative flex flex-col gap-10 overflow-hidden border border-[#E0A82E] bg-[#142C4D] p-6 shadow-[0_0_0_1px_rgba(224,168,46,0.12),0_30px_90px_rgba(8,18,36,0.55)] sm:p-8 lg:gap-12 lg:p-10"
+      className="relative flex flex-col gap-10 overflow-hidden"
     >
-      <motion.div
-        aria-hidden
-        style={reduceMotion ? undefined : { opacity: washOpacity }}
-        className="pointer-events-none absolute -right-[30%] -top-[20%] size-[min(70vw,520px)] rounded-full bg-[radial-gradient(circle,rgba(224,168,46,0.3)_0%,rgba(224,168,46,0.08)_36%,transparent_70%)] blur-3xl"
-      />
-
       <div className="relative z-10 flex items-center justify-between gap-6 border-b border-[#E0A82E]/40 pb-6">
         <motion.span
           initial={reduceMotion ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease, delay: 0.1 }}
-          className="inline-flex items-center gap-2 rounded-sm border border-[#E0A82E]/70 bg-[#E0A82E]/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#E0A82E]"
+          className="inline-flex items-center gap-2 rounded-sm border border-[#E0A82E]/70 bg-[#E0A82E]/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-accent-800"
         >
           {t("prizeFund")}
         </motion.span>
@@ -168,14 +161,14 @@ function PrizeCard({
           }
           className="relative w-full min-w-0"
         >
-          <p className="mb-3 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-[#E7CC65]">
+          <p className="mb-3 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-accent-700">
             {t("prizeCaption")}
           </p>
           <span
             ref={amount}
             style={{
               backgroundImage:
-                "linear-gradient(180deg, #FCF9EC 0%, #F0DF9A 22%, #E0A82E 55%, #E0A82E 100%)",
+                "linear-gradient(180deg, #F0DF9A 0%, #E0A82E 45%, #B99028 78%, #936E20 100%)",
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
               color: "transparent",
@@ -190,7 +183,7 @@ function PrizeCard({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease, delay: 0.35 }}
-            className="mt-6 max-w-[34ch] text-[15px] leading-[1.55] text-primary-200 sm:text-base"
+            className="mt-6 max-w-[34ch] text-[15px] leading-[1.55] text-primary-700 sm:text-base"
           >
             {t("prizeDescription")}
           </motion.p>
@@ -205,7 +198,7 @@ function PrizeCard({
           <Button
             type="button"
             onClick={scrollToHackathonRegister}
-            className="h-12 rounded-sm border border-[#E0A82E] bg-[#E0A82E] px-7 text-[15px] font-bold tracking-[-0.01em] text-primary-900 shadow-[0_18px_50px_rgba(8,18,36,0.35)] hover:bg-[#EFC158] active:scale-[0.98]"
+            className="h-12 rounded-sm border border-[#E0A82E] bg-[#E0A82E] px-7 text-[15px] font-bold tracking-[-0.01em] text-primary-900 hover:bg-[#EFC158] active:scale-[0.98]"
           >
             {t("registerTeam")}
             <ArrowRight className="size-4" />
@@ -219,10 +212,10 @@ function PrizeCard({
             {[...ticker, ...ticker].map((item, index) => (
               <span
                 key={`${item}-${index}`}
-                className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-primary-200/80"
+                className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-primary-600/80"
               >
                 {item}
-                <span className="ml-10 text-[#E0A82E]/55">/</span>
+                <span className="ml-10 text-[#E0A82E]/70">/</span>
               </span>
             ))}
           </div>
@@ -246,14 +239,14 @@ export function Hackathon() {
     <section
       ref={section}
       id="hackathon"
-      className="relative overflow-hidden border-y border-accent/25 bg-primary-800 px-5 py-24 lg:px-10 lg:py-36"
+      className="relative overflow-hidden border-y border-accent/25 bg-primary-50 px-5 py-24 lg:px-10 lg:py-36"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_85%_20%,rgba(212,175,55,0.1),transparent_42%),linear-gradient(180deg,rgba(16,42,73,0.2),rgba(11,29,51,0.85))]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_85%_20%,rgba(212,175,55,0.08),transparent_42%)]" />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"
       />
-      <div className="brand-grid pointer-events-none absolute inset-0 opacity-35" />
+      <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
 
       <div className="relative mx-auto grid max-w-[1480px] gap-16 lg:grid-cols-12 lg:items-stretch lg:gap-12">
         <motion.div
@@ -276,12 +269,12 @@ export function Hackathon() {
                 visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.7, ease }}
-              className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent-300"
+              className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent-700"
             >
               {t("overline")}
             </motion.p>
 
-            <h2 className="mt-6 text-primary-50">
+            <h2 className="mt-6 text-primary-900">
               <span className="block overflow-hidden pb-[0.06em]">
                 <motion.span
                   variants={{
@@ -307,17 +300,6 @@ export function Hackathon() {
                 </motion.span>
               </span>
             </h2>
-
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.75, ease }}
-              className="mt-7 max-w-[42ch] text-[15px] leading-[1.55] text-primary-200 sm:text-lg"
-            >
-              {t("description")}
-            </motion.p>
           </motion.div>
         </motion.div>
 

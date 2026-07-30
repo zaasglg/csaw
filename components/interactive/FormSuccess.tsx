@@ -42,7 +42,7 @@ export function FormSuccess({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.25 }}
-          className="text-3xl font-black tracking-[-0.04em] text-primary-50"
+          className="text-3xl font-black tracking-[-0.04em] text-primary-900"
         >
           {title}
         </motion.p>
@@ -50,7 +50,7 @@ export function FormSuccess({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.35 }}
-          className="mx-auto mt-3 max-w-sm text-[16px] leading-[1.45] text-primary-200"
+          className="mx-auto mt-3 max-w-sm text-[16px] leading-[1.45] text-primary-600"
         >
           {description}
         </motion.p>

@@ -32,7 +32,7 @@
   "register": {
     "overline": "PARTICIPANT REGISTRATION • CSAW 2026",
     "heading": "Register for the «Caspian Sea Action Week» international week",
-    "description": "Fill out the application to take part in the week. After registration you will receive an official badge and a participant kit.",
+    "description": "Fill out the application to take part in the week.",
     "cardKicker": "CSAW 2026 · Registration",
     "stepLabel": "Step",
     "steps": [
@@ -91,7 +91,6 @@
     "overline": "IT & ECOLOGY TRACK • CSAW 2026",
     "titleLine1": "«Caspian Hackathon»",
     "titleLine2": "1st International Hackathon",
-    "description": "An international IT hackathon focused on solving the environmental, technological and regional challenges of the Caspian Sea. A platform for ideas for startups, IT specialists and environmentalists.",
     "prizeFund": "Prize Fund",
     "prizeCaption": "Ten million tenge",
     "prizeDescription": "Over three days, teams compete for the best technological solution for the Caspian ecosystem.",
@@ -156,28 +155,24 @@
         "items": [
           {
             "time": "17:00–18:00",
-            "title": "Registration of participants for the «Caspian Sea Action Week 2026» opening ceremony",
-            "details": "Welcoming guests; photos at the memorial photo zone."
+            "title": "Registration of participants"
           },
           {
             "time": "18:00–18:05",
-            "title": "Official opening ceremony of «Caspian Sea Action Week 2026»",
-            "details": "National anthem; presentation of the week's goals and program."
+            "title": "Official opening ceremony of the week"
           },
           {
             "time": "18:05–18:15",
-            "title": "Screening of the week's official video",
-            "details": "The environmental significance of the Caspian Sea.",
+            "title": "Screening of the official video",
             "location": "Rixos Water World Aktau hotel"
           },
           {
             "time": "18:15–18:30",
-            "title": "Address by N. Kilybay, Akim of Mangystau Region"
+            "title": "Welcome address from Mangystau Region leadership"
           },
           {
             "time": "18:30–19:00",
-            "title": "Welcome remarks from leaders of Caspian regions (video link)",
-            "details": "Akimat of Atyrau Region (subject to confirmation); Baku City Administration, Republic of Azerbaijan (subject to confirmation); Astrakhan City Administration, Russian Federation (subject to confirmation)."
+            "title": "Welcome remarks from leaders of Caspian regions (video link)"
           },
           {
             "time": "19:00–20:00",
@@ -191,7 +186,7 @@
         "items": [
           {
             "time": "09:00–13:00",
-            "title": "Expert discussion session: \"One Caspian – One Future\"",
+            "title": "Session: \"One Caspian – One Future\"",
             "location": "Caspian Riviera Grand Palace hotel"
           },
           {
@@ -201,7 +196,7 @@
           },
           {
             "time": "21:00–23:00",
-            "title": "Informal program: \"Cultural block – delegation speeches, elements of national traditions and cultural exchange\"",
+            "title": "Cultural block: delegations and national traditions",
             "location": "O'Mir Glamping ethno-hotel"
           }
         ]
@@ -213,19 +208,17 @@
           {
             "time": "08:00–11:00",
             "title": "\"Caspian Clean Challenge\" international marathon",
-            "details": "A sports festival and cultural program in plogging format. The marathon is held in parallel along the coastal areas of the Republic of Kazakhstan (Atyrau Region), the Republic of Azerbaijan, the Russian Federation and Turkmenistan.",
             "location": "Subject to confirmation"
           },
           {
             "time": "11:00–12:00",
             "title": "Presentation of the eco-village",
-            "details": "Eco-volunteer exhibitions, environmental innovations and green technologies, a waste-sorting area, a children's environmental play area, workshops and educational quizzes.",
             "location": "Subject to confirmation"
           },
           {
             "time": "19:00–20:00",
-            "title": "Opening ceremony of the \"Caspian Region Volunteers' Friendship Alley\"",
-            "location": "First President of Kazakhstan Park (40 ha)"
+            "title": "Opening of the \"Caspian Volunteers' Friendship Alley\"",
+            "location": "First President of Kazakhstan Park"
           }
         ]
       },
@@ -263,7 +256,6 @@
           {
             "time": "17:00–19:00",
             "title": "TED-format open mic",
-            "details": "Eco-volunteers meet with experts.",
             "location": "Rixos Water World Aktau hotel"
           }
         ]
@@ -275,23 +267,21 @@
           {
             "time": "11:00–13:00",
             "title": "\"Caspian Talks\" International Volunteer Summit",
-            "details": "Awards ceremony for the winners of the \"Caspian Hackathon\" international hackathon.",
             "location": "Rixos Water World Aktau hotel"
           },
           {
             "time": "14:30–16:30",
-            "title": "Panel session on experience exchange and current environmental issues",
+            "title": "Panel session on experience exchange",
             "location": "Rixos Water World Aktau hotel"
           },
           {
             "time": "19:00–21:00",
             "title": "Closing ceremony",
-            "details": "With an accompanying concert program.",
             "location": "Subject to confirmation"
           },
           {
             "time": "21:30–00:00",
-            "title": "Dinner hosted by the Mangystau Region leadership",
+            "title": "Dinner hosted by the region's leadership",
             "location": "Subject to confirmation"
           }
         ]
@@ -305,7 +295,7 @@
     "tagline": "In Mangystau, the open horizon of the Caspian and the white peaks of Bozzhyra meet in a single landscape.",
     "infoKicker": "About Mangystau Region",
     "infoParagraph1": "Mangystau Region is a strategically important region located in the south-west of the Republic of Kazakhstan, on the eastern coast of the Caspian Sea. Its administrative center is the city of Aktau. The region stands out for its favorable position for geographic and economic ties with Caspian littoral countries. It is also considered Kazakhstan's sea gateway and a key hub for international transport and logistics routes.",
-    "infoParagraph2": "Mangystau is a land of unique nature and rich geological heritage. Distinctive landforms shaped over millions of years — the Ustyurt ridges, Bozzhyra Canyon, the Torysh stone spheres, Kyzylkup, Zhygylgan and other natural sites — have made the region one of the world's leading geotourism destinations. The region is also known for its historical and cultural monuments, underground mosques, sacred sites and Great Silk Road heritage. The state places particular emphasis on developing tourism infrastructure and is implementing a comprehensive plan to develop the Mangystau tourist zone.",
+    "infoParagraph2": "Mangystau is a land of unique nature and rich geological heritage. Distinctive landforms shaped over millions of years - the Ustyurt ridges, Bozzhyra Canyon, the Torysh stone spheres, Kyzylkup, Zhygylgan and other natural sites - have made the region one of the world's leading geotourism destinations. The region is also known for its historical and cultural monuments, underground mosques, sacred sites and Great Silk Road heritage. The state places particular emphasis on developing tourism infrastructure and is implementing a comprehensive plan to develop the Mangystau tourist zone.",
     "bozzhyraTitle": "Bozzhyra",
     "bozzhyraDescription": "The white chalk peaks preserve the geological history of the ancient Tethys Ocean.",
     "bozzhyraTag": "Expedition day · 08 Aug",

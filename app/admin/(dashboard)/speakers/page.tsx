@@ -25,7 +25,7 @@ export default async function AdminSpeakersPage() {
 
       {speakers.length === 0 ? (
         <EmptyState>
-          Пока нет спикеров. Добавьте первого — он сразу появится на главной странице.
+          Пока нет спикеров. Добавьте первого - он сразу появится на главной странице.
         </EmptyState>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

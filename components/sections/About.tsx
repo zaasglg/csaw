@@ -123,7 +123,7 @@ export function About() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="relative isolate overflow-hidden border-b border-white/[0.06] bg-primary-900 px-5 py-24 text-primary-50 md:px-8 lg:px-12 lg:py-32 xl:px-16 xl:py-40"
+      className="relative isolate overflow-hidden border-b border-primary-100 bg-white px-5 py-24 text-primary-900 md:px-8 lg:px-12 lg:py-32 xl:px-16 xl:py-40"
     >
       <div
         aria-hidden
@@ -150,19 +150,19 @@ export function About() {
 
             <h2
               id="about-title"
-              className="mt-7 max-w-[12ch] text-[clamp(2.7rem,4.7vw,5.6rem)] leading-[0.94] font-black text-primary-50"
+              className="mt-7 text-[clamp(2.7rem,4.7vw,5.6rem)] leading-[0.94] font-black text-primary-900"
             >
               {t("heading")}
             </h2>
 
-            <div className="mt-10 max-w-[62ch] space-y-6 border-l border-accent/35 pl-5 text-sm leading-[1.85] text-primary-200 sm:pl-7 sm:text-base">
+            <div className="mt-10 max-w-[62ch] space-y-6 border-l border-accent/35 pl-5 text-sm leading-[1.85] text-primary-600 sm:pl-7 sm:text-base">
               <p>{t("paragraph1")}</p>
               <p>{t("paragraph2")}</p>
             </div>
 
             <a
               href="#program"
-              className="group mt-0 inline-flex min-h-14 w-fit items-center gap-8 border border-accent bg-accent px-6 text-sm font-extrabold text-primary-900 transition-[background-color,color,transform] duration-300 hover:bg-accent-300 active:translate-y-px active:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-primary-900 sm:px-7 lg:mt-auto"
+              className="group mt-0 inline-flex min-h-14 w-fit items-center gap-8 border border-accent bg-accent px-6 text-sm font-extrabold text-primary-900 transition-[background-color,color,transform] duration-300 hover:bg-accent-300 active:translate-y-px active:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-white sm:px-7 lg:mt-auto"
             >
               {t("programLink")}
               <ArrowDownRight
@@ -175,17 +175,14 @@ export function About() {
 
           <div className="flex flex-col lg:col-span-7 lg:pt-9">
             <div className="mb-5 flex items-end justify-between gap-5">
-              <p className="max-w-64 text-xs leading-relaxed font-semibold tracking-[0.09em] text-primary-300 uppercase">
+              <p className="max-w-64 text-xs leading-relaxed font-semibold tracking-[0.09em] text-primary-500 uppercase">
                 {t("metricsLabel")}
-              </p>
-              <p className="hidden font-mono text-[10px] tracking-[0.16em] text-primary-400 sm:block">
-                43°39′N / 51°09′E
               </p>
             </div>
 
             <div
               ref={metricPanelRef}
-              className="relative flex-1 border border-accent/35 bg-primary-800/30"
+              className="relative flex-1 border border-accent/35 bg-primary-50"
             >
               <div
                 aria-hidden
@@ -199,18 +196,18 @@ export function About() {
                     <article
                       key={metric.code}
                       className={[
-                        "group relative z-0 flex min-h-52 flex-col justify-between p-6 transition-[transform,background-color,box-shadow] duration-300 ease-out hover:z-10 hover:-translate-y-1 hover:bg-primary-800/65 hover:shadow-[inset_0_0_0_1px_rgba(224,168,46,0.55),0_12px_30px_rgba(3,12,28,0.2)] sm:min-h-64 sm:p-8 xl:min-h-72 xl:p-10",
+                        "group relative z-0 flex min-h-36 flex-col justify-between p-5 transition-[transform,background-color,box-shadow] duration-300 ease-out hover:z-10 hover:-translate-y-1 hover:bg-white hover:shadow-[inset_0_0_0_1px_rgba(224,168,46,0.55),0_12px_30px_rgba(11,29,51,0.1)] sm:min-h-44 sm:p-6 xl:min-h-48 xl:p-7",
                         index < metrics.length - 1
-                          ? "border-b border-white/10"
+                          ? "border-b border-primary-100"
                           : "",
                         index % 2 === 0
-                          ? "sm:border-r sm:border-white/10"
+                          ? "sm:border-r sm:border-primary-100"
                           : "",
                         index === 2 ? "sm:border-b-0" : "",
                       ].join(" ")}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-[10px] tracking-[0.2em] text-primary-400 transition-colors group-hover:text-primary-300">
+                        <span className="font-mono text-[10px] tracking-[0.2em] text-primary-500 transition-colors group-hover:text-primary-700">
                           {metric.code}
                         </span>
                         {Icon ? (
@@ -222,16 +219,16 @@ export function About() {
                         ) : null}
                       </div>
 
-                      <div className="mt-10">
+                      <div className="mt-5">
                         <p
                           aria-label={renderMetric(metric, 1)}
-                          className="font-mono text-[clamp(2.15rem,3.7vw,4.3rem)] leading-none font-semibold tracking-[-0.075em] text-accent tabular-nums"
+                          className="font-mono text-[clamp(1.8rem,3vw,3.4rem)] leading-none font-semibold tracking-[-0.075em] text-accent tabular-nums"
                         >
                           <span aria-hidden>
                             {renderMetric(metric, countProgress)}
                           </span>
                         </p>
-                        <p className="mt-5 max-w-[22rem] text-base leading-[1.5] font-semibold text-primary-50 xl:text-lg">
+                        <p className="mt-3 max-w-[22rem] text-base leading-[1.4] font-semibold text-primary-900 xl:text-lg">
                           {metric.label}
                         </p>
                       </div>

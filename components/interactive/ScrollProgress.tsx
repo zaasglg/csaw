@@ -16,7 +16,7 @@ export function ScrollProgress() {
   return (
     <div
       aria-hidden
-      className="fixed top-1/2 right-3 z-40 hidden h-28 w-px -translate-y-1/2 overflow-hidden bg-white/10 lg:block"
+      className="fixed top-1/2 right-3 z-40 hidden h-28 w-px -translate-y-1/2 overflow-hidden bg-primary-900/10 lg:block"
     >
       <motion.div
         className="h-full w-full origin-top bg-[#D4AF37]"

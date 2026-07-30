@@ -20,15 +20,15 @@ export default async function Home() {
 
   return (
     <SmoothScroll>
-      <main className="relative overflow-x-clip bg-primary-900 text-primary-50">
+      <main className="relative overflow-x-clip bg-white text-primary-900">
         <div className="site-grain" aria-hidden />
         <HeroSection />
         <About />
-        <ParticipantRegister />
         <Hackathon />
+        <HackathonRegister />
         <Speakers speakers={speakers} />
         <Program />
-        <HackathonRegister />
+        <ParticipantRegister />
         <ImmersiveBreak />
         <Mangystau />
         <Footer />

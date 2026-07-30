@@ -1,7 +1,19 @@
 import type { Metadata } from "next";
+import { Inter, Exo_2 } from "next/font/google";
 import "./globals.css";
 
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
+
+const inter = Inter({
+  subsets: ["latin", "cyrillic", "cyrillic-ext"],
+  variable: "--font-inter",
+});
+
+const exo2 = Exo_2({
+  subsets: ["latin", "cyrillic", "cyrillic-ext"],
+  weight: ["700", "800", "900"],
+  variable: "--font-heading-display",
+});
 
 export const metadata: Metadata = {
   title: "Caspian Sea Action Week 2026 | Aktau, Kazakhstan",
@@ -24,7 +36,7 @@ export default function RootLayout({
   return (
     <html
       lang="kk"
-      className="dark h-full antialiased"
+      className={`${inter.variable} ${exo2.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col selection:bg-accent selection:text-primary-900">
         <LocaleProvider>{children}</LocaleProvider>

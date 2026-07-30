@@ -49,9 +49,9 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
     <section
       id="speakers"
       aria-labelledby="speakers-title"
-      className="relative overflow-hidden border-y border-accent/25 bg-primary-900 px-5 py-24 lg:px-10 lg:py-36"
+      className="relative overflow-hidden border-y border-accent/25 bg-white px-5 py-24 lg:px-10 lg:py-36"
     >
-      <div className="brand-grid pointer-events-none absolute inset-0 opacity-35" />
+      <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
 
       <div className="relative mx-auto max-w-[1480px]">
         <motion.div
@@ -68,7 +68,7 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
                 {t("overline")}
               </p>
             </div>
-            <h2 className="mt-6 text-[clamp(2.6rem,6vw,5.4rem)] leading-[0.94] font-black tracking-[-0.045em] text-primary-50">
+            <h2 className="mt-6 text-[clamp(2.6rem,6vw,5.4rem)] leading-[0.94] font-black tracking-[-0.045em] text-primary-900">
               {t("headingPrefix")} <span className="text-accent">{t("headingAccent")}</span>
             </h2>
           </div>
@@ -95,9 +95,9 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
                     visible: { opacity: 1, y: 0 },
                   }}
                   transition={{ duration: 0.6, ease }}
-                  className="group relative overflow-hidden border border-accent/20 bg-primary-800/40 text-left transition-colors duration-300 hover:border-accent/50 focus-visible:border-accent/50 focus-visible:outline-none"
+                  className="group relative overflow-hidden border border-accent/20 bg-primary-50 text-left transition-colors duration-300 hover:border-accent/50 focus-visible:border-accent/50 focus-visible:outline-none"
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-primary-900/60">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-primary-100">
                     {speaker.avatarUrl ? (
                       <Image
                         src={speaker.avatarUrl}
@@ -122,10 +122,10 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
                     </div>
                   </div>
                   <div className="p-4">
-                    <p className="text-[15px] font-bold tracking-[-0.01em] text-primary-50">
+                    <p className="text-[15px] font-bold tracking-[-0.01em] text-primary-900">
                       {speaker.name}
                     </p>
-                    <p className="mt-1 text-[13px] leading-[1.4] text-primary-300">
+                    <p className="mt-1 text-[13px] leading-[1.4] text-primary-600">
                       {speaker.role}, {speaker.organization}
                     </p>
                   </div>
@@ -141,9 +141,9 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
                     visible: { opacity: 1, y: 0 },
                   }}
                   transition={{ duration: 0.6, ease }}
-                  className="group relative overflow-hidden border border-accent/20 bg-primary-800/40 text-left transition-colors duration-300 hover:border-accent/50 focus-visible:border-accent/50 focus-visible:outline-none"
+                  className="group relative overflow-hidden border border-accent/20 bg-primary-50 text-left transition-colors duration-300 hover:border-accent/50 focus-visible:border-accent/50 focus-visible:outline-none"
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-primary-900/60">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-primary-100">
                     <Image
                       src={slot.avatar}
                       alt=""
@@ -169,10 +169,10 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
                     </span>
                   </div>
                   <div className="p-4">
-                    <p className="text-[15px] font-bold tracking-[-0.01em] text-primary-50">
+                    <p className="text-[15px] font-bold tracking-[-0.01em] text-primary-900">
                       {t("namePlaceholder")}
                     </p>
-                    <p className="mt-1 text-[13px] leading-[1.4] text-primary-300">
+                    <p className="mt-1 text-[13px] leading-[1.4] text-primary-600">
                       {t("rolePlaceholder")}
                     </p>
                   </div>
@@ -190,11 +190,11 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
         <DialogContent
           data-lenis-prevent
           showCloseButton
-          className="max-h-[calc(100dvh-2rem)] w-full max-w-3xl overflow-y-auto rounded-sm border border-accent/40 bg-primary-800 p-0 text-primary-50 shadow-[0_30px_100px_rgba(11,29,51,0.72)] sm:max-w-3xl"
+          className="max-h-[calc(100dvh-2rem)] w-full max-w-3xl overflow-y-auto rounded-sm border border-accent/40 bg-white p-0 text-primary-900 shadow-[0_30px_100px_rgba(11,29,51,0.18)] sm:max-w-3xl"
         >
           {activeSpeaker ? (
             <div className="grid gap-0 sm:grid-cols-[minmax(0,220px)_1fr]">
-              <div className="relative aspect-[4/5] overflow-hidden bg-primary-900/60 sm:aspect-auto sm:h-full">
+              <div className="relative aspect-[4/5] overflow-hidden bg-primary-100 sm:aspect-auto sm:h-full">
                 {activeSpeaker.avatarUrl ? (
                   <Image
                     src={activeSpeaker.avatarUrl}
@@ -211,23 +211,23 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
               </div>
 
               <div className="flex flex-col justify-center px-8 py-10">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent-300">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent-700">
                   {t("overline")}
                 </p>
-                <DialogTitle className="mt-4 text-3xl font-black tracking-[-0.03em] text-primary-50">
+                <DialogTitle className="mt-4 text-3xl font-black tracking-[-0.03em] text-primary-900">
                   {activeSpeaker.name}
                 </DialogTitle>
-                <p className="mt-1.5 text-[15px] font-semibold text-accent-300">
+                <p className="mt-1.5 text-[15px] font-semibold text-accent-700">
                   {activeSpeaker.role}, {activeSpeaker.organization}
                 </p>
-                <DialogDescription className="mt-5 max-w-md text-[15px] leading-[1.6] text-primary-200">
+                <DialogDescription className="mt-5 max-w-md text-[15px] leading-[1.6] text-primary-600">
                   {activeSpeaker.bio || t("modalBio")}
                 </DialogDescription>
               </div>
             </div>
           ) : activeSlot ? (
             <div className="grid gap-0 sm:grid-cols-[minmax(0,220px)_1fr]">
-              <div className="relative aspect-[4/5] overflow-hidden bg-primary-900/60 sm:aspect-auto sm:h-full">
+              <div className="relative aspect-[4/5] overflow-hidden bg-primary-100 sm:aspect-auto sm:h-full">
                 <Image
                   src={activeSlot.avatar}
                   alt=""
@@ -245,16 +245,16 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
               </div>
 
               <div className="flex flex-col justify-center px-8 py-10">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent-300">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent-700">
                   {t("overline")}
                 </p>
-                <DialogTitle className="mt-4 text-3xl font-black tracking-[-0.03em] text-primary-50">
+                <DialogTitle className="mt-4 text-3xl font-black tracking-[-0.03em] text-primary-900">
                   {t("namePlaceholder")}
                 </DialogTitle>
-                <p className="mt-1.5 text-[15px] font-semibold text-accent-300">
+                <p className="mt-1.5 text-[15px] font-semibold text-accent-700">
                   {t("rolePlaceholder")}
                 </p>
-                <DialogDescription className="mt-5 max-w-md text-[15px] leading-[1.6] text-primary-200">
+                <DialogDescription className="mt-5 max-w-md text-[15px] leading-[1.6] text-primary-600">
                   {t("modalBio")}
                 </DialogDescription>
               </div>

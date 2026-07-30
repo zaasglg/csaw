@@ -41,13 +41,13 @@ const createEmptyMember = (): TeamMember => ({
 })
 
 const inputClassName =
-  "h-12 w-full rounded-sm border border-[#E0A82E]/25 bg-[#0B1D33]/50 px-4 text-primary-50 placeholder:text-primary-400 focus-visible:border-[#E0A82E] focus-visible:ring-2 focus-visible:ring-[#E0A82E]/20"
+  "h-12 w-full rounded-sm border border-primary-200 bg-primary-50 px-4 text-primary-900 placeholder:text-primary-400 focus-visible:border-[#E0A82E] focus-visible:ring-2 focus-visible:ring-[#E0A82E]/20"
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="flex items-center gap-1 text-[14px] font-semibold text-primary-100">
+    <span className="flex items-center gap-1 text-[14px] font-semibold text-primary-700">
       {children}
-      <span aria-hidden className="text-[#E0A82E]">
+      <span aria-hidden className="text-accent-700">
         *
       </span>
     </span>
@@ -56,10 +56,10 @@ function FieldLabel({ children }: { children: React.ReactNode }) {
 
 function StatusBadge({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-sm border border-dashed border-primary-300/40 bg-primary-900/40 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-primary-300">
+    <span className="inline-flex items-center gap-2 rounded-sm border border-dashed border-primary-300 bg-primary-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-primary-600">
       <span className="relative flex size-1.5">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-300/60" />
-        <span className="relative inline-flex size-1.5 rounded-full bg-primary-300/80" />
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400/60" />
+        <span className="relative inline-flex size-1.5 rounded-full bg-primary-500/80" />
       </span>
       {label}
     </span>
@@ -130,11 +130,11 @@ export function HackathonRegister() {
     <section
       id="hackathon-register"
       aria-labelledby="hackathon-register-title"
-      className="relative overflow-hidden border-y border-[#E0A82E]/25 bg-primary-900 px-5 py-24 lg:px-10 lg:py-36"
+      className="relative overflow-hidden border-y border-[#E0A82E]/25 bg-white px-5 py-24 lg:px-10 lg:py-36"
     >
-      <div className="brand-grid pointer-events-none absolute inset-0 opacity-35" />
+      <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
 
-      <div className="relative mx-auto max-w-[960px]">
+      <div className="relative mx-auto max-w-[1480px]">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +143,7 @@ export function HackathonRegister() {
         >
           <div className="flex items-center gap-4">
             <span className="h-px w-10 bg-[#E0A82E]" aria-hidden />
-            <p className="font-mono text-[11px] font-bold tracking-[0.18em] text-[#E0A82E] sm:text-xs">
+            <p className="font-mono text-[11px] font-bold tracking-[0.18em] text-accent-700 sm:text-xs">
               {t("overline")}
             </p>
           </div>
@@ -151,7 +151,7 @@ export function HackathonRegister() {
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <h2
               id="hackathon-register-title"
-              className="max-w-[20ch] text-[clamp(2.3rem,4.4vw,4rem)] leading-[0.98] font-black tracking-[-0.04em] text-primary-50"
+              className="max-w-[20ch] text-[clamp(2.3rem,4.4vw,4rem)] leading-[0.98] font-black tracking-[-0.04em] text-primary-900"
             >
               {t("heading")}
             </h2>
@@ -164,7 +164,7 @@ export function HackathonRegister() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.8, ease, delay: 0.1 }}
-          className="mt-10 overflow-hidden rounded-sm border border-[#E0A82E]/40 bg-[#142C4D] shadow-[0_30px_100px_rgba(8,18,36,0.55)]"
+          className="mt-10 overflow-hidden rounded-sm border border-[#E0A82E]/40 bg-white shadow-[0_30px_100px_rgba(11,29,51,0.16)]"
         >
           <AnimatePresence mode="wait" initial={false}>
           {status === "success" ? (
@@ -195,14 +195,14 @@ export function HackathonRegister() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onSubmit={handleSubmit}>
-              <div className="border-b border-[#E0A82E]/25 bg-primary-900/40 px-6 py-4 sm:px-10">
-                <p className="font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-[#E7CC65]">
+              <div className="border-b border-[#E0A82E]/25 bg-primary-50 px-6 py-4 sm:px-10">
+                <p className="font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-accent-700">
                   {t("cardKicker")}
                 </p>
               </div>
 
               <div className="px-6 py-8 sm:px-10">
-                <h3 className="text-[13px] font-bold uppercase tracking-[0.12em] text-primary-300">
+                <h3 className="text-[13px] font-bold uppercase tracking-[0.12em] text-primary-500">
                   {t("block1Title")}
                 </h3>
 
@@ -279,16 +279,16 @@ export function HackathonRegister() {
                   </label>
                 </div>
 
-                <div className="mt-10 border border-[#E0A82E]/20 bg-primary-900/30 p-5 sm:p-6">
+                <div className="mt-10 border border-[#E0A82E]/20 bg-primary-50 p-5 sm:p-6">
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <h3 className="text-[13px] font-bold uppercase tracking-[0.12em] text-primary-300">
+                    <h3 className="text-[13px] font-bold uppercase tracking-[0.12em] text-primary-500">
                       {t("block2Title")}
                     </h3>
                     <button
                       type="button"
                       onClick={addMember}
                       disabled={members.length >= MAX_MEMBERS}
-                      className="inline-flex items-center gap-1.5 rounded-sm border border-[#E0A82E]/40 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.06em] text-[#E7CC65] transition-colors hover:border-[#E0A82E] hover:text-[#E0A82E] disabled:pointer-events-none disabled:opacity-40"
+                      className="inline-flex items-center gap-1.5 rounded-sm border border-[#E0A82E]/40 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.06em] text-accent-700 transition-colors hover:border-[#E0A82E] hover:text-accent-800 disabled:pointer-events-none disabled:opacity-40"
                     >
                       <Plus className="size-3.5" />
                       {t("addMember")}
@@ -307,7 +307,7 @@ export function HackathonRegister() {
                             className={`rounded-sm border px-3 py-2 text-[12px] font-bold uppercase tracking-[0.04em] transition-colors ${
                               selected
                                 ? "border-[#E0A82E] bg-[#E0A82E] text-primary-900"
-                                : "border-primary-400/25 bg-primary-900/40 text-primary-300 hover:border-[#E0A82E]/50 hover:text-primary-50"
+                                : "border-primary-200 bg-white text-primary-600 hover:border-[#E0A82E]/50 hover:text-primary-900"
                             }`}
                           >
                             {index === 0
@@ -319,7 +319,7 @@ export function HackathonRegister() {
                               type="button"
                               onClick={() => removeMember(index)}
                               aria-label={t("removeMember", { n: index + 1 })}
-                              className="absolute -right-1.5 -top-1.5 grid size-4 place-items-center rounded-full border border-primary-400/40 bg-primary-900 text-primary-300 transition-colors hover:border-destructive hover:text-destructive"
+                              className="absolute -right-1.5 -top-1.5 grid size-4 place-items-center rounded-full border border-primary-300 bg-white text-primary-500 transition-colors hover:border-destructive hover:text-destructive"
                             >
                               <X className="size-2.5" />
                             </button>
@@ -403,7 +403,7 @@ export function HackathonRegister() {
                 </div>
               </div>
 
-              <div className="flex flex-col items-stretch justify-between gap-3 border-t border-[#E0A82E]/20 bg-primary-900/40 px-6 py-6 sm:flex-row sm:items-center sm:px-10">
+              <div className="flex flex-col items-stretch justify-between gap-3 border-t border-[#E0A82E]/20 bg-primary-50 px-6 py-6 sm:flex-row sm:items-center sm:px-10">
                 {status === "error" ? (
                   <p className="text-[14px] font-semibold text-destructive">
                     {t("errorMessage")}

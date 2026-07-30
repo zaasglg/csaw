@@ -56,15 +56,15 @@ const initialFormData: RegistrationFormData = {
 }
 
 const inputClassName =
-  "h-12 rounded-sm border border-accent/25 bg-primary-900/45 px-4 text-primary-50 placeholder:text-primary-400 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
+  "h-12 rounded-sm border border-primary-200 bg-primary-50 px-4 text-primary-900 placeholder:text-primary-400 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
 
 const selectClassName = `${inputClassName} w-full appearance-none pr-10`
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="flex items-center gap-1 text-[14px] font-semibold text-primary-100">
+    <span className="flex items-center gap-1 text-[14px] font-semibold text-primary-700">
       {children}
-      <span aria-hidden className="text-accent-300">
+      <span aria-hidden className="text-accent-700">
         *
       </span>
     </span>
@@ -171,18 +171,18 @@ export function ParticipantRegister() {
     <section
       id="register"
       aria-labelledby="register-title"
-      className="relative overflow-hidden border-y border-accent/25 bg-primary-900 px-5 py-24 lg:px-10 lg:py-36"
+      className="relative overflow-hidden border-y border-accent/25 bg-white px-5 py-24 lg:px-10 lg:py-36"
     >
-      <div className="brand-grid pointer-events-none absolute inset-0 opacity-35" />
+      <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
 
       <div className="relative mx-auto max-w-[1480px]">
-        <div className="grid items-start gap-16 lg:grid-cols-12 lg:gap-12">
+        <div className="flex flex-col items-start gap-16">
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.75, ease }}
-            className="flex flex-col gap-8 lg:col-span-5 lg:pr-4 lg:pt-9 xl:pr-10"
+            className="flex flex-col gap-8"
           >
             <div className="flex items-center gap-4">
               <span className="h-px w-10 bg-accent" aria-hidden />
@@ -193,12 +193,12 @@ export function ParticipantRegister() {
 
             <h2
               id="register-title"
-              className="max-w-[18ch] text-[clamp(2.5rem,4.4vw,4.6rem)] leading-[0.98] font-black tracking-[-0.045em] text-primary-50"
+              className="max-w-[18ch] text-[clamp(2.5rem,4.4vw,4.6rem)] leading-[0.98] font-black tracking-[-0.045em] text-primary-900"
             >
               {t("heading")}
             </h2>
 
-            <p className="max-w-[46ch] text-[16px] leading-[1.6] text-primary-200 sm:text-lg">
+            <p className="max-w-[46ch] text-[16px] leading-[1.6] text-primary-600 sm:text-lg">
               {t("description")}
             </p>
           </motion.div>
@@ -208,9 +208,9 @@ export function ParticipantRegister() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease, delay: 0.1 }}
-            className="lg:col-span-7"
+            className="w-full"
           >
-            <div className="relative overflow-hidden rounded-sm border border-accent/40 bg-[#142C4D] shadow-[0_30px_100px_rgba(11,29,51,0.55)]">
+            <div className="relative overflow-hidden rounded-sm border border-accent/40 bg-white shadow-[0_30px_100px_rgba(11,29,51,0.16)]">
               <AnimatePresence mode="wait" initial={false}>
               {status === "success" ? (
                 <FormSuccess
@@ -234,8 +234,8 @@ export function ParticipantRegister() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                   onSubmit={handleSubmit}>
-                  <div className="flex items-center justify-between gap-4 border-b border-accent/35 bg-primary-900 px-6 py-4 sm:px-8">
-                    <p className="font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-accent-300">
+                  <div className="flex items-center justify-between gap-4 border-b border-accent/35 bg-primary-50 px-6 py-4 sm:px-8">
+                    <p className="font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-accent-700">
                       {t("cardKicker")}
                     </p>
                     <div className="flex items-center gap-3">
@@ -273,10 +273,10 @@ export function ParticipantRegister() {
                   </div>
 
                   <div className="overflow-hidden px-6 pt-7 sm:px-8">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary-400">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary-500">
                       {t("stepLabel")} {step}/{stepTitles.length}
                     </p>
-                    <h3 className="mt-2 text-[clamp(1.4rem,2.4vw,1.9rem)] leading-[1.1] font-bold tracking-[-0.03em] text-primary-50">
+                    <h3 className="mt-2 text-[clamp(1.4rem,2.4vw,1.9rem)] leading-[1.1] font-bold tracking-[-0.03em] text-primary-900">
                       {stepTitles[step - 1]}
                     </h3>
 
@@ -329,7 +329,7 @@ export function ParticipantRegister() {
                               />
                             </label>
                             <label className="grid gap-2.5">
-                              <span className="text-[14px] font-semibold text-primary-100">
+                              <span className="text-[14px] font-semibold text-primary-700">
                                 {t("patronymic")}
                               </span>
                               <Input
@@ -445,7 +445,7 @@ export function ParticipantRegister() {
                           </label>
 
                           <div className="grid gap-3">
-                            <span className="text-[14px] font-semibold text-primary-100">
+                            <span className="text-[14px] font-semibold text-primary-700">
                               {t("infoLanguage")}
                             </span>
                             <div
@@ -468,7 +468,7 @@ export function ParticipantRegister() {
                                   className={`rounded-sm border px-4 py-3 text-[14px] font-semibold transition-colors ${
                                     formData.infoLanguage === lang.value
                                       ? "border-accent bg-accent text-primary-900"
-                                      : "border-accent/25 bg-primary-900/30 text-primary-200 hover:border-accent/50 hover:text-primary-50"
+                                      : "border-primary-200 bg-primary-50 text-primary-700 hover:border-accent/50 hover:text-primary-900"
                                   }`}
                                 >
                                   {lang.label}
@@ -498,7 +498,7 @@ export function ParticipantRegister() {
                           <div className="grid gap-5 sm:grid-cols-2">
                             <label className="grid gap-2.5">
                               <FieldLabel>
-                                <Phone className="size-4 text-accent-300" />
+                                <Phone className="size-4 text-accent-700" />
                                 {t("phone")}
                               </FieldLabel>
                               <Input
@@ -516,7 +516,7 @@ export function ParticipantRegister() {
                             </label>
                             <label className="grid gap-2.5">
                               <FieldLabel>
-                                <Mail className="size-4 text-accent-300" />
+                                <Mail className="size-4 text-accent-700" />
                                 {t("email")}
                               </FieldLabel>
                               <Input
@@ -544,12 +544,12 @@ export function ParticipantRegister() {
                     ) : null}
                   </div>
 
-                  <div className="mt-8 flex items-center justify-between gap-4 border-t border-accent/20 bg-primary-900 px-6 py-6 sm:px-8">
+                  <div className="mt-8 flex items-center justify-between gap-4 border-t border-accent/20 bg-primary-50 px-6 py-6 sm:px-8">
                     {step > 1 ? (
                       <button
                         type="button"
                         onClick={goBack}
-                        className="inline-flex h-11 items-center gap-2 rounded-sm border border-accent/30 px-5 text-[15px] font-bold text-primary-200 transition-colors hover:border-accent/60 hover:text-primary-50"
+                        className="inline-flex h-11 items-center gap-2 rounded-sm border border-accent/30 px-5 text-[15px] font-bold text-primary-600 transition-colors hover:border-accent/60 hover:text-primary-900"
                       >
                         <ArrowLeft className="size-4" />
                         {t("back")}

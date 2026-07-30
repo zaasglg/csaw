@@ -17,7 +17,7 @@ export function ImmersiveBreak() {
   const imageY = useTransform(scrollYProgress, [0, 1], ["-4%", "4%"])
   const firstLineX = useTransform(scrollYProgress, [0, 1], ["-7%", "3%"])
   const secondLineX = useTransform(scrollYProgress, [0, 1], ["8%", "-2%"])
-  const veilOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.68, 0.38, 0.72])
+  const veilOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 0.72, 0.92])
 
   return (
     <section ref={section} id="manifesto" className="relative h-[180dvh] border-y border-accent/25">
@@ -35,16 +35,16 @@ export function ImmersiveBreak() {
           />
         </motion.div>
         <motion.div
-          className="absolute inset-0 bg-primary-800"
-          style={reduceMotion ? { opacity: 0.58 } : { opacity: veilOpacity }}
+          className="absolute inset-0 bg-white"
+          style={reduceMotion ? { opacity: 0.85 } : { opacity: veilOpacity }}
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,29,51,0.72),transparent_48%,rgba(11,29,51,0.48))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.9),transparent_48%,rgba(255,255,255,0.75))]" />
 
         <div className="relative mx-auto flex min-h-[100dvh] max-w-[1600px] flex-col justify-center overflow-hidden px-5 lg:px-10">
-          <p className="mb-6 max-w-sm border-l-2 border-accent pl-4 text-xs font-bold uppercase tracking-[0.2em] text-accent">
+          <p className="mb-6 max-w-sm border-l-2 border-accent pl-4 text-xs font-bold uppercase tracking-[0.2em] text-accent-700">
             {t("kicker")}
           </p>
-          <h2 className="text-[clamp(3.1rem,12vw,12rem)] leading-[0.76] font-black tracking-[-0.085em] text-primary-50">
+          <h2 className="text-[clamp(3.1rem,12vw,12rem)] leading-[0.76] font-black tracking-[-0.085em] text-primary-900">
             <span className="block overflow-hidden">
               <motion.span
                 className="block whitespace-nowrap"
@@ -62,7 +62,7 @@ export function ImmersiveBreak() {
               </motion.span>
             </span>
           </h2>
-          <p className="mt-9 max-w-lg text-base leading-relaxed text-primary-200/85 sm:text-lg">
+          <p className="mt-9 max-w-lg text-base leading-relaxed text-primary-700/90 sm:text-lg">
             {t("description")}
           </p>
         </div>
