@@ -14,9 +14,10 @@ import { type SubmitEvent, useState } from "react"
 import { FormSuccess } from "@/components/interactive/FormSuccess"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { MAX_HACKATHON_TEAM_MEMBERS } from "@/lib/constants"
 
 const ease = [0.16, 1, 0.3, 1] as const
-const MAX_MEMBERS = 6
+const MAX_MEMBERS = MAX_HACKATHON_TEAM_MEMBERS
 
 interface TeamInfo {
   teamName: string
@@ -69,7 +70,7 @@ export function HackathonRegister() {
   const reduceMotion = useReducedMotion()
   const t = useTranslations("hackathonRegister")
   const caspianCountries = useTranslations("common").raw("countries") as string[]
-  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle")
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
   const [teamInfo, setTeamInfo] = useState<TeamInfo>({
     teamName: "",
     country: "",
@@ -107,10 +108,22 @@ export function HackathonRegister() {
     setActiveMember((prev) => (prev >= index ? Math.max(0, prev - 1) : prev))
   }
 
-  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     setStatus("sending")
-    window.setTimeout(() => setStatus("success"), 850)
+
+    try {
+      const response = await fetch("/api/hackathon-teams", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...teamInfo, members }),
+      })
+
+      if (!response.ok) throw new Error("request_failed")
+      setStatus("success")
+    } catch {
+      setStatus("error")
+    }
   }
 
   return (
@@ -390,7 +403,14 @@ export function HackathonRegister() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end border-t border-[#E0A82E]/20 bg-primary-900/40 px-6 py-6 sm:px-10">
+              <div className="flex flex-col items-stretch justify-between gap-3 border-t border-[#E0A82E]/20 bg-primary-900/40 px-6 py-6 sm:flex-row sm:items-center sm:px-10">
+                {status === "error" ? (
+                  <p className="text-[14px] font-semibold text-destructive">
+                    {t("errorMessage")}
+                  </p>
+                ) : (
+                  <span />
+                )}
                 <Button
                   type="submit"
                   disabled={status === "sending"}

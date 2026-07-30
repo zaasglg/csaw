@@ -122,7 +122,7 @@ export function ParticipantRegister() {
   const stepTitles = t.raw("steps") as string[]
   const [step, setStep] = useState<1 | 2 | 3>(1)
   const [direction, setDirection] = useState<1 | -1>(1)
-  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle")
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
   const [formData, setFormData] = useState<RegistrationFormData>(initialFormData)
 
   function updateField<K extends keyof RegistrationFormData>(
@@ -142,14 +142,29 @@ export function ParticipantRegister() {
     setStep((prev) => (prev > 1 ? ((prev - 1) as 1 | 2 | 3) : prev))
   }
 
-  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     if (step < 3) {
       goNext()
       return
     }
     setStatus("sending")
-    window.setTimeout(() => setStatus("success"), 850)
+
+    try {
+      const response = await fetch("/api/volunteers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          infoLanguage: formData.infoLanguage || undefined,
+        }),
+      })
+
+      if (!response.ok) throw new Error("request_failed")
+      setStatus("success")
+    } catch {
+      setStatus("error")
+    }
   }
 
   return (
@@ -521,6 +536,12 @@ export function ParticipantRegister() {
                         </motion.div>
                       )}
                     </AnimatePresence>
+
+                    {status === "error" ? (
+                      <p className="mt-5 text-[14px] font-semibold text-destructive">
+                        {t("errorMessage")}
+                      </p>
+                    ) : null}
                   </div>
 
                   <div className="mt-8 flex items-center justify-between gap-4 border-t border-accent/20 bg-primary-900 px-6 py-6 sm:px-8">

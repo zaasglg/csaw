@@ -9,8 +9,15 @@ import { ParticipantRegister } from "@/components/sections/ParticipantRegister"
 import { Program } from "@/components/sections/Program"
 import { Speakers } from "@/components/sections/Speakers"
 import { SmoothScroll } from "@/components/providers/SmoothScroll"
+import { prisma } from "@/lib/prisma"
 
-export default function Home() {
+export const dynamic = "force-dynamic"
+
+export default async function Home() {
+  const speakers = await prisma.speaker.findMany({
+    orderBy: [{ order: "asc" }, { createdAt: "asc" }],
+  })
+
   return (
     <SmoothScroll>
       <main className="relative overflow-x-clip bg-primary-900 text-primary-50">
@@ -19,7 +26,7 @@ export default function Home() {
         <About />
         <ParticipantRegister />
         <Hackathon />
-        <Speakers />
+        <Speakers speakers={speakers} />
         <Program />
         <HackathonRegister />
         <ImmersiveBreak />

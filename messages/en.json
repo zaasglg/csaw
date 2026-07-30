@@ -84,7 +84,8 @@
     "submit": "Submit application",
     "successTitle": "Application accepted",
     "successDescription": "We'll send the confirmation and your official badge details by email.",
-    "newApplication": "Submit a new application"
+    "newApplication": "Submit a new application",
+    "errorMessage": "Couldn't submit the application. Please try again."
   },
   "hackathon": {
     "overline": "IT & ECOLOGY TRACK • CSAW 2026",
@@ -127,7 +128,8 @@
     "submit": "Submit application",
     "successTitle": "Application accepted",
     "successDescription": "Your team's application has been registered. We'll send the hackathon rules and next steps by email.",
-    "newApplication": "Submit a new application"
+    "newApplication": "Submit a new application",
+    "errorMessage": "Couldn't submit the application. Please try again."
   },
   "speakers": {
     "overline": "SPEAKERS • CSAW 2026",
@@ -343,6 +345,7 @@
     "submit": "Submit application",
     "successTitle": "Application accepted",
     "successDescription": "We'll send the confirmation and next steps by email.",
-    "done": "Done"
+    "done": "Done",
+    "errorMessage": "Couldn't submit the application. Please try again."
   }
 }
