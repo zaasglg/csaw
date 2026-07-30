@@ -1,4 +1,5 @@
 import { About } from "@/components/sections/About"
+import { Contacts } from "@/components/sections/Contacts"
 import { Footer } from "@/components/sections/Footer"
 import { Hackathon } from "@/components/sections/Hackathon"
 import { HackathonRegister } from "@/components/sections/HackathonRegister"
@@ -9,7 +10,6 @@ import { ParticipantRegister } from "@/components/sections/ParticipantRegister"
 import { Program } from "@/components/sections/Program"
 import { Speakers } from "@/components/sections/Speakers"
 import { SmoothScroll } from "@/components/providers/SmoothScroll"
-import { FixedMeshBackground } from "@/components/visual/FixedMeshBackground"
 import { prisma } from "@/lib/prisma"
 
 export const dynamic = "force-dynamic"
@@ -33,6 +33,7 @@ export default async function Home() {
           <ParticipantRegister />
           <ImmersiveBreak />
           <Mangystau />
+          <Contacts />
           <Footer />
         </div>
       </main>

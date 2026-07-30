@@ -309,6 +309,15 @@
     "titleLine2": "ALIVE",
     "description": "Action that begins on the coast becomes a shared movement across the entire Caspian region."
   },
+  "contacts": {
+    "kicker": "CSAW 2026 · AKTAU",
+    "heading": "Contacts",
+    "description": "Have questions? Write to the organizers — we will get back to you.",
+    "emailLabel": "Email",
+    "websiteLabel": "Website",
+    "locationLabel": "Location",
+    "locationValue": "Aktau, Mangystau Region, Kazakhstan"
+  },
   "footer": {
     "address": "6-12 August 2026, Aktau, Mangystau Region, Kazakhstan.",
     "organizersTitle": "Organizers",
