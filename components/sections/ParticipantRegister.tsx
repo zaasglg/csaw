@@ -171,7 +171,7 @@ export function ParticipantRegister() {
     <section
       id="register"
       aria-labelledby="register-title"
-      className="relative overflow-hidden border-y border-accent/25 bg-white px-5 py-24 lg:px-10 lg:py-36"
+      className="mesh-surface-white relative overflow-hidden border-y border-accent/25 px-5 py-24 lg:px-10 lg:py-36"
     >
       <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
 

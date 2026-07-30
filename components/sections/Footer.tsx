@@ -9,7 +9,7 @@ export function Footer() {
   const organizers = t.raw("organizers") as string[]
 
   return (
-    <footer className="relative overflow-hidden border-t border-accent/35 bg-primary-50 px-5 py-16 lg:px-10">
+    <footer className="mesh-surface-tint relative overflow-hidden border-t border-accent/35 px-5 py-16 lg:px-10">
       <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
       <div className="relative mx-auto max-w-[1480px]">
         <div className="grid gap-12 pb-14 md:grid-cols-[1fr_auto_auto]">

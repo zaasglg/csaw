@@ -270,6 +270,131 @@ html.lenis body {
   mix-blend-mode: soft-light;
 }
 
+.fixed-mesh-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 68% 14%, rgb(205 187 255 / 0.26), transparent 34%),
+    linear-gradient(180deg, #ffffff 0%, #fbfaff 50%, #f8f7ff 100%);
+}
+
+.fixed-mesh-background svg {
+  position: absolute;
+  inset: -2%;
+  width: 100%;
+  height: 100%;
+}
+
+.fixed-mesh-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 18% 74%, rgb(185 156 255 / 0.2), transparent 38%),
+    radial-gradient(ellipse at 84% 68%, rgb(26 54 93 / 0.065), transparent 32%);
+}
+
+.mesh-wave-layer {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.mesh-wave-layer--rear {
+  opacity: 0.28;
+  animation: mesh-wave-rear 23s ease-in-out -7s infinite;
+}
+
+.mesh-wave-layer--main {
+  opacity: 0.86;
+  animation: mesh-wave-main 17s ease-in-out -3s infinite;
+}
+
+.mesh-wave-layer--front {
+  opacity: 0.44;
+  animation: mesh-wave-front 13s ease-in-out -9s infinite;
+}
+
+.fixed-mesh-particles {
+  position: absolute;
+  inset: 0;
+}
+
+.fixed-mesh-particle {
+  position: absolute;
+  display: block;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.fixed-mesh-particle--lavender {
+  color: rgb(169 128 255 / 0.68);
+  background: currentColor;
+}
+
+.fixed-mesh-particle--navy {
+  color: rgb(26 54 93 / 0.18);
+  background: currentColor;
+}
+
+.fixed-mesh-particle--gold {
+  color: rgb(212 175 55 / 0.28);
+  background: currentColor;
+}
+
+.mesh-surface-white {
+  background-color: rgb(255 255 255 / 0.7);
+  backdrop-filter: blur(0.4px);
+}
+
+.mesh-surface-tint {
+  background-color: rgb(244 247 251 / 0.72);
+  backdrop-filter: blur(0.4px);
+}
+
+@keyframes mesh-wave-main {
+  0%,
+  100% {
+    transform: translate3d(-12px, 5px, 0) scale(1.012, 0.995);
+  }
+  25% {
+    transform: translate3d(4px, -12px, 0) scale(1.02, 1.025);
+  }
+  52% {
+    transform: translate3d(16px, 3px, 0) scale(1.01, 0.985);
+  }
+  76% {
+    transform: translate3d(-2px, 13px, 0) scale(1.018, 1.018);
+  }
+}
+
+@keyframes mesh-wave-rear {
+  0%,
+  100% {
+    transform: translate3d(15px, -4px, 0) scale(1.018, 1.02);
+  }
+  35% {
+    transform: translate3d(-10px, 10px, 0) scale(1.03, 0.985);
+  }
+  68% {
+    transform: translate3d(-20px, -8px, 0) scale(1.012, 1.035);
+  }
+}
+
+@keyframes mesh-wave-front {
+  0%,
+  100% {
+    transform: translate3d(-18px, 9px, 0) scale(1.025, 0.98);
+  }
+  32% {
+    transform: translate3d(2px, -15px, 0) scale(1.012, 1.03);
+  }
+  66% {
+    transform: translate3d(20px, 5px, 0) scale(1.028, 1.012);
+  }
+}
+
 .brand-grid {
   background-image:
     linear-gradient(rgb(212 175 55 / 0.045) 1px, transparent 1px),
@@ -314,10 +439,33 @@ html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .mesh-wave-layer {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 @media (prefers-reduced-transparency: reduce) {
   .site-grain {
     display: none;
+  }
+
+  .fixed-mesh-background {
+    background: #f8f7ff;
+  }
+
+  .fixed-mesh-background svg,
+  .fixed-mesh-glow,
+  .fixed-mesh-particles {
+    display: none;
+  }
+
+  .mesh-surface-white {
+    background-color: #ffffff;
+  }
+
+  .mesh-surface-tint {
+    background-color: #f4f7fb;
   }
 }

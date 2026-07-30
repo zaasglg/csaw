@@ -123,7 +123,7 @@ export function About() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="relative isolate overflow-hidden border-b border-primary-100 bg-white px-5 py-24 text-primary-900 md:px-8 lg:px-12 lg:py-32 xl:px-16 xl:py-40"
+      className="mesh-surface-white relative isolate overflow-hidden border-b border-primary-100 px-5 py-24 text-primary-900 md:px-8 lg:px-12 lg:py-32 xl:px-16 xl:py-40"
     >
       <div
         aria-hidden

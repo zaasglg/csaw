@@ -59,7 +59,8 @@ export function Program() {
     <section
       ref={sectionRef}
       id="program"
-      className="relative overflow-hidden border-y border-accent/25 bg-white px-5 py-24 lg:px-10 lg:py-36"
+      aria-labelledby="program-title"
+      className="mesh-surface-white relative overflow-hidden border-y border-accent/25 px-5 py-24 lg:px-10 lg:py-36"
     >
       <div
         aria-hidden
@@ -76,9 +77,12 @@ export function Program() {
             transition={{ duration: 0.75, ease }}
             className="lg:col-span-7"
           >
-            <p className="max-w-lg border-l border-accent/40 pl-4 text-2xl leading-relaxed text-primary-800">
+            <h2
+              id="program-title"
+              className="max-w-[14ch] border-l border-accent/40 pl-4 text-[clamp(2.5rem,4.4vw,4.6rem)] leading-[0.98] font-black tracking-[-0.045em] text-primary-900"
+            >
               {t("description")}
-            </p>
+            </h2>
           </motion.div>
 
           <motion.div

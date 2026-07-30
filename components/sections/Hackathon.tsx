@@ -239,7 +239,7 @@ export function Hackathon() {
     <section
       ref={section}
       id="hackathon"
-      className="relative overflow-hidden border-y border-accent/25 bg-primary-50 px-5 py-24 lg:px-10 lg:py-36"
+      className="mesh-surface-tint relative overflow-hidden border-y border-accent/25 px-5 py-24 lg:px-10 lg:py-36"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_85%_20%,rgba(212,175,55,0.08),transparent_42%)]" />
       <div
