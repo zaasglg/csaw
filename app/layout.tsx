@@ -16,7 +16,7 @@ const exo2 = Exo_2({
 });
 
 export const metadata: Metadata = {
-  title: "Caspian Sea Action Week 2026 | Aktau, Kazakhstan",
+  title: "CASPIAN SEA ACTION WEEK | ХАЛЫҚАРАЛЫҚ ІС-ҚИМЫЛ АПТАЛЫҒЫ",
   description:
     "International action week uniting the Caspian region through ecology, volunteering and innovation. 6-12 August 2026 in Aktau.",
   keywords: [
