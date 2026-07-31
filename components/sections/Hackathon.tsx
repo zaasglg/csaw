@@ -248,43 +248,17 @@ export function Hackathon() {
       <div className="relative mx-auto grid max-w-[1480px] gap-16 lg:grid-cols-12 lg:items-stretch lg:gap-12">
         <motion.div
           style={reduceMotion ? undefined : { y: copyY }}
-          className="flex flex-col justify-center lg:col-span-5"
+          className="flex min-w-0 flex-col justify-center lg:col-span-5"
         >
           <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: {
-                transition: { staggerChildren: 0.09, delayChildren: 0.05 },
-              },
-            }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.8, ease }}
           >
-            <h2 className="mt-0 section-title">
-              <span className="block overflow-hidden pb-[0.06em]">
-                <motion.span
-                  variants={{
-                    hidden: { y: "110%" },
-                    visible: { y: "0%" },
-                  }}
-                  transition={{ duration: 0.9, ease }}
-                  className="block"
-                >
-                  {t("titleLine1")}
-                </motion.span>
-              </span>
-              <span className="block overflow-hidden pb-[0.06em]">
-                <motion.span
-                  variants={{
-                    hidden: { y: "110%" },
-                    visible: { y: "0%" },
-                  }}
-                  transition={{ duration: 0.9, ease }}
-                  className="block"
-                >
-                  {t("titleLine2")}
-                </motion.span>
-              </span>
+            <h2 className="section-title text-[clamp(2rem,3.2vw,3.25rem)]">
+              <span className="block">{t("titleLine1")}</span>
+              <span className="block">{t("titleLine2")}</span>
             </h2>
           </motion.div>
         </motion.div>

@@ -182,12 +182,6 @@ export function HeroSection() {
             transition={{ duration: 0.52, ease }}
             className="max-w-[920px]"
           >
-            <div className="mb-7 flex max-w-[18rem] items-center border-l-2 border-accent pl-4">
-              <p className="text-xs leading-[1.35] font-semibold text-primary-700 sm:text-sm">
-                {t("badgeAttribution")}
-              </p>
-            </div>
-
             <h1 className="section-title">
               <span className="block lg:whitespace-nowrap">{t("titleLine1")}</span>
               <span className="block lg:whitespace-nowrap">{t("titleLine2")}</span>
