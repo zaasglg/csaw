@@ -193,6 +193,7 @@
     "prizeCaption": "Ten million tenge",
     "prizeDescription": "Over three days, teams compete for the best technological solution for the Caspian ecosystem.",
     "registerTeam": "Register your team",
+    "rulesLabel": "Rules",
     "ticker": [
       "Eco-tech",
       "Caspian",
@@ -206,6 +207,9 @@
     "overline": "CASPIAN HACKATHON 2026",
     "heading": "Apply to take part in the hackathon",
     "statusBadge": "Rules",
+    "rulesKk": "Rules · KK",
+    "rulesRu": "Rules · RU",
+    "rulesEn": "Rules · EN",
     "cardKicker": "Caspian Hackathon · Team application",
     "block1Title": "01 · General team information",
     "teamName": "Team name",

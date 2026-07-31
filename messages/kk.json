@@ -193,6 +193,7 @@
     "prizeCaption": "Ten million tenge",
     "prizeDescription": "Үш күн ішінде командалар Каспий экожүйесіне арналған технологиялық шешімдер үшін бәсекеге түседі.",
     "registerTeam": "Команданы тіркеу",
+    "rulesLabel": "Ережелер",
     "ticker": [
       "Eco-tech",
       "Caspian",
@@ -206,6 +207,9 @@
     "overline": "CASPIAN HACKATHON 2026",
     "heading": "Хакатонға қатысу үшін өтінім беру",
     "statusBadge": "Ережелер",
+    "rulesKk": "Ережелер · Қаз",
+    "rulesRu": "Ережелер · Рус",
+    "rulesEn": "Ережелер · Eng",
     "cardKicker": "Caspian Hackathon · Команда өтінімі",
     "block1Title": "01 · Команда туралы жалпы ақпарат",
     "teamName": "Команда атауы",

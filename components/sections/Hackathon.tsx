@@ -11,13 +11,23 @@ import {
   useSpring,
   useTransform,
 } from "motion/react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { PointerEvent, useEffect, useRef } from "react"
 
 import { Magnetic } from "@/components/interactive/Magnetic"
-import { Button } from "@/components/ui/button"
+import type { Locale } from "@/components/providers/LocaleProvider"
 
 const ease = [0.16, 1, 0.3, 1] as const
+
+/** External hackathon registration (on-site form removed; API kept). */
+const HACKATHON_REGISTER_URL =
+  "https://www.akorda.kz/ru/vystuplenie-glavy-gosudarstva-kasym-zhomarta-tokaeva-na-forume-volonterov-3004658"
+
+const RULES_BY_LOCALE: Record<Locale, string> = {
+  kk: "/documents/first.pdf",
+  ru: "/documents/second.pdf",
+  en: "/documents/third.pdf",
+}
 
 function PrizeCard({
   progress,
@@ -27,6 +37,7 @@ function PrizeCard({
   reduceMotion: boolean | null
 }) {
   const t = useTranslations("hackathon")
+  const locale = useLocale() as Locale
   const ticker = t.raw("ticker") as string[]
   const amount = useRef<HTMLSpanElement>(null)
   const stage = useRef<HTMLDivElement>(null)
@@ -77,22 +88,6 @@ function PrizeCard({
   function resetPointer() {
     pointerX.set(0)
     pointerY.set(0)
-  }
-
-  function scrollToHackathonRegister() {
-    const target = document.querySelector<HTMLElement>("#hackathon-register")
-    if (!target) return
-
-    if (reduceMotion) {
-      target.scrollIntoView({ behavior: "auto" })
-      return
-    }
-
-    window.dispatchEvent(
-      new CustomEvent("csaw:scroll-to", {
-        detail: { target: "#hackathon-register" },
-      })
-    )
   }
 
   return (
@@ -192,15 +187,29 @@ function PrizeCard({
         className="relative z-10 flex flex-col gap-6 border-t border-[#E0A82E]/30 pt-6"
       >
         <Magnetic className="inline-block w-fit">
-          <Button
-            type="button"
-            onClick={scrollToHackathonRegister}
-            className="h-12 rounded-sm border border-[#E0A82E] bg-[#E0A82E] px-7 text-[15px] font-bold tracking-[-0.01em] text-primary-900 hover:bg-[#EFC158] active:scale-[0.98]"
+          <a
+            href={HACKATHON_REGISTER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-12 items-center justify-center gap-1.5 rounded-sm border border-[#E0A82E] bg-[#E0A82E] px-7 text-[15px] font-bold tracking-[-0.01em] text-primary-900 transition-all hover:bg-[#EFC158] active:scale-[0.98]"
           >
             {t("registerTeam")}
             <ArrowRight className="size-4" />
-          </Button>
+          </a>
         </Magnetic>
+
+        <a
+          href={RULES_BY_LOCALE[locale]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex w-fit items-center gap-2.5 rounded-sm border border-dashed border-primary-300 bg-primary-50 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.1em] text-primary-800 transition-colors hover:border-accent/60 hover:text-accent-700 sm:px-5 sm:py-3 sm:text-base"
+        >
+          <span className="relative flex size-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400/60" />
+            <span className="relative inline-flex size-2.5 rounded-full bg-primary-500/80" />
+          </span>
+          {t("rulesLabel")}
+        </a>
 
         <div className="overflow-hidden">
           <div

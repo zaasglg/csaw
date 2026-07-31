@@ -2,7 +2,6 @@ import { About } from "@/components/sections/About"
 import { Contacts } from "@/components/sections/Contacts"
 import { Footer } from "@/components/sections/Footer"
 import { Hackathon } from "@/components/sections/Hackathon"
-import { HackathonRegister } from "@/components/sections/HackathonRegister"
 import { HeroSection } from "@/components/sections/HeroSection"
 import { Mangystau } from "@/components/sections/Mangystau"
 import { ParticipantRegister } from "@/components/sections/ParticipantRegister"
@@ -28,7 +27,6 @@ export default async function Home() {
           <HeroSection />
           <About />
           <Hackathon />
-          <HackathonRegister />
           <Speakers speakers={speakers} />
           <Program />
           <ParticipantRegister />

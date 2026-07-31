@@ -85,16 +85,16 @@ export function HeroSection() {
       >
         <div className="absolute inset-0">
           <Image
-            src="/images/hero-young-volunteers.webp"
+            src="/images/hero_banner.jpg"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="scale-[1.015] object-cover object-center opacity-95"
+            className="scale-[1.015] object-cover object-[center_35%] opacity-95"
           />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(244,247,251,0.96)_0%,rgba(244,247,251,0.9)_30%,rgba(244,247,251,0.7)_52%,rgba(244,247,251,0.42)_74%,rgba(244,247,251,0.3)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(244,247,251,0.5)_0%,rgba(244,247,251,0.05)_28%,rgba(244,247,251,0.14)_66%,rgba(244,247,251,0.72)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(244,247,251,0.96)_0%,rgba(244,247,251,0.88)_28%,rgba(244,247,251,0.55)_50%,rgba(244,247,251,0.22)_72%,rgba(244,247,251,0.12)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(244,247,251,0.55)_0%,rgba(244,247,251,0.08)_26%,rgba(244,247,251,0.12)_64%,rgba(244,247,251,0.78)_100%)]" />
       </motion.div>
 
       <header className="fixed inset-x-0 top-0 z-40 border-b border-primary-200 bg-white/92 backdrop-blur-sm">

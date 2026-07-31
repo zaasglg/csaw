@@ -192,6 +192,7 @@
     "prizeFund": "Призовой фонд",
     "prizeDescription": "В течение трёх дней команды соревнуются за лучшее технологическое решение для экосистемы Каспия.",
     "registerTeam": "Зарегистрировать команду",
+    "rulesLabel": "Регламент",
     "ticker": [
       "Eco-tech",
       "Caspian",
@@ -205,6 +206,9 @@
     "overline": "CASPIAN HACKATHON 2026",
     "heading": "Подать заявку на участие в хакатоне",
     "statusBadge": "Регламент",
+    "rulesKk": "Регламент · Қаз",
+    "rulesRu": "Регламент · Рус",
+    "rulesEn": "Регламент · Eng",
     "cardKicker": "Caspian Hackathon · Заявка команды",
     "block1Title": "01 · Общая информация о команде",
     "teamName": "Название команды",

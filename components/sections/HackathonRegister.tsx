@@ -15,6 +15,12 @@ import { Input } from "@/components/ui/input"
 
 const ease = [0.16, 1, 0.3, 1] as const
 
+const RULES_LINKS = [
+  { href: "/documents/first.pdf", labelKey: "rulesKk" as const },
+  { href: "/documents/second.pdf", labelKey: "rulesRu" as const },
+  { href: "/documents/third.pdf", labelKey: "rulesEn" as const },
+]
+
 interface TeamInfo {
   teamName: string
   country: string
@@ -36,15 +42,26 @@ function FieldLabel({ children }: { children: React.ReactNode }) {
   )
 }
 
-function StatusBadge({ label }: { label: string }) {
+function RulesLink({
+  label,
+  href,
+}: {
+  label: string
+  href: string
+}) {
   return (
-    <span className="inline-flex items-center gap-2.5 rounded-sm border border-dashed border-primary-300 bg-primary-50 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.1em] text-primary-800 sm:px-5 sm:py-3 sm:text-base">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2.5 rounded-sm border border-dashed border-primary-300 bg-primary-50 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.1em] text-primary-800 transition-colors hover:border-accent/60 hover:text-accent-700 sm:px-5 sm:py-3 sm:text-base"
+    >
       <span className="relative flex size-2.5">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400/60" />
         <span className="relative inline-flex size-2.5 rounded-full bg-primary-500/80" />
       </span>
       {label}
-    </span>
+    </a>
   )
 }
 
@@ -104,7 +121,15 @@ export function HackathonRegister() {
             >
               {t("heading")}
             </h2>
-            <StatusBadge label={t("statusBadge")} />
+            <div className="flex flex-wrap items-center gap-2.5">
+              {RULES_LINKS.map((link) => (
+                <RulesLink
+                  key={link.href}
+                  href={link.href}
+                  label={t(link.labelKey)}
+                />
+              ))}
+            </div>
           </div>
         </motion.div>
 
