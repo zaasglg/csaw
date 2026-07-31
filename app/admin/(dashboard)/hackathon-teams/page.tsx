@@ -21,33 +21,45 @@ export default async function AdminHackathonTeamsPage() {
       {teams.length === 0 ? (
         <EmptyState>Пока нет заявок команд.</EmptyState>
       ) : (
-        <div className="flex flex-col gap-5">
-          {teams.map((team) => (
-            <div key={team.id} className="border border-accent/20 bg-primary-800/40">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-accent/20 bg-primary-900/40 px-5 py-4">
-                <div>
-                  <p className="text-[16px] font-bold text-primary-50">{team.teamName}</p>
-                  <p className="mt-0.5 text-[13px] text-primary-300">
-                    {team.country} · {team.region} · Капитан: {team.captainName}
-                  </p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <p className="text-[12px] text-primary-400">
+        <div className="overflow-x-auto border border-accent/20 bg-primary-800/40">
+          <table className="w-full min-w-[760px] text-left text-[14px]">
+            <thead>
+              <tr className="border-b border-accent/20 text-[11px] font-bold uppercase tracking-[0.08em] text-primary-300">
+                <th className="px-4 py-3">Команда</th>
+                <th className="px-4 py-3">Страна</th>
+                <th className="px-4 py-3">Область / город</th>
+                <th className="px-4 py-3">Капитан</th>
+                <th className="px-4 py-3">Дата подачи</th>
+                <th className="px-4 py-3" />
+              </tr>
+            </thead>
+            <tbody>
+              {teams.map((team) => (
+                <tr key={team.id} className="border-b border-accent/10 last:border-0">
+                  <td className="px-4 py-3 font-semibold text-primary-50">
+                    {team.teamName}
+                  </td>
+                  <td className="px-4 py-3 text-primary-200">{team.country}</td>
+                  <td className="px-4 py-3 text-primary-200">{team.region}</td>
+                  <td className="px-4 py-3 text-primary-200">{team.captainName}</td>
+                  <td className="px-4 py-3 text-primary-300">
                     {dateFormatter.format(team.createdAt)}
-                  </p>
-                  <TeamActions
-                    team={{
-                      id: team.id,
-                      teamName: team.teamName,
-                      country: team.country,
-                      region: team.region,
-                      captainName: team.captainName,
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
+                  </td>
+                  <td className="px-4 py-3">
+                    <TeamActions
+                      team={{
+                        id: team.id,
+                        teamName: team.teamName,
+                        country: team.country,
+                        region: team.region,
+                        captainName: team.captainName,
+                      }}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

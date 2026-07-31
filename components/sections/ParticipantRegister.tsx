@@ -107,7 +107,7 @@ export function ParticipantRegister() {
   const t = useTranslations("register")
   const countries = useTranslations("common").raw("countries") as string[]
   const categories = t.raw("categories") as string[]
-  const regions = t.raw("regions") as string[]
+  const regionsByCountry = t.raw("regionsByCountry") as Record<string, string[]>
   const infoLanguageLabels = t.raw("infoLanguageOptions") as Array<{
     value: string
     label: string
@@ -117,11 +117,20 @@ export function ParticipantRegister() {
   )
   const [formData, setFormData] = useState<RegistrationFormData>(initialFormData)
 
+  const regionOptions = formData.country
+    ? (regionsByCountry[formData.country] ?? [])
+    : []
+  const useRegionSelect = regionOptions.length > 0
+
   function updateField<K extends keyof RegistrationFormData>(
     key: K,
     value: RegistrationFormData[K],
   ) {
     setFormData((prev) => ({ ...prev, [key]: value }))
+  }
+
+  function updateCountry(value: string) {
+    setFormData((prev) => ({ ...prev, country: value, region: "" }))
   }
 
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
@@ -291,22 +300,40 @@ export function ParticipantRegister() {
                                 placeholder={t("countryPlaceholder")}
                                 options={countries}
                                 value={formData.country}
-                                onChange={(value) =>
-                                  updateField("country", value)
-                                }
+                                onChange={updateCountry}
                               />
                             </label>
                           </div>
 
                           <label className="grid gap-2.5">
                             <FieldLabel>{t("region")}</FieldLabel>
-                            <SelectField
-                              name="region"
-                              placeholder={t("regionPlaceholder")}
-                              options={regions}
-                              value={formData.region}
-                              onChange={(value) => updateField("region", value)}
-                            />
+                            {useRegionSelect ? (
+                              <SelectField
+                                name="region"
+                                placeholder={t("regionPlaceholder")}
+                                options={regionOptions}
+                                value={formData.region}
+                                onChange={(value) =>
+                                  updateField("region", value)
+                                }
+                              />
+                            ) : (
+                              <Input
+                                required
+                                name="region"
+                                disabled={!formData.country}
+                                placeholder={
+                                  formData.country
+                                    ? t("regionOtherPlaceholder")
+                                    : t("regionCountryFirst")
+                                }
+                                value={formData.region}
+                                onChange={(event) =>
+                                  updateField("region", event.target.value)
+                                }
+                                className={inputClassName}
+                              />
+                            )}
                           </label>
                         </div>
 
