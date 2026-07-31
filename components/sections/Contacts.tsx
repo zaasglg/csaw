@@ -1,49 +1,39 @@
 "use client"
 
-import { Globe, Mail, MapPin } from "lucide-react"
+import { Mail, MapPin } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
 import { useTranslations } from "next-intl"
 
 const ease = [0.16, 1, 0.3, 1] as const
 
-type ContactItem =
-  | {
-      key: "email" | "website"
-      icon: typeof Mail
-      href: string
-      value: string
-    }
-  | {
-      key: "location"
-      icon: typeof MapPin
-      href: null
-      valueKey: "locationValue"
-    }
-
-const items: ContactItem[] = [
-  {
-    key: "email",
-    icon: Mail,
-    href: "mailto:info@csaw2026aktau.kz",
-    value: "info@csaw2026aktau.kz",
-  },
-  {
-    key: "website",
-    icon: Globe,
-    href: "http://csaw2026aktau.kz/",
-    value: "csaw2026aktau.kz",
-  },
-  {
-    key: "location",
-    icon: MapPin,
-    href: null,
-    valueKey: "locationValue",
-  },
-]
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+    </svg>
+  )
+}
 
 export function Contacts() {
   const t = useTranslations("contacts")
   const reduceMotion = useReducedMotion()
+  const socialItems = t.raw("socialItems") as {
+    label: string
+    value: string
+    href: string
+  }[]
+  const organizerItems = t.raw("organizerItems") as string[]
 
   return (
     <section
@@ -59,97 +49,103 @@ export function Contacts() {
 
       <div className="relative mx-auto max-w-[1480px]">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease }}
-          className="max-w-3xl"
+          transition={{ duration: 0.7, ease }}
+          className="text-center"
         >
-          <div className="flex items-center gap-4">
-            <span className="h-px w-10 bg-accent" aria-hidden />
-            <p className="font-mono text-[11px] font-bold tracking-[0.18em] text-accent sm:text-xs">
-              {t("kicker")}
-            </p>
-          </div>
-          <h2
-            id="contacts-title"
-            className="mt-6 max-w-[14ch] text-[clamp(2.6rem,5vw,5rem)] leading-[0.94] font-black text-primary-900"
-          >
+          <h2 id="contacts-title" className="section-title">
             {t("heading")}
           </h2>
-          <p className="mt-6 max-w-[46ch] border-l border-accent/40 pl-5 text-sm leading-relaxed text-primary-600 sm:pl-7 sm:text-base">
-            {t("description")}
-          </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-px border border-accent/30 bg-accent/30 sm:grid-cols-3">
-          {items.map((item, index) => {
-            const Icon = item.icon
-            const label = t(`${item.key}Label`)
-            const value =
-              item.key === "location" ? t(item.valueKey) : item.value
+        <div className="mt-14 grid gap-8 lg:grid-cols-2">
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease }}
+            className="border border-accent/35 bg-white p-8 shadow-[0_30px_100px_rgba(11,29,51,0.12)] sm:p-10"
+          >
+            <h3 className="section-subtitle">{t("infoCardTitle")}</h3>
 
-            const content = (
-              <>
-                <div className="flex items-center justify-between gap-3">
-                  <span className="font-mono text-[10px] tracking-[0.2em] text-primary-400">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <Icon
-                    aria-hidden
-                    className="size-5 text-accent"
-                    strokeWidth={1.6}
-                  />
-                </div>
-                <div className="mt-10">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary-500">
-                    {label}
+            <div className="mt-8 space-y-8">
+              <div className="flex items-start gap-4">
+                <span className="grid size-12 shrink-0 place-items-center border border-accent/40 bg-primary-50 text-accent-700">
+                  <Mail className="size-5" strokeWidth={1.8} aria-hidden />
+                </span>
+                <div>
+                  <p className="font-semibold text-primary-900">
+                    {t("emailLabel")}
                   </p>
-                  <p className="mt-3 text-lg leading-snug font-semibold text-primary-900 sm:text-xl">
-                    {value}
-                  </p>
+                  <a
+                    href={`mailto:${t("emailValue")}`}
+                    className="mt-1 block text-primary-600 transition-colors hover:text-accent-700"
+                  >
+                    {t("emailValue")}
+                  </a>
                 </div>
-              </>
-            )
+              </div>
 
-            const className =
-              "group flex min-h-44 flex-col justify-between bg-primary-50 p-6 transition-colors duration-300 hover:bg-white sm:p-8"
+              <div className="flex items-start gap-4">
+                <span className="grid size-12 shrink-0 place-items-center border border-accent/40 bg-primary-50 text-accent-700">
+                  <InstagramIcon className="size-5" />
+                </span>
+                <div>
+                  <p className="font-semibold text-primary-900">
+                    {t("socialLabel")}
+                  </p>
+                  <div className="mt-1 space-y-1 text-primary-600">
+                    {socialItems.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block transition-colors hover:text-accent-700"
+                      >
+                        {item.label}: {item.value}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
-            if (item.href) {
-              return (
-                <motion.a
-                  key={item.key}
-                  href={item.href}
-                  target={item.href.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    item.href.startsWith("http")
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                  initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.7, ease, delay: 0.08 * index }}
-                  className={`${className} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2`}
-                >
-                  {content}
-                </motion.a>
-              )
-            }
+              <div className="flex items-start gap-4">
+                <span className="grid size-12 shrink-0 place-items-center border border-accent/40 bg-primary-50 text-accent-700">
+                  <MapPin className="size-5" strokeWidth={1.8} aria-hidden />
+                </span>
+                <div>
+                  <p className="font-semibold text-primary-900">
+                    {t("locationLabel")}
+                  </p>
+                  <p className="mt-1 text-primary-600">{t("locationValue")}</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
-            return (
-              <motion.div
-                key={item.key}
-                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.7, ease, delay: 0.08 * index }}
-                className={className}
-              >
-                {content}
-              </motion.div>
-            )
-          })}
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease, delay: 0.1 }}
+            className="border border-accent/35 bg-white p-8 shadow-[0_30px_100px_rgba(11,29,51,0.12)] sm:p-10"
+          >
+            <h3 className="section-subtitle">{t("organizersCardTitle")}</h3>
+
+            <div className="mt-8">
+              <p className="font-semibold text-primary-900">
+                {t("organizerLabel")}
+              </p>
+              <ul className="mt-4 space-y-3 border-l border-accent/40 pl-5 text-primary-700">
+                {organizerItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

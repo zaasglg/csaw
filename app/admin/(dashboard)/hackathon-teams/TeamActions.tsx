@@ -1,20 +1,12 @@
 "use client"
 
-import { Loader2, Pencil, Plus, Trash2, X } from "lucide-react"
+import { Loader2, Pencil, Trash2 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { type FormEvent, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { MAX_HACKATHON_TEAM_MEMBERS } from "@/lib/constants"
-
-export interface TeamMemberDto {
-  fullName: string
-  countryNationality: string
-  organization: string
-  specialty: string
-}
 
 export interface HackathonTeamDto {
   id: string
@@ -22,7 +14,6 @@ export interface HackathonTeamDto {
   country: string
   region: string
   captainName: string
-  members: TeamMemberDto[]
 }
 
 const inputClassName =
@@ -37,10 +28,6 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   )
 }
 
-function createEmptyMember(): TeamMemberDto {
-  return { fullName: "", countryNationality: "", organization: "", specialty: "" }
-}
-
 export function TeamActions({ team }: { team: HackathonTeamDto }) {
   const router = useRouter()
   const [editOpen, setEditOpen] = useState(false)
@@ -51,35 +38,13 @@ export function TeamActions({ team }: { team: HackathonTeamDto }) {
   const [country, setCountry] = useState(team.country)
   const [region, setRegion] = useState(team.region)
   const [captainName, setCaptainName] = useState(team.captainName)
-  const [members, setMembers] = useState<TeamMemberDto[]>(team.members)
 
   function resetForm() {
     setTeamName(team.teamName)
     setCountry(team.country)
     setRegion(team.region)
     setCaptainName(team.captainName)
-    setMembers(team.members)
     setError("")
-  }
-
-  function updateMember<K extends keyof TeamMemberDto>(
-    index: number,
-    key: K,
-    value: TeamMemberDto[K],
-  ) {
-    setMembers((prev) =>
-      prev.map((member, i) => (i === index ? { ...member, [key]: value } : member)),
-    )
-  }
-
-  function addMember() {
-    if (members.length >= MAX_HACKATHON_TEAM_MEMBERS) return
-    setMembers((prev) => [...prev, createEmptyMember()])
-  }
-
-  function removeMember(index: number) {
-    if (members.length <= 1) return
-    setMembers((prev) => prev.filter((_, i) => i !== index))
   }
 
   async function handleDelete() {
@@ -104,7 +69,7 @@ export function TeamActions({ team }: { team: HackathonTeamDto }) {
     const response = await fetch(`/api/admin/hackathon-teams/${team.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ teamName, country, region, captainName, members }),
+      body: JSON.stringify({ teamName, country, region, captainName }),
     })
 
     setSaving(false)
@@ -187,82 +152,6 @@ export function TeamActions({ team }: { team: HackathonTeamDto }) {
                   className={inputClassName}
                 />
               </Field>
-            </div>
-
-            <div className="border-t border-accent/20 px-8 py-6">
-              <div className="flex items-center justify-between gap-3">
-                <h3 className="text-[13px] font-bold uppercase tracking-[0.1em] text-primary-300">
-                  Участники
-                </h3>
-                <button
-                  type="button"
-                  onClick={addMember}
-                  disabled={members.length >= MAX_HACKATHON_TEAM_MEMBERS}
-                  className="inline-flex items-center gap-1.5 rounded-sm border border-accent/40 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.06em] text-accent-300 transition-colors hover:border-accent hover:text-accent disabled:pointer-events-none disabled:opacity-40"
-                >
-                  <Plus className="size-3.5" />
-                  Добавить
-                </button>
-              </div>
-
-              <div className="mt-4 flex flex-col gap-4">
-                {members.map((member, index) => (
-                  <div
-                    key={index}
-                    className="relative grid gap-3 border border-accent/15 bg-primary-900/30 p-4 sm:grid-cols-2"
-                  >
-                    <p className="text-[12px] font-bold uppercase tracking-[0.08em] text-primary-400 sm:col-span-2">
-                      {index === 0 ? "Капитан" : `Участник ${index + 1}`}
-                    </p>
-                    {members.length > 1 && index > 0 ? (
-                      <button
-                        type="button"
-                        onClick={() => removeMember(index)}
-                        aria-label="Удалить участника"
-                        className="absolute top-3 right-3 grid size-6 place-items-center rounded-full border border-primary-400/40 text-primary-300 transition-colors hover:border-destructive hover:text-destructive"
-                      >
-                        <X className="size-3.5" />
-                      </button>
-                    ) : null}
-                    <Field label="ФИО">
-                      <Input
-                        required
-                        value={member.fullName}
-                        onChange={(event) => updateMember(index, "fullName", event.target.value)}
-                        className={inputClassName}
-                      />
-                    </Field>
-                    <Field label="Страна и национальность">
-                      <Input
-                        required
-                        value={member.countryNationality}
-                        onChange={(event) =>
-                          updateMember(index, "countryNationality", event.target.value)
-                        }
-                        className={inputClassName}
-                      />
-                    </Field>
-                    <Field label="Организация / ВУЗ">
-                      <Input
-                        required
-                        value={member.organization}
-                        onChange={(event) =>
-                          updateMember(index, "organization", event.target.value)
-                        }
-                        className={inputClassName}
-                      />
-                    </Field>
-                    <Field label="Специальность">
-                      <Input
-                        required
-                        value={member.specialty}
-                        onChange={(event) => updateMember(index, "specialty", event.target.value)}
-                        className={inputClassName}
-                      />
-                    </Field>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {error ? (

@@ -80,7 +80,7 @@ export function HeroSection() {
 
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 top-[5.75rem] overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 bottom-0 top-[9.75rem] overflow-hidden"
         style={reduceMotion ? undefined : { x: portraitX, y: portraitY }}
       >
         <div className="absolute inset-0">
@@ -98,11 +98,11 @@ export function HeroSection() {
       </motion.div>
 
       <header className="fixed inset-x-0 top-0 z-40 border-b border-primary-200 bg-white/92 backdrop-blur-sm">
-        <div className="mx-auto flex h-[5.75rem] max-w-[1840px] items-center justify-between gap-4 px-5 md:px-8 lg:px-12 xl:px-16">
+        <div className="relative mx-auto flex h-[7rem] max-w-[1840px] items-center justify-between gap-4 px-5 md:px-8 lg:px-12 xl:px-16">
           <a
             href="#home"
             aria-label={t("homeLabel")}
-            className="flex items-center"
+            className="relative z-10 flex shrink-0 items-center"
           >
             <Image
               src="/logo.svg"
@@ -110,11 +110,18 @@ export function HeroSection() {
               width={420}
               height={440}
               priority
-              className="h-14 w-auto sm:h-16"
+              className="h-[4.75rem] w-auto sm:h-24"
             />
           </a>
 
-          <div className="flex items-center gap-3 sm:gap-6">
+          <p
+            aria-hidden
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1.35rem,3.2vw,2.35rem)] font-black tracking-[-0.04em] text-primary-900"
+          >
+            CSAW 2026
+          </p>
+
+          <div className="relative z-10 flex shrink-0 items-center gap-3 sm:gap-6">
             <div className="hidden items-center gap-2 border-r border-primary-200 pr-6 text-xs font-semibold text-primary-600 md:flex">
               <CalendarDays className="size-4 text-accent-700" aria-hidden />
               <span>{t("dateShort")}</span>
@@ -125,9 +132,47 @@ export function HeroSection() {
             <LanguageSwitcher />
           </div>
         </div>
+
+        <nav
+          aria-label={t("navLabel")}
+          className="border-t border-primary-200 bg-white/95"
+        >
+          <div className="mx-auto flex h-11 max-w-[1840px] items-center justify-center gap-8 px-5 md:px-8 lg:px-12 xl:px-16">
+            <a
+              href="#program"
+              onClick={(event) => {
+                event.preventDefault()
+                scrollTo("#program")
+              }}
+              className="text-xs font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700"
+            >
+              {t("navProgram")}
+            </a>
+            <a
+              href="#hackathon"
+              onClick={(event) => {
+                event.preventDefault()
+                scrollTo("#hackathon")
+              }}
+              className="text-xs font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700"
+            >
+              {t("navHackathon")}
+            </a>
+            <a
+              href="#contacts"
+              onClick={(event) => {
+                event.preventDefault()
+                scrollTo("#contacts")
+              }}
+              className="text-xs font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700"
+            >
+              {t("navContacts")}
+            </a>
+          </div>
+        </nav>
       </header>
 
-      <div className="relative z-20 mx-auto grid min-h-[calc(100dvh-5.75rem)] max-w-[1840px] grid-cols-1 content-center px-5 py-8 pt-[5.75rem] md:px-8 lg:px-12 lg:py-10 xl:px-16">
+      <div className="relative z-20 mx-auto grid min-h-[100dvh] max-w-[1840px] grid-cols-1 content-center px-5 pb-10 pt-[12rem] md:px-8 lg:px-12 lg:pb-14 lg:pt-[12.5rem] xl:px-16">
         <AnimatePresence mode="wait">
           <motion.div
             key={locale}
@@ -137,29 +182,22 @@ export function HeroSection() {
             transition={{ duration: 0.52, ease }}
             className="max-w-[920px]"
           >
-            <div className="mb-7 flex flex-col items-start gap-3 md:flex-row md:items-stretch md:gap-4">
-              <div className="inline-flex max-w-full items-center border border-primary-300/45 bg-[#2878B8] px-4 py-3 shadow-[inset_0_0_0_2px_rgba(163,188,213,0.1)] sm:px-5">
-                <p className="text-[9px] leading-none font-black tracking-[0.08em] text-white sm:text-[11px] sm:tracking-[0.1em]">
-                  {t("badgeKicker")}
-                </p>
-              </div>
-              <div className="flex max-w-[18rem] items-center border-l-2 border-accent pl-4">
-                <p className="text-xs leading-[1.35] font-semibold text-primary-700 sm:text-sm">
-                  {t("badgeAttribution")}
-                </p>
-              </div>
+            <div className="mb-7 flex max-w-[18rem] items-center border-l-2 border-accent pl-4">
+              <p className="text-xs leading-[1.35] font-semibold text-primary-700 sm:text-sm">
+                {t("badgeAttribution")}
+              </p>
             </div>
 
-            <h1 className="text-[clamp(2.65rem,4.8vw,5.8rem)] leading-[0.84] font-black tracking-normal text-primary-900 ">
+            <h1 className="section-title">
               <span className="block lg:whitespace-nowrap">{t("titleLine1")}</span>
               <span className="block lg:whitespace-nowrap">{t("titleLine2")}</span>
             </h1>
 
-            <div className="mt-7 max-w-[43rem] border-l-2 border-accent pl-4 sm:pl-5">
-              <p className="font-mono text-[11px] font-bold tracking-[0.04em] text-accent-700 sm:text-[13px]">
+            <div className="mt-7 max-w-[48rem] border-l-2 border-accent pl-4 sm:pl-5">
+              <p className="font-mono text-sm font-bold tracking-[0.04em] text-accent-700 sm:text-base">
                 {t("dateShort")} • {t("placeShort")}
               </p>
-              <p className="mt-2.5 max-w-[58ch] text-sm leading-[1.6] text-primary-600 sm:text-base">
+              <p className="mt-3 max-w-[58ch] text-base leading-[1.65] text-primary-800 sm:text-lg">
                 {t("description")}
               </p>
             </div>

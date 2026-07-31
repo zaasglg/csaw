@@ -44,10 +44,10 @@ export function ImmersiveBreak() {
           <p className="mb-6 max-w-sm border-l-2 border-accent pl-4 text-xs font-bold uppercase tracking-[0.2em] text-accent-700">
             {t("kicker")}
           </p>
-          <h2 className="text-[clamp(3.1rem,12vw,12rem)] leading-[0.76] font-black tracking-[-0.085em] text-primary-900">
+          <h2 className="section-title">
             <span className="block overflow-hidden">
               <motion.span
-                className="block whitespace-nowrap"
+                className="block"
                 style={reduceMotion ? undefined : { x: firstLineX }}
               >
                 {t("titleLine1")}
@@ -55,7 +55,7 @@ export function ImmersiveBreak() {
             </span>
             <span className="block overflow-hidden">
               <motion.span
-                className="block whitespace-nowrap text-transparent [-webkit-text-stroke:1.5px_rgba(212,175,55,0.88)]"
+                className="block"
                 style={reduceMotion ? undefined : { x: secondLineX }}
               >
                 {t("titleLine2")}

@@ -49,7 +49,7 @@ export function ReactLenis({ children }: ReactLenisProps) {
       if (!target) return
 
       lenis.scrollTo(target, {
-        offset: -92,
+        offset: -136,
         duration: 1.35,
         easing: (time) => Math.min(1, 1.001 - 2 ** (-10 * time)),
       })

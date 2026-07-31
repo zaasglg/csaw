@@ -12,27 +12,7 @@ export function Footer() {
       <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
       <div className="relative mx-auto max-w-[1480px]">
         <div className="grid gap-12 pb-14 md:grid-cols-[1fr_auto]">
-          <div>
-            <div className="relative size-24 overflow-hidden">
-              <Image
-                src="/logo.svg"
-                alt="Caspian Sea Action Week 2026"
-                width={842}
-                height={595}
-                className="absolute -left-[58px] -top-[24px] h-[136px] w-[192px] max-w-none"
-              />
-            </div>
-            <p className="mt-6 max-w-md border-l border-accent/40 pl-4 text-sm leading-relaxed text-primary-600">
-              {t("address")}
-            </p>
-          </div>
-          <div>
-            <p className="text-sm font-bold text-accent">{t("organizersTitle")}</p>
-            <div className="mt-5 grid max-w-xs gap-2 text-sm leading-relaxed text-primary-600">
-              {organizers.map((organizer) => (
-                <span key={organizer}>{organizer}</span>
-              ))}
-            </div>
+          <div className="flex items-center justify-center">
             <div className="mt-6 flex items-center gap-8">
               <Image
                 src="/images/logo.png"

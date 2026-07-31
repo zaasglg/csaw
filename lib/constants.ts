@@ -1,1 +1,0 @@
-export const MAX_HACKATHON_TEAM_MEMBERS = 6

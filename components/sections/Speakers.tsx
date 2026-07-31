@@ -62,14 +62,8 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
           className="grid gap-8 border-b border-accent/25 pb-12 lg:grid-cols-12 lg:items-end"
         >
           <div className="lg:col-span-8">
-            <div className="flex items-center gap-4">
-              <span className="h-px w-10 bg-accent" aria-hidden />
-              <p className="font-mono text-[11px] font-bold tracking-[0.18em] text-accent sm:text-xs">
-                {t("overline")}
-              </p>
-            </div>
-            <h2 className="mt-6 text-[clamp(2.6rem,6vw,5.4rem)] leading-[0.94] font-black tracking-[-0.045em] text-primary-900">
-              {t("headingPrefix")} <span className="text-accent">{t("headingAccent")}</span>
+            <h2 className="section-title">
+              {t("headingPrefix")} {t("headingAccent")}
             </h2>
           </div>
         </motion.div>
@@ -211,10 +205,7 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
               </div>
 
               <div className="flex flex-col justify-center px-8 py-10">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent-700">
-                  {t("overline")}
-                </p>
-                <DialogTitle className="mt-4 text-3xl font-black tracking-[-0.03em] text-primary-900">
+                <DialogTitle className="text-3xl font-black tracking-[-0.03em] text-primary-900">
                   {activeSpeaker.name}
                 </DialogTitle>
                 <p className="mt-1.5 text-[15px] font-semibold text-accent-700">
@@ -245,10 +236,7 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
               </div>
 
               <div className="flex flex-col justify-center px-8 py-10">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent-700">
-                  {t("overline")}
-                </p>
-                <DialogTitle className="mt-4 text-3xl font-black tracking-[-0.03em] text-primary-900">
+                <DialogTitle className="text-3xl font-black tracking-[-0.03em] text-primary-900">
                   {t("namePlaceholder")}
                 </DialogTitle>
                 <p className="mt-1.5 text-[15px] font-semibold text-accent-700">

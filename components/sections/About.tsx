@@ -1,16 +1,11 @@
 "use client"
 
-import {
-  ArrowDownRight,
-  CalendarDays,
-  Clock3,
-  Globe2,
-  UsersRound,
-} from "lucide-react"
+import { CalendarDays, Clock3, UsersRound } from "lucide-react"
+import { motion } from "motion/react"
 import { useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 
-const icons = [CalendarDays, Globe2, UsersRound, Clock3]
+const icons = [CalendarDays, undefined, UsersRound, Clock3]
 
 interface MetricMessage {
   code: string
@@ -43,7 +38,6 @@ export function About() {
       "(prefers-reduced-motion: reduce)",
     )
 
-    // Final values are the SSR and reduced-motion baseline.
     if (motionPreference.matches) return
 
     let started = false
@@ -123,123 +117,103 @@ export function About() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="mesh-surface-white relative isolate overflow-hidden border-b border-primary-100 px-5 py-24 text-primary-900 md:px-8 lg:px-12 lg:py-32 xl:px-16 xl:py-40"
+      className="mesh-surface-white relative isolate overflow-hidden border-b border-primary-100 px-5 py-16 text-primary-900 md:px-8 lg:px-12 lg:py-20 xl:px-16 bg-transparent"
     >
       <div
         aria-hidden
         className="brand-grid pointer-events-none absolute inset-0 opacity-30"
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-52 top-1/2 size-[38rem] -translate-y-1/2 rounded-full border border-accent/10 shadow-[0_0_160px_rgba(212,175,55,0.07)]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-20 top-1/2 size-[24rem] -translate-y-1/2 rounded-full border border-primary-400/10"
-      />
 
-      <div className="relative mx-auto max-w-[1840px]">
-        <div className="grid items-stretch gap-16 lg:grid-cols-12 lg:gap-10 xl:gap-20">
-          <div className="flex flex-col gap-10 lg:col-span-5 lg:pr-4 xl:pr-10">
-            <div className="flex items-center gap-4">
-              <span className="h-px w-10 bg-accent" aria-hidden />
-              <p className="font-mono text-[11px] font-bold tracking-[0.18em] text-accent sm:text-xs">
-                {t("overline")}
-              </p>
-            </div>
+      <div className="relative mx-auto max-w-[1480px]">
+        <div>
+          <motion.h2
+            id="about-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-0 max-w-2xl text-balance section-title"
+          >
+            {t("heading")}
+          </motion.h2>
 
-            <h2
-              id="about-title"
-              className="mt-7 text-[clamp(2.7rem,4.7vw,5.6rem)] leading-[0.94] font-black text-primary-900"
-            >
-              {t("heading")}
-            </h2>
-
-            <div className="mt-10 max-w-[62ch] space-y-6 border-l border-accent/35 pl-5 text-sm leading-[1.85] text-primary-600 sm:pl-7 sm:text-base">
-              <p>{t("paragraph1")}</p>
-              <p>{t("paragraph2")}</p>
-            </div>
-
-            <a
-              href="#program"
-              className="group mt-0 inline-flex min-h-14 w-fit items-center gap-8 border border-accent bg-accent px-6 text-sm font-extrabold text-primary-900 transition-[background-color,color,transform] duration-300 hover:bg-accent-300 active:translate-y-px active:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-white sm:px-7 lg:mt-auto"
-            >
-              {t("programLink")}
-              <ArrowDownRight
-                aria-hidden
-                className="size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
-                strokeWidth={1.8}
-              />
-            </a>
+          <div className="mt-6 space-y-5 border-l border-accent/35 pl-5 text-base leading-[1.75] text-primary-800 sm:pl-6 sm:text-lg">
+            <p>{t("paragraph1")}</p>
+            <p>{t("paragraph2")}</p>
           </div>
 
-          <div className="flex flex-col lg:col-span-7 lg:pt-9">
-            <div className="mb-5 flex items-end justify-between gap-5">
-              <p className="max-w-64 text-xs leading-relaxed font-semibold tracking-[0.09em] text-primary-500 uppercase">
-                {t("metricsLabel")}
-              </p>
-            </div>
+          <a
+            href="#program"
+            className="group mt-6 inline-flex min-h-12 w-fit items-center gap-5 border border-primary-900 bg-primary-900 px-6 text-base font-extrabold text-white transition-[background-color,color,transform] duration-300 hover:bg-primary-800 active:translate-y-px active:bg-primary-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-white sm:min-h-13 sm:px-7 sm:text-lg"
+          >
+            {t("programLink")}
+          </a>
+        </div>
 
+        <div className="mt-10">
+          <p className="mb-4 text-[11px] leading-relaxed font-semibold tracking-[0.09em] text-primary-500 uppercase">
+            {t("metricsLabel")}
+          </p>
+
+          <div
+            ref={metricPanelRef}
+            className="relative border border-accent/35 bg-primary-50"
+          >
             <div
-              ref={metricPanelRef}
-              className="relative flex-1 border border-accent/35 bg-primary-50"
-            >
-              <div
-                aria-hidden
-                className="absolute left-0 top-0 h-px w-24 bg-accent"
-              />
-              <div className="grid h-full sm:grid-cols-2">
-                {metrics.map((metric, index) => {
-                  const Icon = icons[index]
+              aria-hidden
+              className="absolute left-0 top-0 h-px w-16 bg-accent"
+            />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+              {metrics.map((metric, index) => {
+                const Icon = icons[index]
 
-                  return (
-                    <article
-                      key={metric.code}
-                      className={[
-                        "group relative z-0 flex min-h-36 flex-col justify-between p-5 transition-[transform,background-color,box-shadow] duration-300 ease-out hover:z-10 hover:-translate-y-1 hover:bg-white hover:shadow-[inset_0_0_0_1px_rgba(224,168,46,0.55),0_12px_30px_rgba(11,29,51,0.1)] sm:min-h-44 sm:p-6 xl:min-h-48 xl:p-7",
-                        index < metrics.length - 1
-                          ? "border-b border-primary-100"
-                          : "",
-                        index % 2 === 0
-                          ? "sm:border-r sm:border-primary-100"
-                          : "",
-                        index === 2 ? "sm:border-b-0" : "",
-                      ].join(" ")}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[10px] tracking-[0.2em] text-primary-500 transition-colors group-hover:text-primary-700">
-                          {metric.code}
+                return (
+                  <article
+                    key={metric.code}
+                    className={[
+                      "group relative z-0 flex min-h-28 flex-col justify-between p-4 transition-[transform,background-color,box-shadow] duration-300 ease-out hover:z-10 hover:-translate-y-0.5 hover:bg-white hover:shadow-[inset_0_0_0_1px_rgba(224,168,46,0.55),0_10px_24px_rgba(11,29,51,0.08)] sm:min-h-32 sm:p-5",
+                      index < metrics.length - 1
+                        ? "border-b border-primary-100 sm:border-b-0"
+                        : "",
+                      index < 2 ? "sm:border-b sm:border-primary-100 lg:border-b-0" : "",
+                      index % 2 === 0
+                        ? "sm:border-r sm:border-primary-100"
+                        : "",
+                      index < metrics.length - 1
+                        ? "lg:border-r lg:border-primary-100"
+                        : "",
+                      index === 1 ? "sm:border-r-0 lg:border-r" : "",
+                    ].join(" ")}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[10px] tracking-[0.2em] text-primary-500 transition-colors group-hover:text-primary-700">
+                        {metric.code}
+                      </span>
+                      {Icon ? (
+                        <Icon
+                          aria-hidden
+                          className="size-5 text-accent/90 transition-colors duration-300 group-hover:text-accent"
+                          strokeWidth={1.6}
+                        />
+                      ) : null}
+                    </div>
+
+                    <div className="mt-4">
+                      <p
+                        aria-label={renderMetric(metric, 1)}
+                        className="font-mono text-[clamp(1.35rem,2vw,1.85rem)] leading-none font-semibold tracking-[-0.06em] text-accent tabular-nums"
+                      >
+                        <span aria-hidden>
+                          {renderMetric(metric, countProgress)}
                         </span>
-                        {Icon ? (
-                          <Icon
-                            aria-hidden
-                            className="size-6 text-accent/90 transition-colors duration-300 group-hover:text-accent sm:size-7"
-                            strokeWidth={1.6}
-                          />
-                        ) : null}
-                      </div>
-
-                      <div className="mt-5">
-                        <p
-                          aria-label={renderMetric(metric, 1)}
-                          className="font-mono text-[clamp(1.8rem,3vw,3.4rem)] leading-none font-semibold tracking-[-0.075em] text-accent tabular-nums"
-                        >
-                          <span aria-hidden>
-                            {renderMetric(metric, countProgress)}
-                          </span>
-                        </p>
-                        <p className="mt-3 max-w-[22rem] text-base leading-[1.4] font-semibold text-primary-900 xl:text-lg">
-                          {metric.label}
-                        </p>
-                      </div>
-                      <span
-                        aria-hidden
-                        className="absolute right-0 bottom-0 size-1.5 bg-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      />
-                    </article>
-                  )
-                })}
-              </div>
+                      </p>
+                      <p className="mt-2.5 text-sm leading-[1.35] font-semibold text-primary-900">
+                        {metric.label}
+                      </p>
+                    </div>
+                  </article>
+                )
+              })}
             </div>
           </div>
         </div>

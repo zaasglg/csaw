@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { Mountain, Waves } from "lucide-react"
+import { MapPin, Target, UsersRound } from "lucide-react"
 import {
   motion,
   useReducedMotion,
@@ -12,165 +12,161 @@ import { useTranslations } from "next-intl"
 import { useRef } from "react"
 
 const ease = [0.16, 1, 0.3, 1] as const
+const todayIcons = [MapPin, Target, UsersRound] as const
 
 export function Mangystau() {
   const section = useRef<HTMLElement>(null)
   const reduceMotion = useReducedMotion()
   const t = useTranslations("mangystau")
+  const todayCards = t.raw("todayCards") as {
+    title: string
+    description: string
+  }[]
   const { scrollYProgress } = useScroll({
     target: section,
     offset: ["start end", "end start"],
   })
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"])
-  const coastY = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"])
+  const regionImageY = useTransform(scrollYProgress, [0, 1], ["-4%", "4%"])
+  const cityImageY = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"])
 
   return (
     <section
       ref={section}
       id="mangystau"
-      className="mesh-surface-white relative overflow-hidden border-y border-accent/20 px-5 py-24 lg:px-10 lg:py-36"
+      aria-labelledby="mangystau-title"
+      className="mesh-surface-white relative isolate overflow-hidden border-y border-accent/25 px-5 py-20 text-primary-900 md:px-8 lg:px-12 lg:py-28 xl:px-16"
     >
-      <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
+      <div
+        aria-hidden
+        className="brand-grid pointer-events-none absolute inset-0 opacity-30"
+      />
+
       <div className="relative mx-auto max-w-[1480px]">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-12">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.85, ease }}
-            className="lg:col-span-8"
-          >
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent-700">
-              {t("kicker")}
-            </p>
-            <h2 className="mt-5 max-w-[12ch] text-[clamp(2.8rem,6.5vw,6.4rem)] leading-[0.9] font-black tracking-[-0.065em] text-primary-900">
-              {t("headingPrefix")} <span className="text-accent">{t("headingAccent")}</span>
-            </h2>
-          </motion.div>
-
-          <motion.p
-            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease, delay: 0.08 }}
-            className="max-w-[34ch] border-l border-accent/40 pl-5 text-[15px] leading-[1.55] text-primary-600 lg:col-span-4 lg:justify-self-end lg:pb-2 lg:text-base"
-          >
-            {t("tagline")}
-          </motion.p>
-        </div>
-
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.85, ease, delay: 0.1 }}
-          className="mt-10 lg:mt-12"
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.8, ease }}
+          className="max-w-4xl"
         >
-          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent-700">
-            {t("infoKicker")}
+          <h2 id="mangystau-title" className="max-w-3xl section-title">
+            {t("heading")}
+          </h2>
+          <p className="mt-5 max-w-2xl border-l border-accent/35 pl-5 text-base leading-[1.75] text-primary-700 sm:pl-6 sm:text-lg">
+            {t("subheading")}
           </p>
-          <div className="mt-5 max-w-[68ch] space-y-6 border-l border-accent/35 pl-5 text-sm leading-[1.85] text-primary-600 sm:pl-7 sm:text-base">
-            <p>{t("infoParagraph1")}</p>
-            <p>{t("infoParagraph2")}</p>
-          </div>
         </motion.div>
 
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1, ease }}
-          className="relative mt-14 overflow-hidden border border-accent/25 bg-primary-50 p-2 lg:mt-16"
+          viewport={{ once: true, amount: 0.18 }}
+          transition={{ duration: 0.9, ease, delay: 0.1 }}
+          className="mt-16 grid min-w-0 gap-10 lg:mt-20 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-center lg:gap-16"
         >
-          <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-[21/9]">
+          <div className="min-w-0">
+            <h3 className="section-subtitle">
+              {t("regionTitle")}
+            </h3>
+            <div className="mt-6 max-w-[58ch] space-y-5 border-l border-accent/35 pl-5 text-base leading-[1.75] text-primary-700 sm:pl-6 sm:text-lg">
+              <p>{t("regionParagraph1")}</p>
+              <p>{t("regionParagraph2")}</p>
+              <p>{t("regionParagraph3")}</p>
+            </div>
+          </div>
+
+          <figure className="relative h-80 min-w-0 overflow-hidden border border-accent/35 bg-primary-50 p-2 shadow-[0_24px_70px_rgba(11,29,51,0.14)] sm:h-[26rem] lg:h-[30rem]">
             <motion.div
-              className="absolute -inset-y-[8%] inset-x-0"
-              style={reduceMotion ? undefined : { y: imageY }}
+              className="absolute -inset-y-3 inset-x-2 overflow-hidden"
+              style={reduceMotion ? undefined : { y: regionImageY }}
             >
               <Image
                 src="/images/bozzhyra-mangystau.png"
                 alt="Bozzhyra canyon in Mangystau"
                 fill
-                sizes="100vw"
+                sizes="(min-width: 1024px) 48vw, 100vw"
                 className="object-cover object-center"
                 priority={false}
               />
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/15 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary-900/55 via-transparent to-transparent" />
+            <div className="pointer-events-none absolute inset-2 bg-gradient-to-t from-primary-900/15 via-transparent to-transparent" />
+          </figure>
+        </motion.div>
 
-            <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 p-5 sm:flex-row sm:items-end sm:justify-between sm:p-8 lg:p-10">
-              <div className="flex items-start gap-3">
-                <Mountain
-                  className="mt-0.5 size-5 shrink-0 text-accent-300"
-                  strokeWidth={1.75}
-                />
-                <div>
-                  <h3 className="text-2xl font-bold tracking-[-0.04em] text-primary-50 sm:text-3xl">
-                    {t("bozzhyraTitle")}
-                  </h3>
-                  <p className="mt-2 max-w-[40ch] text-sm leading-relaxed text-primary-200/90">
-                    {t("bozzhyraDescription")}
-                  </p>
-                </div>
-              </div>
-              <p className="border border-accent/30 bg-primary-900/65 px-3 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-accent-300 backdrop-blur-md sm:text-right">
-                {t("bozzhyraTag")}
-              </p>
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.18 }}
+          transition={{ duration: 0.9, ease, delay: 0.08 }}
+          className="mt-16 grid min-w-0 gap-10 lg:mt-24 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-16"
+        >
+          <figure className="relative h-80 min-w-0 overflow-hidden border border-accent/35 bg-primary-50 p-2 shadow-[0_24px_70px_rgba(11,29,51,0.14)] sm:h-[26rem] lg:h-[30rem]">
+            <motion.div
+              className="absolute -inset-y-3 inset-x-2 overflow-hidden"
+              style={reduceMotion ? undefined : { y: cityImageY }}
+            >
+              <Image
+                src="/images/aktau-city-coast.png"
+                alt="Aktau city on the Caspian coast"
+                fill
+                sizes="(min-width: 1024px) 48vw, 100vw"
+                className="object-cover object-center"
+              />
+            </motion.div>
+            <div className="pointer-events-none absolute inset-2 bg-gradient-to-t from-primary-900/20 via-transparent to-transparent" />
+          </figure>
+
+          <div className="min-w-0">
+            <h3 className="section-subtitle">
+              {t("cityTitle")}
+            </h3>
+            <div className="mt-6 max-w-[58ch] space-y-5 border-l border-accent/35 pl-5 text-base leading-[1.75] text-primary-700 sm:pl-6 sm:text-lg">
+              <p>{t("cityParagraph1")}</p>
+              <p>{t("cityParagraph2")}</p>
+              <p>{t("cityParagraph3")}</p>
             </div>
           </div>
         </motion.div>
 
-        <div className="mt-8 grid gap-8 border-t border-accent/20 pt-10 lg:mt-10 lg:grid-cols-12 lg:gap-12 lg:pt-12">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.85, ease }}
-            className="relative aspect-[4/3] overflow-hidden border border-accent/25 bg-primary-50 p-2 lg:col-span-5"
-          >
-            <motion.div
-              className="absolute -inset-y-[6%] inset-x-0"
-              style={reduceMotion ? undefined : { y: coastY }}
-            >
-              <Image
-                src="/images/caspian-coast-action-week.png"
-                alt="Caspian Sea coast near Aktau"
-                fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover object-[68%_center]"
-              />
-            </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D33]/55 via-transparent to-transparent" />
-          </motion.div>
-
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.85, ease, delay: 0.08 }}
-            className="flex flex-col justify-center lg:col-span-7 lg:pl-4"
-          >
-            <div className="flex items-start gap-3">
-              <Waves
-                className="mt-1 size-5 shrink-0 text-accent-700"
-                strokeWidth={1.75}
-              />
-              <div>
-                <h3 className="text-2xl font-bold tracking-[-0.04em] text-primary-900 sm:text-3xl">
-                  {t("coastTitle")}
-                </h3>
-                <p className="mt-3 max-w-[42ch] text-[15px] leading-[1.55] text-primary-600 sm:text-base">
-                  {t("coastDescription")}
-                </p>
-              </div>
-            </div>
-
-            <p className="mt-10 max-w-[48ch] border-l-2 border-accent pl-5 text-lg leading-relaxed text-primary-900 sm:text-xl">
-              {t("coastQuote")}
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.85, ease, delay: 0.08 }}
+          className="mt-16 overflow-hidden rounded-sm border border-accent/35 bg-white px-5 py-12 shadow-[0_30px_100px_rgba(11,29,51,0.12)] sm:px-8 sm:py-14 lg:mt-24 lg:px-14 lg:py-16"
+        >
+          <div className="mx-auto max-w-5xl text-center">
+            <h3 className="section-title">
+              {t("todayTitle")}
+            </h3>
+            <p className="mx-auto mt-6 max-w-[70ch] text-base leading-[1.75] text-primary-700 sm:text-lg">
+              {t("todayDescription")}
             </p>
-          </motion.div>
-        </div>
+          </div>
+
+          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+            {todayCards.map((card, index) => {
+              const Icon = todayIcons[index] ?? Target
+
+              return (
+                <article
+                  key={card.title}
+                  className="group relative flex min-h-64 flex-col items-center justify-center rounded-sm border border-accent/35 bg-primary-50 px-6 py-8 text-center transition-[transform,background-color,box-shadow] duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[inset_0_0_0_1px_rgba(212,175,55,0.35),0_18px_45px_rgba(11,29,51,0.1)] sm:px-8"
+                >
+                  <span className="grid size-16 place-items-center rounded-sm border border-accent/45 bg-white text-accent-700 transition-colors duration-300 group-hover:bg-accent group-hover:text-primary-900">
+                    <Icon className="size-7" strokeWidth={1.8} aria-hidden />
+                  </span>
+                  <h4 className="mt-7 text-2xl font-extrabold leading-tight tracking-[-0.03em] text-primary-900">
+                    {card.title}
+                  </h4>
+                  <p className="mt-5 max-w-[30ch] text-base leading-[1.6] text-primary-700 sm:text-lg">
+                    {card.description}
+                  </p>
+                </article>
+              )
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   )

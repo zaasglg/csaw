@@ -4,12 +4,12 @@ import { Footer } from "@/components/sections/Footer"
 import { Hackathon } from "@/components/sections/Hackathon"
 import { HackathonRegister } from "@/components/sections/HackathonRegister"
 import { HeroSection } from "@/components/sections/HeroSection"
-import { ImmersiveBreak } from "@/components/sections/ImmersiveBreak"
 import { Mangystau } from "@/components/sections/Mangystau"
 import { ParticipantRegister } from "@/components/sections/ParticipantRegister"
 import { Program } from "@/components/sections/Program"
 import { Speakers } from "@/components/sections/Speakers"
 import { SmoothScroll } from "@/components/providers/SmoothScroll"
+import { WaveBackground } from "@/components/visual/WaveBackground"
 import { prisma } from "@/lib/prisma"
 
 export const dynamic = "force-dynamic"
@@ -22,6 +22,7 @@ export default async function Home() {
   return (
     <SmoothScroll>
       <main className="mesh-page relative isolate overflow-x-clip text-primary-900">
+        <WaveBackground />
         <div className="site-grain" aria-hidden />
         <div className="relative z-10">
           <HeroSection />
@@ -31,7 +32,6 @@ export default async function Home() {
           <Speakers speakers={speakers} />
           <Program />
           <ParticipantRegister />
-          <ImmersiveBreak />
           <Mangystau />
           <Contacts />
           <Footer />

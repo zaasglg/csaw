@@ -30,26 +30,12 @@ model Volunteer {
 }
 
 model HackathonTeam {
-  id          String                @id @default(cuid())
+  id          String   @id @default(cuid())
   teamName    String
   country     String
   region      String
   captainName String
-  members     HackathonTeamMember[]
-  createdAt   DateTime              @default(now())
-}
-
-model HackathonTeamMember {
-  id                 String        @id @default(cuid())
-  fullName           String
-  countryNationality String
-  organization       String
-  specialty          String
-  position           Int
-  team               HackathonTeam @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  teamId             String
-
-  @@index([teamId])
+  createdAt   DateTime @default(now())
 }
 
 model Speaker {

@@ -161,9 +161,6 @@ function PrizeCard({
           }
           className="relative w-full min-w-0"
         >
-          <p className="mb-3 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-accent-700">
-            {t("prizeCaption")}
-          </p>
           <span
             ref={amount}
             style={{
@@ -263,18 +260,7 @@ export function Hackathon() {
               },
             }}
           >
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 18 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.7, ease }}
-              className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent-700"
-            >
-              {t("overline")}
-            </motion.p>
-
-            <h2 className="mt-6 text-primary-900">
+            <h2 className="mt-0 section-title">
               <span className="block overflow-hidden pb-[0.06em]">
                 <motion.span
                   variants={{
@@ -282,7 +268,7 @@ export function Hackathon() {
                     visible: { y: "0%" },
                   }}
                   transition={{ duration: 0.9, ease }}
-                  className="block text-[clamp(2.15rem,6vw,5.4rem)] leading-[0.92] font-semibold"
+                  className="block"
                 >
                   {t("titleLine1")}
                 </motion.span>
@@ -294,7 +280,7 @@ export function Hackathon() {
                     visible: { y: "0%" },
                   }}
                   transition={{ duration: 0.9, ease }}
-                  className="block text-[clamp(1.5rem,3.2vw,2.4rem)] leading-[1.05] font-semibold text-accent"
+                  className="block"
                 >
                   {t("titleLine2")}
                 </motion.span>

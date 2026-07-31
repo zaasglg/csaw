@@ -1,28 +1,9 @@
 "use client"
 
-import dynamic from "next/dynamic"
 import { MapPin } from "lucide-react"
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "motion/react"
+import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { useTranslations } from "next-intl"
-import { useRef, useState } from "react"
-
-const ProgramGlobe = dynamic(() => import("@/components/canvas/ProgramGlobe"), {
-  ssr: false,
-  loading: () => (
-    <div className="relative size-full">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[72%] -translate-x-1/2 -translate-y-1/2 bg-[url('/images/earth-spherical-fallback.webp')] bg-contain bg-center bg-no-repeat drop-shadow-[0_0_34px_rgba(212,175,55,0.22)]"
-      />
-    </div>
-  ),
-})
+import { useState } from "react"
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -40,24 +21,14 @@ interface ProgramDay {
 }
 
 export function Program() {
-  const sectionRef = useRef<HTMLElement>(null)
   const reduceMotion = useReducedMotion()
   const t = useTranslations("program")
   const days = t.raw("days") as ProgramDay[]
   const [activeIndex, setActiveIndex] = useState(0)
   const active = days[activeIndex]
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  })
-  const globeY = useTransform(scrollYProgress, [0, 1], [70, -70])
-  const globeRotate = useTransform(scrollYProgress, [0, 1], [-10, 10])
-  const globeScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.92, 1, 0.92])
-
   return (
     <section
-      ref={sectionRef}
       id="program"
       aria-labelledby="program-title"
       className="mesh-surface-white relative overflow-hidden border-y border-accent/25 px-5 py-24 lg:px-10 lg:py-36"
@@ -69,41 +40,17 @@ export function Program() {
       <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
 
       <div className="relative mx-auto max-w-[1480px]">
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.75, ease }}
-            className="lg:col-span-7"
-          >
-            <h2
-              id="program-title"
-              className="max-w-[14ch] border-l border-accent/40 pl-4 text-[clamp(2.5rem,4.4vw,4.6rem)] leading-[0.98] font-black tracking-[-0.045em] text-primary-900"
-            >
-              {t("description")}
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.9, ease }}
-            className="relative hidden h-64 sm:block lg:col-span-5 lg:h-80"
-          >
-            <motion.div
-              style={
-                reduceMotion
-                  ? undefined
-                  : { y: globeY, rotate: globeRotate, scale: globeScale }
-              }
-              className="size-full"
-            >
-              <ProgramGlobe activeIndex={activeIndex} reduceMotion={Boolean(reduceMotion)} />
-            </motion.div>
-          </motion.div>
-        </div>
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.75, ease }}
+          className="max-w-2xl"
+        >
+          <h2 id="program-title" className="section-title">
+            {t("heading")}
+          </h2>
+        </motion.div>
 
         <div
           role="tablist"
