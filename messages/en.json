@@ -249,7 +249,7 @@
           },
           {
             "time": "",
-            "title": "Official opening ceremony of the «Caspian Sea Action Week 2026» week"
+            "title": "Official opening ceremony of «Caspian Sea Action Week 2026»"
           }
         ]
       },
@@ -259,15 +259,15 @@
         "items": [
           {
             "time": "",
-            "title": "Expert discussion session on \"One Caspian – One Future\""
+            "title": "Expert discussion session on «One Caspian – One Future»"
           },
           {
             "time": "",
-            "title": "\"Caspian Team Building\" team-building event"
+            "title": "«Caspian Team Building» team-building event"
           },
           {
             "time": "",
-            "title": "Informal program \"Cultural block: delegation speeches, elements of national traditions and cultural exchange\""
+            "title": "Informal program «Cultural block: delegation speeches, elements of national traditions and cultural exchange»"
           }
         ]
       },
@@ -277,7 +277,7 @@
         "items": [
           {
             "time": "",
-            "title": "\"Caspian Clean Challenge\" international marathon"
+            "title": "«Caspian Clean Challenge» international marathon"
           },
           {
             "time": "",
@@ -285,19 +285,7 @@
           },
           {
             "time": "",
-            "title": "Opening of the \"Caspian Volunteers' Friendship Alley\""
-          },
-          {
-            "time": "",
-            "title": "Hackathon winners' award ceremony"
-          },
-          {
-            "time": "",
-            "title": "Panel session on experience exchange and pressing environmental issues"
-          },
-          {
-            "time": "",
-            "title": "Closing ceremony"
+            "title": "Opening of the «Caspian Region Volunteers' Friendship Alley»"
           }
         ]
       },
@@ -306,9 +294,8 @@
         "weekday": "Sunday",
         "items": [
           {
-            "time": "allDay",
-            "title": "Guided excursion to Bozzhyra Canyon",
-            "location": "Bozzhyra Canyon"
+            "time": "",
+            "title": "Excursion program to Bozzhyra Canyon"
           }
         ]
       },
@@ -317,9 +304,8 @@
         "weekday": "Monday",
         "items": [
           {
-            "time": "10:00–18:00",
-            "title": "\"Caspian Innovation Lab\" international hackathon",
-            "location": "Rixos Water World Aktau hotel"
+            "time": "",
+            "title": "«Caspian Innovation Lab» international hackathon"
           }
         ]
       },
@@ -328,14 +314,12 @@
         "weekday": "Tuesday",
         "items": [
           {
-            "time": "10:00–16:00",
-            "title": "Hackathon project defense",
-            "location": "Rixos Water World Aktau hotel"
+            "time": "",
+            "title": "Hackathon project defense"
           },
           {
-            "time": "17:00–19:00",
-            "title": "TED-format open mic",
-            "location": "Rixos Water World Aktau hotel"
+            "time": "",
+            "title": "TED-format open mic — eco-volunteers meet with experts"
           }
         ]
       },
@@ -344,14 +328,20 @@
         "weekday": "Wednesday",
         "items": [
           {
-            "time": "11:00–13:00",
-            "title": "\"Caspian Talks\" International Volunteer Summit",
-            "location": "Rixos Water World Aktau hotel"
+            "time": "",
+            "title": "«Caspian Talks» International Volunteer Summit"
           },
           {
-            "time": "21:30–00:00",
-            "title": "Dinner hosted by the region's leadership",
-            "location": "Subject to confirmation"
+            "time": "",
+            "title": "Award ceremony for winners of the «Caspian Hackathon» international hackathon"
+          },
+          {
+            "time": "",
+            "title": "Panel session on experience exchange and pressing environmental issues"
+          },
+          {
+            "time": "",
+            "title": "Closing ceremony"
           }
         ]
       }
