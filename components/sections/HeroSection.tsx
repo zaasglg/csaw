@@ -159,6 +159,16 @@ export function HeroSection() {
               {t("navHackathon")}
             </a>
             <a
+              href="#mangystau"
+              onClick={(event) => {
+                event.preventDefault()
+                scrollTo("#mangystau")
+              }}
+              className="text-xs font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700"
+            >
+              {t("navMangystau")}
+            </a>
+            <a
               href="#contacts"
               onClick={(event) => {
                 event.preventDefault()

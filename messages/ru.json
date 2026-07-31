@@ -22,6 +22,7 @@
     "program": "Программа недели",
     "navProgram": "Программа",
     "navHackathon": "Хакатон",
+    "navMangystau": "О Мангистау",
     "navContacts": "Контакты",
     "navLabel": "Основная навигация"
   },
@@ -190,7 +191,7 @@
     "titleLine1": "«Caspian Hackathon»",
     "titleLine2": "I Международный хакатон",
     "prizeFund": "Призовой фонд",
-    "prizeDescription": "В течение трёх дней команды соревнуются за лучшее технологическое решение для экосистемы Каспия.",
+    "prizeDescription": "В течение трёх дней команда соревнуется за лучшее технологическое решение для экосистемы Каспия",
     "registerTeam": "Зарегистрировать команду",
     "rulesLabel": "Регламент",
     "ticker": [
@@ -199,7 +200,7 @@
       "3 days",
       "Aktau",
       "Open call",
-      "Teams"
+      "Team"
     ]
   },
   "hackathonRegister": {

@@ -22,6 +22,7 @@
     "program": "Апталық бағдарламасы",
     "navProgram": "Бағдарлама",
     "navHackathon": "Хакатон",
+    "navMangystau": "Маңғыстау туралы",
     "navContacts": "Байланыс",
     "navLabel": "Негізгі навигация"
   },
@@ -191,25 +192,25 @@
     "titleLine2": "І Халықаралық хакатоны",
     "prizeFund": "Жүлде қоры",
     "prizeCaption": "Ten million tenge",
-    "prizeDescription": "Үш күн ішінде командалар Каспий экожүйесіне арналған технологиялық шешімдер үшін бәсекеге түседі.",
+    "prizeDescription": "Үш күн ішінде команда Каспий экожүйесіне арналған технологиялық шешім үшін бәсекеге түседі",
     "registerTeam": "Команданы тіркеу",
-    "rulesLabel": "Ережелер",
+    "rulesLabel": "Ереже",
     "ticker": [
       "Eco-tech",
       "Caspian",
       "3 days",
       "Aktau",
       "Open call",
-      "Teams"
+      "Team"
     ]
   },
   "hackathonRegister": {
     "overline": "CASPIAN HACKATHON 2026",
     "heading": "Хакатонға қатысу үшін өтінім беру",
-    "statusBadge": "Ережелер",
-    "rulesKk": "Ережелер · Қаз",
-    "rulesRu": "Ережелер · Рус",
-    "rulesEn": "Ережелер · Eng",
+    "statusBadge": "Ереже",
+    "rulesKk": "Ереже · Қаз",
+    "rulesRu": "Ереже · Рус",
+    "rulesEn": "Ереже · Eng",
     "cardKicker": "Caspian Hackathon · Команда өтінімі",
     "block1Title": "01 · Команда туралы жалпы ақпарат",
     "teamName": "Команда атауы",

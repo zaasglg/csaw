@@ -22,6 +22,7 @@
     "program": "Week program",
     "navProgram": "Program",
     "navHackathon": "Hackathon",
+    "navMangystau": "About Mangystau",
     "navContacts": "Contacts",
     "navLabel": "Main navigation"
   },
@@ -191,25 +192,25 @@
     "titleLine2": "1st International Hackathon",
     "prizeFund": "Prize Fund",
     "prizeCaption": "Ten million tenge",
-    "prizeDescription": "Over three days, teams compete for the best technological solution for the Caspian ecosystem.",
+    "prizeDescription": "Over three days, a team competes for the best technological solution for the Caspian ecosystem",
     "registerTeam": "Register your team",
-    "rulesLabel": "Rules",
+    "rulesLabel": "Rule",
     "ticker": [
       "Eco-tech",
       "Caspian",
       "3 days",
       "Aktau",
       "Open call",
-      "Teams"
+      "Team"
     ]
   },
   "hackathonRegister": {
     "overline": "CASPIAN HACKATHON 2026",
     "heading": "Apply to take part in the hackathon",
-    "statusBadge": "Rules",
-    "rulesKk": "Rules · KK",
-    "rulesRu": "Rules · RU",
-    "rulesEn": "Rules · EN",
+    "statusBadge": "Rule",
+    "rulesKk": "Rule · KK",
+    "rulesRu": "Rule · RU",
+    "rulesEn": "Rule · EN",
     "cardKicker": "Caspian Hackathon · Team application",
     "block1Title": "01 · General team information",
     "teamName": "Team name",
