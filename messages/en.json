@@ -188,7 +188,23 @@
     "prizeDescription": "Over three days, a team competes for the best technological solution for the Caspian ecosystem",
     "registerTeam": "Register your team",
     "rulesLabel": "Rule",
-    "ticker": ["Eco-tech", "Caspian", "3 days", "Aktau", "Open call", "Team"]
+    "requirementsTitle": "Requirements for hackathon participants:",
+    "requirementsItems": [
+      "Age 18-34",
+      "Team registration (minimum 2 people per team, maximum 5 people)",
+      "At least 1 developer on the team is mandatory",
+      "Hybrid format (tasks completed online, project defense OFFLINE)",
+      "Online project defense is not available ❌",
+      "Strict compliance with the rules",
+      "When registering for the hackathon, providing a correct WhatsApp number is MANDATORY — a chat invite link will be sent (confirmation of contact is required)",
+      "Only one person per team should submit the application"
+    ],
+    "countdownLabel": "Until hackathon registration closes",
+    "countdownExpired": "Hackathon registration is closed",
+    "countdownDays": "Days",
+    "countdownHours": "Hours",
+    "countdownMinutes": "Minutes",
+    "countdownSeconds": "Seconds"
   },
   "hackathonRegister": {
     "overline": "CASPIAN HACKATHON 2026",
@@ -404,7 +420,8 @@
     "organizerItems": [
       "Ministry of Culture and Information of the Republic of Kazakhstan",
       "Akimat of Mangystau Region",
-      "Department of Youth Policy of Mangystau Region"
+      "Department of Youth Policy of Mangystau Region",
+      "«Жағымды жаңалық» Public Foundation"
     ],
     "techPartnerLabel": "Technology partner:",
     "techPartnerValue": "Mediana Services Limited LLP"

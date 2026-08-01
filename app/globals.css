@@ -411,20 +411,6 @@ html.lenis body {
   mask-image: linear-gradient(to bottom, black, transparent 90%);
 }
 
-@keyframes hack-ticker {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-hack-ticker {
-  animation: hack-ticker 28s linear infinite;
-}
-
-
 ::-webkit-scrollbar {
   width: 8px;
 }

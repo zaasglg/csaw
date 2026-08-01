@@ -12,7 +12,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
-import { PointerEvent, useEffect, useRef } from "react";
+import { PointerEvent, useEffect, useRef, useState } from "react";
 
 import { Magnetic } from "@/components/interactive/Magnetic";
 import type { Locale } from "@/components/providers/LocaleProvider";
@@ -26,6 +26,82 @@ const RULES_BY_LOCALE: Record<Locale, string> = {
   en: "/documents/third.pdf",
 };
 
+const HACKATHON_REGISTRATION_DEADLINE = "2026-08-05T23:59:00+05:00";
+
+function useCountdown(targetIso: string) {
+  const [remainingMs, setRemainingMs] = useState<number | null>(null);
+
+  useEffect(() => {
+    const target = new Date(targetIso).getTime();
+
+    function tick() {
+      setRemainingMs(Math.max(0, target - Date.now()));
+    }
+
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
+  }, [targetIso]);
+
+  return remainingMs;
+}
+
+function CountdownUnit({ value, label }: { value: number; label: string }) {
+  return (
+    <div className="flex flex-col items-center gap-1.5">
+      <span className="font-mono text-2xl font-black tabular-nums text-primary-900 sm:text-3xl">
+        {String(value).padStart(2, "0")}
+      </span>
+      <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary-500">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+function CountdownDisplay() {
+  const t = useTranslations("hackathon");
+  const remainingMs = useCountdown(HACKATHON_REGISTRATION_DEADLINE);
+
+  if (remainingMs === null) return null;
+
+  const isExpired = remainingMs <= 0;
+
+  return (
+    <div>
+      <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-accent-800">
+        {t("countdownLabel")}
+      </p>
+      {isExpired ? (
+        <p className="mt-4 text-lg font-bold text-primary-900">{t("countdownExpired")}</p>
+      ) : (
+        <CountdownDigits remainingMs={remainingMs} />
+      )}
+    </div>
+  );
+}
+
+function CountdownDigits({ remainingMs }: { remainingMs: number }) {
+  const t = useTranslations("hackathon");
+  const totalSeconds = Math.floor(remainingMs / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-5 sm:gap-8">
+      <CountdownUnit value={days} label={t("countdownDays")} />
+      <span className="text-xl font-black text-accent-300 sm:text-2xl">:</span>
+      <CountdownUnit value={hours} label={t("countdownHours")} />
+      <span className="text-xl font-black text-accent-300 sm:text-2xl">:</span>
+      <CountdownUnit value={minutes} label={t("countdownMinutes")} />
+      <span className="text-xl font-black text-accent-300 sm:text-2xl">:</span>
+      <CountdownUnit value={seconds} label={t("countdownSeconds")} />
+    </div>
+  );
+}
+
 function PrizeCard({
   progress,
   reduceMotion,
@@ -35,7 +111,6 @@ function PrizeCard({
 }) {
   const t = useTranslations("hackathon");
   const locale = useLocale() as Locale;
-  const ticker = t.raw("ticker") as string[];
   const amount = useRef<HTMLSpanElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const isVisible = useInView(stage, { once: true, amount: 0.35 });
@@ -96,7 +171,7 @@ function PrizeCard({
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 1, ease }}
-      className="relative flex flex-col gap-10 overflow-hidden"
+      className="relative flex flex-col gap-10 overflow-hidden border border-accent/25 bg-white p-6 shadow-[0_20px_60px_rgba(11,29,51,0.08)] sm:p-8"
     >
       <div className="relative z-10 flex items-center justify-between gap-6 border-b border-[#E0A82E]/40 pb-6">
         <motion.span
@@ -149,20 +224,36 @@ function PrizeCard({
           style={reduceMotion ? undefined : { y: numberY, x: numberParallaxX }}
           className="relative w-full min-w-0"
         >
-          <span
-            ref={amount}
-            style={{
-              backgroundImage:
-                "linear-gradient(180deg, #F0DF9A 0%, #E0A82E 45%, #B99028 78%, #936E20 100%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              color: "transparent",
-              WebkitTextFillColor: "transparent",
-            }}
-            className="block max-w-full overflow-hidden whitespace-nowrap text-4xl leading-[0.9] font-black tracking-[-0.04em] tabular-nums sm:text-6xl"
-          >
-            10 000 000
-          </span>
+          <div className="flex max-w-full flex-wrap items-baseline gap-2 overflow-hidden">
+            <span
+              ref={amount}
+              style={{
+                backgroundImage:
+                  "linear-gradient(180deg, #F0DF9A 0%, #E0A82E 45%, #B99028 78%, #936E20 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+                WebkitTextFillColor: "transparent",
+              }}
+              className="whitespace-nowrap text-4xl leading-[0.9] font-black tracking-[-0.04em] tabular-nums sm:text-6xl"
+            >
+              10 000 000
+            </span>
+            <span
+              aria-hidden
+              style={{
+                backgroundImage:
+                  "linear-gradient(180deg, #F0DF9A 0%, #E0A82E 45%, #B99028 78%, #936E20 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+                WebkitTextFillColor: "transparent",
+              }}
+              className="text-3xl leading-[0.9] font-black sm:text-5xl"
+            >
+              ₸
+            </span>
+          </div>
           <motion.p
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -179,6 +270,8 @@ function PrizeCard({
         style={reduceMotion ? undefined : { y: springY }}
         className="relative z-10 flex flex-col gap-6 border-t border-[#E0A82E]/30 pt-6"
       >
+        <CountdownDisplay />
+
         <Magnetic className="inline-block w-fit">
           <a
             href={HACKATHON_REGISTER_URL}
@@ -203,22 +296,6 @@ function PrizeCard({
           </span>
           {t("rulesLabel")}
         </a>
-
-        <div className="overflow-hidden">
-          <div
-            className={`flex w-max gap-10 whitespace-nowrap ${reduceMotion ? "" : "animate-hack-ticker"}`}
-          >
-            {[...ticker, ...ticker].map((item, index) => (
-              <span
-                key={`${item}-${index}`}
-                className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-primary-600/80"
-              >
-                {item}
-                <span className="ml-10 text-[#E0A82E]/70">/</span>
-              </span>
-            ))}
-          </div>
-        </div>
       </motion.div>
     </motion.div>
   );
@@ -228,6 +305,7 @@ export function Hackathon() {
   const section = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const t = useTranslations("hackathon");
+  const requirementsItems = t.raw("requirementsItems") as string[];
   const { scrollYProgress } = useScroll({
     target: section,
     offset: ["start end", "end start"],
@@ -247,25 +325,47 @@ export function Hackathon() {
       />
       <div className="brand-grid pointer-events-none absolute inset-0 opacity-25" />
 
-      <div className="relative mx-auto grid max-w-[1480px] gap-16 lg:grid-cols-12 lg:items-stretch lg:gap-12">
+      <div className="relative mx-auto max-w-[1480px]">
         <motion.div
-          style={reduceMotion ? undefined : { y: copyY }}
-          className="flex min-w-0 flex-col justify-center lg:col-span-5"
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8, ease }}
         >
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.8, ease }}
-          >
-            <h2 className="section-title text-[clamp(2rem,3.2vw,3.25rem)]">
-              <span className="block">{t("titleLine1")}</span>
-              <span className="block">{t("titleLine2")}</span>
-            </h2>
-          </motion.div>
+          <h2 className="section-title text-[clamp(2rem,3.2vw,3.25rem)]">
+            <span className="block">{t("titleLine1")}</span>
+            <span className="block">{t("titleLine2")}</span>
+          </h2>
         </motion.div>
 
-        <div className="lg:col-span-7 lg:border-l lg:border-accent/20 lg:pl-12">
+        <div className="mt-12 grid gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-10">
+          <motion.div
+            style={reduceMotion ? undefined : { y: copyY }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease, delay: 0.15 }}
+            className="relative border border-accent/25 bg-white p-6 shadow-[0_20px_60px_rgba(11,29,51,0.08)] sm:p-8"
+          >
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-accent-800">
+              {t("requirementsTitle")}
+            </p>
+            <div className="mt-4 border-b border-accent/20" />
+            <ol className="mt-5 space-y-4">
+              {requirementsItems.map((item, index) => (
+                <li
+                  key={item}
+                  className="flex gap-3.5 text-[15px] font-medium leading-[1.6] text-primary-900 sm:text-base"
+                >
+                  <span className="mt-0.5 shrink-0 font-mono text-sm font-bold text-accent-700">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ol>
+          </motion.div>
+
           <PrizeCard progress={scrollYProgress} reduceMotion={reduceMotion} />
         </div>
       </div>
