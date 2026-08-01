@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react";
 import {
   animate,
   motion,
@@ -10,55 +10,52 @@ import {
   useScroll,
   useSpring,
   useTransform,
-} from "motion/react"
-import { useLocale, useTranslations } from "next-intl"
-import { PointerEvent, useEffect, useRef } from "react"
+} from "motion/react";
+import { useLocale, useTranslations } from "next-intl";
+import { PointerEvent, useEffect, useRef } from "react";
 
-import { Magnetic } from "@/components/interactive/Magnetic"
-import type { Locale } from "@/components/providers/LocaleProvider"
+import { Magnetic } from "@/components/interactive/Magnetic";
+import type { Locale } from "@/components/providers/LocaleProvider";
+import { HACKATHON_REGISTER_URL } from "@/lib/links";
 
-const ease = [0.16, 1, 0.3, 1] as const
-
-/** External hackathon registration (on-site form removed; API kept). */
-const HACKATHON_REGISTER_URL =
-  "https://www.akorda.kz/ru/vystuplenie-glavy-gosudarstva-kasym-zhomarta-tokaeva-na-forume-volonterov-3004658"
+const ease = [0.16, 1, 0.3, 1] as const;
 
 const RULES_BY_LOCALE: Record<Locale, string> = {
   kk: "/documents/first.pdf",
   ru: "/documents/second.pdf",
   en: "/documents/third.pdf",
-}
+};
 
 function PrizeCard({
   progress,
   reduceMotion,
 }: {
-  progress: ReturnType<typeof useScroll>["scrollYProgress"]
-  reduceMotion: boolean | null
+  progress: ReturnType<typeof useScroll>["scrollYProgress"];
+  reduceMotion: boolean | null;
 }) {
-  const t = useTranslations("hackathon")
-  const locale = useLocale() as Locale
-  const ticker = t.raw("ticker") as string[]
-  const amount = useRef<HTMLSpanElement>(null)
-  const stage = useRef<HTMLDivElement>(null)
-  const isVisible = useInView(stage, { once: true, amount: 0.35 })
+  const t = useTranslations("hackathon");
+  const locale = useLocale() as Locale;
+  const ticker = t.raw("ticker") as string[];
+  const amount = useRef<HTMLSpanElement>(null);
+  const stage = useRef<HTMLDivElement>(null);
+  const isVisible = useInView(stage, { once: true, amount: 0.35 });
 
-  const pointerX = useMotionValue(0)
-  const pointerY = useMotionValue(0)
-  const springX = useSpring(pointerX, { stiffness: 80, damping: 20 })
-  const springY = useSpring(pointerY, { stiffness: 80, damping: 20 })
-  const numberParallaxX = useTransform(springX, (value) => value * 0.35)
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springX = useSpring(pointerX, { stiffness: 80, damping: 20 });
+  const springY = useSpring(pointerY, { stiffness: 80, damping: 20 });
+  const numberParallaxX = useTransform(springX, (value) => value * 0.35);
 
-  const numberY = useTransform(progress, [0.1, 0.75], [48, -20])
-  const ringsScale = useTransform(progress, [0.15, 0.55, 0.9], [0.92, 1, 0.96])
-  const ringsY = useTransform(progress, [0, 1], [40, -80])
+  const numberY = useTransform(progress, [0.1, 0.75], [48, -20]);
+  const ringsScale = useTransform(progress, [0.15, 0.55, 0.9], [0.92, 1, 0.96]);
+  const ringsY = useTransform(progress, [0, 1], [40, -80]);
 
   useEffect(() => {
-    if (!isVisible || !amount.current) return
+    if (!isVisible || !amount.current) return;
 
     if (reduceMotion) {
-      amount.current.textContent = "10 000 000"
-      return
+      amount.current.textContent = "10 000 000";
+      return;
     }
 
     const counter = animate(0, 10_000_000, {
@@ -68,26 +65,26 @@ function PrizeCard({
         if (amount.current) {
           amount.current.textContent = Math.round(latest)
             .toLocaleString("ru-RU")
-            .replace(/ /g, " ")
+            .replace(/ /g, " ");
         }
       },
-    })
+    });
 
-    return () => counter.stop()
-  }, [isVisible, reduceMotion])
+    return () => counter.stop();
+  }, [isVisible, reduceMotion]);
 
   function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
-    if (reduceMotion) return
-    const bounds = event.currentTarget.getBoundingClientRect()
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5
-    pointerX.set(x * 36)
-    pointerY.set(y * 22)
+    if (reduceMotion) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    pointerX.set(x * 36);
+    pointerY.set(y * 22);
   }
 
   function resetPointer() {
-    pointerX.set(0)
-    pointerY.set(0)
+    pointerX.set(0);
+    pointerY.set(0);
   }
 
   return (
@@ -149,11 +146,7 @@ function PrizeCard({
         </motion.div>
 
         <motion.div
-          style={
-            reduceMotion
-              ? undefined
-              : { y: numberY, x: numberParallaxX }
-          }
+          style={reduceMotion ? undefined : { y: numberY, x: numberParallaxX }}
           className="relative w-full min-w-0"
         >
           <span
@@ -228,18 +221,18 @@ function PrizeCard({
         </div>
       </motion.div>
     </motion.div>
-  )
+  );
 }
 
 export function Hackathon() {
-  const section = useRef<HTMLElement>(null)
-  const reduceMotion = useReducedMotion()
-  const t = useTranslations("hackathon")
+  const section = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const t = useTranslations("hackathon");
   const { scrollYProgress } = useScroll({
     target: section,
     offset: ["start end", "end start"],
-  })
-  const copyY = useTransform(scrollYProgress, [0, 1], [28, -36])
+  });
+  const copyY = useTransform(scrollYProgress, [0, 1], [28, -36]);
 
   return (
     <section
@@ -277,5 +270,5 @@ export function Hackathon() {
         </div>
       </div>
     </section>
-  )
+  );
 }

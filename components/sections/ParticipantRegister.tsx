@@ -26,7 +26,6 @@ interface RegistrationFormData {
   country: string
   region: string
   category: string
-  badgeName: string
   infoLanguage: InfoLanguage
   phone: string
   email: string
@@ -41,7 +40,6 @@ const initialFormData: RegistrationFormData = {
   country: "",
   region: "",
   category: "",
-  badgeName: "",
   infoLanguage: "",
   phone: "",
   email: "",
@@ -348,20 +346,6 @@ export function ParticipantRegister() {
                               onChange={(value) =>
                                 updateField("category", value)
                               }
-                            />
-                          </label>
-
-                          <label className="grid gap-2.5">
-                            <FieldLabel>{t("badgeName")}</FieldLabel>
-                            <Input
-                              required
-                              name="badgeName"
-                              placeholder={t("badgeNamePlaceholder")}
-                              value={formData.badgeName}
-                              onChange={(event) =>
-                                updateField("badgeName", event.target.value)
-                              }
-                              className={inputClassName}
                             />
                           </label>
 

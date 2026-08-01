@@ -22,7 +22,6 @@ model Volunteer {
   country      String
   region       String
   category     String
-  badgeName    String
   infoLanguage String?
   phone        String
   email        String   @unique

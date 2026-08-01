@@ -36,7 +36,6 @@ export interface VolunteerDto {
   country: string
   region: string
   category: string
-  badgeName: string
   infoLanguage: string | null
   phone: string
   email: string
@@ -129,7 +128,6 @@ export function VolunteerActions({ volunteer }: { volunteer: VolunteerDto }) {
         country: formData.get("country"),
         region: formData.get("region"),
         category: formData.get("category"),
-        badgeName: formData.get("badgeName"),
         infoLanguage: formData.get("infoLanguage") || undefined,
         phone: formData.get("phone"),
         email: formData.get("email"),
@@ -245,14 +243,6 @@ export function VolunteerActions({ volunteer }: { volunteer: VolunteerDto }) {
                   name="category"
                   defaultValue={volunteer.category}
                   options={CATEGORY_OPTIONS}
-                />
-              </Field>
-              <Field label="Имя для бейджа">
-                <Input
-                  required
-                  name="badgeName"
-                  defaultValue={volunteer.badgeName}
-                  className={inputClassName}
                 />
               </Field>
               <Field label="Язык информирования">

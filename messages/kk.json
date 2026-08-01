@@ -18,8 +18,9 @@
     "titleLine1": "Волонтерлік - халықаралық",
     "titleLine2": "ынтымақтастық алаңы",
     "description": "Каспий маңы елдерінің волонтерлерін, экологтарын және жас көшбасшыларын біріктіретін халықаралық іс-қимыл апталығы",
-    "register": "Тегін тіркелу",
+    "register": "Апталыққа тіркелу",
     "program": "Апталық бағдарламасы",
+    "hackathonRegister": "Хакатонға тіркелу",
     "navProgram": "Бағдарлама",
     "navHackathon": "Хакатон",
     "navMangystau": "Маңғыстау туралы",
@@ -158,8 +159,6 @@
       "Жеке қатысушы",
       "Басқа"
     ],
-    "badgeName": "Бейджге жазылатын аты (латын әрпімен)",
-    "badgeNamePlaceholder": "FIRSTNAME LASTNAME",
     "infoLanguage": "Ақпарат алу тілі",
     "infoLanguageOptions": [
       {
@@ -396,19 +395,19 @@
     "socialLabel": "Әлеуметтік желілер",
     "socialItems": [
       {
-        "label": "Instagram",
-        "value": "@mangystau_oblysynyn_akimdigi",
-        "href": "https://www.instagram.com/mangystau_oblysynyn_akimdigi/"
+        "label": "Сайт",
+        "value": "csaw2026aktau.kz",
+        "href": "https://csaw2026aktau.kz"
       },
       {
-        "label": "Telegram",
-        "value": "@aktauyouthforum",
-        "href": "https://t.me/aktauyouthforum"
+        "label": "Instagram",
+        "value": "@csaw2026aktau",
+        "href": "https://www.instagram.com/csaw2026aktau/"
       },
       {
         "label": "TikTok",
-        "value": "@mangystau.akimat",
-        "href": "https://www.tiktok.com/@mangystau.akimat"
+        "value": "@csaw2026aktau",
+        "href": "https://www.tiktok.com/@csaw2026aktau"
       }
     ],
     "locationLabel": "Орналасқан жері",

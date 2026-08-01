@@ -61,7 +61,6 @@ export default async function AdminVolunteersPage() {
                         country: volunteer.country,
                         region: volunteer.region,
                         category: volunteer.category,
-                        badgeName: volunteer.badgeName,
                         infoLanguage: volunteer.infoLanguage,
                         phone: volunteer.phone,
                         email: volunteer.email,

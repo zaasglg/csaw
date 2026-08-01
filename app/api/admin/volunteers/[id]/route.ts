@@ -14,7 +14,6 @@ const volunteerSchema = z.object({
   country: z.string().trim().min(1).max(120),
   region: z.string().trim().min(1).max(200),
   category: z.string().trim().min(1).max(120),
-  badgeName: z.string().trim().min(1).max(200),
   infoLanguage: z.enum(["kk", "ru", "en"]).optional(),
   phone: z.string().trim().min(1).max(40),
   email: z.string().trim().toLowerCase().email().max(200),

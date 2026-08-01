@@ -18,8 +18,9 @@
     "titleLine1": "A platform for international",
     "titleLine2": "volunteer action",
     "description": "An international action week for volunteers, environmental experts and young leaders from across the Caspian region",
-    "register": "Register for free",
+    "register": "Register for the week",
     "program": "Week program",
+    "hackathonRegister": "Register for the hackathon",
     "navProgram": "Program",
     "navHackathon": "Hackathon",
     "navMangystau": "About Mangystau",
@@ -158,8 +159,6 @@
       "Individual participant",
       "Other"
     ],
-    "badgeName": "Name for your badge (in Latin script)",
-    "badgeNamePlaceholder": "FIRSTNAME LASTNAME",
     "infoLanguage": "Language for information",
     "infoLanguageOptions": [
       {
@@ -396,19 +395,19 @@
     "socialLabel": "Social media",
     "socialItems": [
       {
-        "label": "Instagram",
-        "value": "@mangystau_oblysynyn_akimdigi",
-        "href": "https://www.instagram.com/mangystau_oblysynyn_akimdigi/"
+        "label": "Website",
+        "value": "csaw2026aktau.kz",
+        "href": "https://csaw2026aktau.kz"
       },
       {
-        "label": "Telegram",
-        "value": "@aktauyouthforum",
-        "href": "https://t.me/aktauyouthforum"
+        "label": "Instagram",
+        "value": "@csaw2026aktau",
+        "href": "https://www.instagram.com/csaw2026aktau/"
       },
       {
         "label": "TikTok",
-        "value": "@mangystau.akimat",
-        "href": "https://www.tiktok.com/@mangystau.akimat"
+        "value": "@csaw2026aktau",
+        "href": "https://www.tiktok.com/@csaw2026aktau"
       }
     ],
     "locationLabel": "Location",

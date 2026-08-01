@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ArrowDownRight,
-  ArrowRight,
-  CalendarDays,
-} from "lucide-react"
+import { ArrowRight, CalendarDays } from "lucide-react"
 import {
   AnimatePresence,
   motion,
@@ -15,16 +11,18 @@ import {
 } from "motion/react"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
-import { useRef, type PointerEvent } from "react"
+import { useLayoutEffect, useRef, type PointerEvent } from "react"
 
 import { LanguageSwitcher } from "@/components/interactive/LanguageSwitcher"
 import { useLocaleSwitcher } from "@/components/providers/LocaleProvider"
 import { Button } from "@/components/ui/button"
+import { HACKATHON_REGISTER_URL } from "@/lib/links"
 
 const ease = [0.16, 1, 0.3, 1] as const
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
   const { locale } = useLocaleSwitcher()
   const t = useTranslations("hero")
   const reduceMotion = useReducedMotion()
@@ -41,6 +39,21 @@ export function HeroSection() {
     pointerX.set(((event.clientX - bounds.left) / bounds.width) * 2 - 1)
     pointerY.set(((event.clientY - bounds.top) / bounds.height) * 2 - 1)
   }
+
+  useLayoutEffect(() => {
+    const headerEl = headerRef.current
+    const sectionEl = sectionRef.current
+    if (!headerEl || !sectionEl) return
+
+    const updateHeaderHeight = () => {
+      sectionEl.style.setProperty("--header-h", `${headerEl.offsetHeight}px`)
+    }
+
+    updateHeaderHeight()
+    const observer = new ResizeObserver(updateHeaderHeight)
+    observer.observe(headerEl)
+    return () => observer.disconnect()
+  }, [locale])
 
   function scrollTo(target: string) {
     const element = document.querySelector<HTMLElement>(target)
@@ -80,7 +93,7 @@ export function HeroSection() {
 
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 top-[9.75rem] overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 bottom-0 top-[var(--header-h,9.75rem)] overflow-hidden"
         style={reduceMotion ? undefined : { x: portraitX, y: portraitY }}
       >
         <div className="absolute inset-0">
@@ -97,8 +110,41 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(244,247,251,0.55)_0%,rgba(244,247,251,0.08)_26%,rgba(244,247,251,0.12)_64%,rgba(244,247,251,0.78)_100%)]" />
       </motion.div>
 
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-primary-200 bg-white/92 backdrop-blur-sm">
-        <div className="relative mx-auto flex h-[7rem] max-w-[1840px] items-center justify-between gap-4 px-5 md:px-8 lg:px-12 xl:px-16">
+      <header
+        ref={headerRef}
+        className="fixed inset-x-0 top-0 z-40 border-b border-primary-200 bg-white/92 backdrop-blur-sm"
+      >
+        {/* Mobile: logo + switcher row, CSAW 2026 dropped to its own row below */}
+        <div className="md:hidden">
+          <div className="relative mx-auto flex h-20 max-w-[1840px] items-center justify-between gap-2 px-5">
+            <a
+              href="#home"
+              aria-label={t("homeLabel")}
+              className="relative z-10 flex shrink-0 items-center"
+            >
+              <Image
+                src="/logo.svg"
+                alt=""
+                width={420}
+                height={440}
+                priority
+                className="h-14 w-auto"
+              />
+            </a>
+
+            <LanguageSwitcher className="relative z-10 shrink-0" />
+          </div>
+
+          <p
+            aria-hidden
+            className="pointer-events-none px-5 pb-2.5 text-center text-[clamp(1.15rem,4.5vw,2.1rem)] font-black leading-none tracking-[-0.03em] text-primary-900"
+          >
+            CSAW 2026
+          </p>
+        </div>
+
+        {/* Desktop: original single-row layout with the wordmark centered in the gap between logo and the right cluster */}
+        <div className="relative mx-auto hidden h-[7rem] max-w-[1840px] items-center gap-4 px-8 md:flex lg:px-12 xl:px-16">
           <a
             href="#home"
             aria-label={t("homeLabel")}
@@ -110,19 +156,19 @@ export function HeroSection() {
               width={420}
               height={440}
               priority
-              className="h-[4.75rem] w-auto sm:h-24"
+              className="h-24 w-auto"
             />
           </a>
 
           <p
             aria-hidden
-            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1.35rem,3.2vw,2.35rem)] font-black tracking-[-0.04em] text-primary-900"
+            className="pointer-events-none min-w-0 flex-1 truncate text-center text-[clamp(1.35rem,3.2vw,2.35rem)] font-black tracking-[-0.04em] text-primary-900"
           >
             CSAW 2026
           </p>
 
-          <div className="relative z-10 flex shrink-0 items-center gap-3 sm:gap-6">
-            <div className="hidden items-center gap-2 border-r border-primary-200 pr-6 text-xs font-semibold text-primary-600 md:flex">
+          <div className="relative z-10 flex shrink-0 items-center gap-6">
+            <div className="flex items-center gap-2 border-r border-primary-200 pr-6 text-xs font-semibold text-primary-600">
               <CalendarDays className="size-4 text-accent-700" aria-hidden />
               <span>{t("dateShort")}</span>
               <span className="text-primary-300">•</span>
@@ -137,14 +183,14 @@ export function HeroSection() {
           aria-label={t("navLabel")}
           className="border-t border-primary-200 bg-white/95"
         >
-          <div className="mx-auto flex h-11 max-w-[1840px] items-center justify-center gap-8 px-5 md:px-8 lg:px-12 xl:px-16">
+          <div className="mx-auto flex h-10 max-w-[1840px] items-center justify-center gap-3 px-3 sm:h-11 sm:gap-6 sm:px-5 md:gap-8 md:px-8 lg:px-12 xl:px-16">
             <a
               href="#program"
               onClick={(event) => {
                 event.preventDefault()
                 scrollTo("#program")
               }}
-              className="text-xs font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700"
+              className="whitespace-nowrap text-[10px] font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700 sm:text-xs"
             >
               {t("navProgram")}
             </a>
@@ -154,7 +200,7 @@ export function HeroSection() {
                 event.preventDefault()
                 scrollTo("#hackathon")
               }}
-              className="text-xs font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700"
+              className="whitespace-nowrap text-[10px] font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700 sm:text-xs"
             >
               {t("navHackathon")}
             </a>
@@ -164,7 +210,7 @@ export function HeroSection() {
                 event.preventDefault()
                 scrollTo("#mangystau")
               }}
-              className="text-xs font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700"
+              className="whitespace-nowrap text-[10px] font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700 sm:text-xs"
             >
               {t("navMangystau")}
             </a>
@@ -174,7 +220,7 @@ export function HeroSection() {
                 event.preventDefault()
                 scrollTo("#contacts")
               }}
-              className="text-xs font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700"
+              className="whitespace-nowrap text-[10px] font-bold tracking-[0.02em] text-primary-700 transition-colors hover:text-accent-700 sm:text-xs"
             >
               {t("navContacts")}
             </a>
@@ -182,7 +228,7 @@ export function HeroSection() {
         </nav>
       </header>
 
-      <div className="relative z-20 mx-auto grid min-h-[100dvh] max-w-[1840px] grid-cols-1 content-center px-5 pb-10 pt-[12rem] md:px-8 lg:px-12 lg:pb-14 lg:pt-[12.5rem] xl:px-16">
+      <div className="relative z-20 mx-auto grid min-h-[100dvh] max-w-[1840px] grid-cols-1 content-center px-5 pb-10 pt-[calc(var(--header-h,9.75rem)+2.25rem)] md:px-8 lg:px-12 lg:pb-14 lg:pt-[calc(var(--header-h,9.75rem)+2.75rem)] xl:px-16">
         <AnimatePresence mode="wait">
           <motion.div
             key={locale}
@@ -215,14 +261,15 @@ export function HeroSection() {
                 {t("register")}
                 <ArrowRight className="size-4" />
               </Button>
-              <Button
-                type="button"
-                onClick={() => scrollTo("#program")}
-                className="h-13 w-full rounded-sm border border-primary-300 bg-white/70 px-7 text-sm font-bold text-primary-900 hover:border-accent/55 hover:bg-primary-50/90 active:scale-[0.98] sm:w-auto sm:text-[15px]"
+              <a
+                href={HACKATHON_REGISTER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-13 w-full items-center justify-center gap-1.5 rounded-sm border border-primary-300 bg-white/70 px-7 text-sm font-bold text-primary-900 transition-all hover:border-accent/55 hover:bg-primary-50/90 active:scale-[0.98] sm:w-auto sm:text-[15px]"
               >
-                {t("program")}
-                <ArrowDownRight className="size-4 text-accent-700" />
-              </Button>
+                {t("hackathonRegister")}
+                <ArrowRight className="size-4 text-accent-700" />
+              </a>
             </div>
           </motion.div>
         </AnimatePresence>

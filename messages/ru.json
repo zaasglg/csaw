@@ -18,8 +18,9 @@
     "titleLine1": "Площадка международных",
     "titleLine2": "волонтерских инициатив",
     "description": "Международная неделя действий для волонтеров, экологов и молодых лидеров стран Каспийского региона",
-    "register": "Регистрация бесплатно",
+    "register": "Регистрация на неделю",
     "program": "Программа недели",
+    "hackathonRegister": "Регистрация на хакатон",
     "navProgram": "Программа",
     "navHackathon": "Хакатон",
     "navMangystau": "О Мангистау",
@@ -158,8 +159,6 @@
       "Индивидуальный участник",
       "Другое"
     ],
-    "badgeName": "Имя для бейджа (латиницей)",
-    "badgeNamePlaceholder": "FIRSTNAME LASTNAME",
     "infoLanguage": "Язык получения информации",
     "infoLanguageOptions": [
       {
@@ -395,19 +394,19 @@
     "socialLabel": "Социальные сети",
     "socialItems": [
       {
-        "label": "Instagram",
-        "value": "@mangystau_oblysynyn_akimdigi",
-        "href": "https://www.instagram.com/mangystau_oblysynyn_akimdigi/"
+        "label": "Сайт",
+        "value": "csaw2026aktau.kz",
+        "href": "https://csaw2026aktau.kz"
       },
       {
-        "label": "Telegram",
-        "value": "@aktauyouthforum",
-        "href": "https://t.me/aktauyouthforum"
+        "label": "Instagram",
+        "value": "@csaw2026aktau",
+        "href": "https://www.instagram.com/csaw2026aktau/"
       },
       {
         "label": "TikTok",
-        "value": "@mangystau.akimat",
-        "href": "https://www.tiktok.com/@mangystau.akimat"
+        "value": "@csaw2026aktau",
+        "href": "https://www.tiktok.com/@csaw2026aktau"
       }
     ],
     "locationLabel": "Местоположение",
