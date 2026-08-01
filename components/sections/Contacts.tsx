@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { Mail, MapPin } from "lucide-react"
-import { motion, useReducedMotion } from "motion/react"
-import { useTranslations } from "next-intl"
+import { Mail, MapPin } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
-const ease = [0.16, 1, 0.3, 1] as const
+const ease = [0.16, 1, 0.3, 1] as const;
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -22,18 +22,18 @@ function InstagramIcon({ className }: { className?: string }) {
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
     </svg>
-  )
+  );
 }
 
 export function Contacts() {
-  const t = useTranslations("contacts")
-  const reduceMotion = useReducedMotion()
+  const t = useTranslations("contacts");
+  const reduceMotion = useReducedMotion();
   const socialItems = t.raw("socialItems") as {
-    label: string
-    value: string
-    href: string
-  }[]
-  const organizerItems = t.raw("organizerItems") as string[]
+    label: string;
+    value: string;
+    href: string;
+  }[];
+  const organizerItems = t.raw("organizerItems") as string[];
 
   return (
     <section
@@ -149,5 +149,5 @@ export function Contacts() {
         </div>
       </div>
     </section>
-  )
+  );
 }

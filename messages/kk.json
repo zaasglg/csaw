@@ -134,13 +134,7 @@
         "Мары велаяты",
         "Басқа"
       ],
-      "Иран": [
-        "Тегеран",
-        "Гилян",
-        "Мазендеран",
-        "Голестан",
-        "Басқа"
-      ]
+      "Иран": ["Тегеран", "Гилян", "Мазендеран", "Голестан", "Басқа"]
     },
     "category": "Қатысушы санаты",
     "categoryPlaceholder": "Санатты таңдаңыз",
@@ -194,14 +188,7 @@
     "prizeDescription": "Үш күн ішінде команда Каспий экожүйесіне арналған технологиялық шешім үшін бәсекеге түседі",
     "registerTeam": "Команданы тіркеу",
     "rulesLabel": "Ереже",
-    "ticker": [
-      "Eco-tech",
-      "Caspian",
-      "3 days",
-      "Aktau",
-      "Open call",
-      "Team"
-    ]
+    "ticker": ["Eco-tech", "Caspian", "3 days", "Aktau", "Open call", "Team"]
   },
   "hackathonRegister": {
     "overline": "CASPIAN HACKATHON 2026",
@@ -391,7 +378,7 @@
     "description": "Сұрақтарыңыз болса, бізбен хабарласыңыз",
     "infoCardTitle": "Байланыс ақпараты",
     "emailLabel": "Электронды пошта",
-    "emailValue": "aktauyouthforum@gmail.com",
+    "emailValue": "csaw2026aktau@gmail.com",
     "socialLabel": "Әлеуметтік желілер",
     "socialItems": [
       {
@@ -406,8 +393,8 @@
       },
       {
         "label": "TikTok",
-        "value": "@csaw2026aktau",
-        "href": "https://www.tiktok.com/@csaw2026aktau"
+        "value": "@csaw2026",
+        "href": "https://www.tiktok.com/@csaw2026"
       }
     ],
     "locationLabel": "Орналасқан жері",

@@ -134,13 +134,7 @@
         "Mary Region",
         "Other"
       ],
-      "Iran": [
-        "Tehran",
-        "Gilan",
-        "Mazandaran",
-        "Golestan",
-        "Other"
-      ]
+      "Iran": ["Tehran", "Gilan", "Mazandaran", "Golestan", "Other"]
     },
     "category": "Participant category",
     "categoryPlaceholder": "Select a category",
@@ -194,14 +188,7 @@
     "prizeDescription": "Over three days, a team competes for the best technological solution for the Caspian ecosystem",
     "registerTeam": "Register your team",
     "rulesLabel": "Rule",
-    "ticker": [
-      "Eco-tech",
-      "Caspian",
-      "3 days",
-      "Aktau",
-      "Open call",
-      "Team"
-    ]
+    "ticker": ["Eco-tech", "Caspian", "3 days", "Aktau", "Open call", "Team"]
   },
   "hackathonRegister": {
     "overline": "CASPIAN HACKATHON 2026",
@@ -391,7 +378,7 @@
     "description": "If you have any questions, get in touch with us",
     "infoCardTitle": "Contact information",
     "emailLabel": "Email",
-    "emailValue": "aktauyouthforum@gmail.com",
+    "emailValue": "csaw2026aktau@gmail.com",
     "socialLabel": "Social media",
     "socialItems": [
       {
@@ -406,8 +393,8 @@
       },
       {
         "label": "TikTok",
-        "value": "@csaw2026aktau",
-        "href": "https://www.tiktok.com/@csaw2026aktau"
+        "value": "@csaw2026",
+        "href": "https://www.tiktok.com/@csaw2026"
       }
     ],
     "locationLabel": "Location",
