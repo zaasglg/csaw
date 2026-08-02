@@ -13,6 +13,43 @@ import { prisma } from "@/lib/prisma"
 
 export const dynamic = "force-dynamic"
 
+const eventJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "Caspian Sea Action Week 2026",
+  alternateName: ["CSAW 2026", "CSAW 2026 Aktau"],
+  description:
+    "International action week uniting the Caspian region through ecology, volunteering, innovation and the Caspian Hackathon.",
+  startDate: "2026-08-06",
+  endDate: "2026-08-12",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  location: {
+    "@type": "Place",
+    name: "Aktau",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Aktau",
+      addressRegion: "Mangystau Region",
+      addressCountry: "KZ",
+    },
+  },
+  image: [
+    "https://csaw2026aktau.kz/images/caspian-sea-hero-poster.jpg",
+    "https://csaw2026aktau.kz/images/hero_banner.jpg",
+  ],
+  url: "https://csaw2026aktau.kz/",
+  organizer: {
+    "@type": "Organization",
+    name: "Caspian Sea Action Week",
+    url: "https://csaw2026aktau.kz/",
+    sameAs: [
+      "https://www.instagram.com/csaw2026aktau/",
+      "https://www.tiktok.com/@csaw2026",
+    ],
+  },
+}
+
 export default async function Home() {
   const speakers = await prisma.speaker.findMany({
     orderBy: [{ order: "asc" }, { createdAt: "asc" }],
@@ -20,6 +57,12 @@ export default async function Home() {
 
   return (
     <SmoothScroll>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(eventJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <main className="mesh-page relative isolate overflow-x-clip text-primary-900">
         <WaveBackground />
         <div className="site-grain" aria-hidden />
