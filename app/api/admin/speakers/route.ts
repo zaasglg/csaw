@@ -1,17 +1,9 @@
 import { NextResponse } from "next/server"
-import { z } from "zod"
 
 import { isAdminAuthenticated } from "@/lib/adminAuth"
 import { prisma } from "@/lib/prisma"
+import { parseSpeakerFormData } from "@/lib/speakers"
 import { saveSpeakerAvatar } from "@/lib/uploads"
-
-const speakerFieldsSchema = z.object({
-  name: z.string().trim().min(1).max(200),
-  role: z.string().trim().min(1).max(200),
-  organization: z.string().trim().min(1).max(200),
-  bio: z.string().trim().max(2000).optional(),
-  order: z.coerce.number().int().default(0),
-})
 
 export async function POST(request: Request) {
   if (!(await isAdminAuthenticated())) {
@@ -23,13 +15,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_input" }, { status: 400 })
   }
 
-  const parsed = speakerFieldsSchema.safeParse({
-    name: formData.get("name"),
-    role: formData.get("role"),
-    organization: formData.get("organization"),
-    bio: formData.get("bio") || undefined,
-    order: formData.get("order") || 0,
-  })
+  const parsed = parseSpeakerFormData(formData)
   if (!parsed.success) {
     return NextResponse.json({ error: "invalid_input" }, { status: 400 })
   }

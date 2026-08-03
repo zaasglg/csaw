@@ -37,6 +37,7 @@ export default async function AdminSpeakersPage() {
                     src={speaker.avatarUrl}
                     alt=""
                     fill
+                    unoptimized
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover"
                   />
@@ -48,23 +49,15 @@ export default async function AdminSpeakersPage() {
               </div>
               <div className="flex items-start justify-between gap-3 p-4">
                 <div className="min-w-0">
-                  <p className="truncate text-[15px] font-bold text-primary-50">{speaker.name}</p>
+                  <p className="truncate text-[15px] font-bold text-primary-50">
+                    {speaker.nameRu}
+                  </p>
                   <p className="mt-1 text-[13px] text-primary-300">
-                    {speaker.role}, {speaker.organization}
+                    {speaker.roleRu}, {speaker.organizationRu}
                   </p>
                   <p className="mt-1 text-[11px] text-primary-500">Порядок: {speaker.order}</p>
                 </div>
-                <SpeakerRowActions
-                  speaker={{
-                    id: speaker.id,
-                    name: speaker.name,
-                    role: speaker.role,
-                    organization: speaker.organization,
-                    bio: speaker.bio,
-                    avatarUrl: speaker.avatarUrl,
-                    order: speaker.order,
-                  }}
-                />
+                <SpeakerRowActions speaker={speaker} />
               </div>
             </div>
           ))}

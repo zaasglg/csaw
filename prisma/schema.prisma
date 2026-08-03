@@ -38,13 +38,21 @@ model HackathonTeam {
 }
 
 model Speaker {
-  id           String   @id @default(cuid())
-  name         String
-  role         String
-  organization String
-  bio          String?
-  avatarUrl    String?
-  order        Int      @default(0)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id             String   @id @default(cuid())
+  nameKk         String
+  nameRu         String
+  nameEn         String
+  roleKk         String
+  roleRu         String
+  roleEn         String
+  organizationKk String
+  organizationRu String
+  organizationEn String
+  bioKk          String?
+  bioRu          String?
+  bioEn          String?
+  avatarUrl      String?
+  order          Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }

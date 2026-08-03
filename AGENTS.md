@@ -12,6 +12,11 @@
 - `npm run lint` — ESLint via the flat config in `eslint.config.mjs` (`eslint-config-next` core-web-vitals + typescript rulesets).
 - `npx prisma generate` / `npx prisma migrate dev` — regenerate the client / apply schema changes (reads `prisma.config.ts`).
 
+## Runtime Uploads
+- Speaker avatars are stored on disk (not in `public/`) via `lib/uploads.ts` and served by `app/uploads/speakers/[filename]/route.ts`.
+- Default path: `data/uploads/speakers/` (gitignored). On production VPS set `UPLOADS_DIR` to a directory **outside** the deploy folder (e.g. `/var/lib/csaw/uploads`) so redeploys do not wipe photos, then restart the Next.js process.
+- After changing storage, re-upload any speakers whose old `/uploads/speakers/...` files are already missing.
+
 ## Coding Style & Naming Conventions
 - TypeScript `strict` mode; path alias `@/*` resolves to the repo root.
 - UI is built with shadcn (`components.json`: style `base-nova`, base color `neutral`, icons from `lucide`). Tailwind v4 theme tokens are defined as CSS variables in `app/globals.css` (`--color-primary-*`, `--color-accent-*`, `--color-surface-*`) and consumed via `tailwind.config.js`.

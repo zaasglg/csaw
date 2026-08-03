@@ -2,27 +2,20 @@
 
 import { Eye } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
 import { useState } from "react"
 
+import type { Locale } from "@/components/providers/LocaleProvider"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { localizeSpeaker, type SpeakerRecord } from "@/lib/speakers"
 
 const ease = [0.16, 1, 0.3, 1] as const
-
-export interface SpeakerData {
-  id: string
-  name: string
-  role: string
-  organization: string
-  bio: string | null
-  avatarUrl: string | null
-}
 
 const placeholderSlots = [
   { id: "placeholder-1", avatar: "https://i.pravatar.cc/400?img=12" },
@@ -33,13 +26,17 @@ const placeholderSlots = [
   { id: "placeholder-6", avatar: "https://i.pravatar.cc/400?img=21" },
 ]
 
-export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
+export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
   const reduceMotion = useReducedMotion()
   const t = useTranslations("speakers")
+  const locale = useLocale() as Locale
   const [activeId, setActiveId] = useState<string | null>(null)
-  const hasSpeakers = speakers.length > 0
+  const localizedSpeakers = speakers.map((speaker) =>
+    localizeSpeaker(speaker, locale),
+  )
+  const hasSpeakers = localizedSpeakers.length > 0
   const activeSpeaker = hasSpeakers
-    ? (speakers.find((speaker) => speaker.id === activeId) ?? null)
+    ? (localizedSpeakers.find((speaker) => speaker.id === activeId) ?? null)
     : null
   const activeSlot = hasSpeakers
     ? null
@@ -79,7 +76,7 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
           className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {hasSpeakers
-            ? speakers.map((speaker) => (
+            ? localizedSpeakers.map((speaker) => (
                 <motion.button
                   key={speaker.id}
                   type="button"
@@ -97,6 +94,7 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
                         src={speaker.avatarUrl}
                         alt=""
                         fill
+                        unoptimized
                         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         className="object-cover grayscale transition-[filter] duration-300 group-hover:grayscale-0"
                       />
@@ -194,6 +192,7 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
                     src={activeSpeaker.avatarUrl}
                     alt=""
                     fill
+                    unoptimized
                     sizes="220px"
                     className="object-cover grayscale"
                   />
@@ -230,9 +229,6 @@ export function Speakers({ speakers }: { speakers: SpeakerData[] }) {
                   aria-hidden
                   className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-900/70 via-transparent to-transparent sm:bg-gradient-to-r"
                 />
-                <span className="absolute left-3 top-3 rounded-sm border border-accent/40 bg-primary-900/80 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-accent-300">
-                  {t("comingSoon")}
-                </span>
               </div>
 
               <div className="flex flex-col justify-center px-8 py-10">

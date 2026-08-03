@@ -8,19 +8,20 @@ import { type ChangeEvent, type FormEvent, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import type { SpeakerRecord } from "@/lib/speakers"
 
-export interface SpeakerDto {
-  id: string
-  name: string
-  role: string
-  organization: string
-  bio: string | null
-  avatarUrl: string | null
-  order: number
-}
+export type SpeakerDto = SpeakerRecord
 
 const inputClassName =
   "h-10 border-accent/25 bg-primary-900/45 px-3 text-[14px] text-primary-50 placeholder:text-primary-400 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
+
+const locales = [
+  { id: "kk" as const, label: "ҚАЗ" },
+  { id: "ru" as const, label: "РУС" },
+  { id: "en" as const, label: "ENG" },
+]
+
+type LocaleId = (typeof locales)[number]["id"]
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -28,6 +29,54 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       {label}
       {children}
     </label>
+  )
+}
+
+function LocaleFields({
+  locale,
+  speaker,
+}: {
+  locale: LocaleId
+  speaker?: SpeakerDto
+}) {
+  const suffix = locale.charAt(0).toUpperCase() + locale.slice(1)
+  const nameKey = `name${suffix}` as keyof SpeakerDto
+  const roleKey = `role${suffix}` as keyof SpeakerDto
+  const organizationKey = `organization${suffix}` as keyof SpeakerDto
+  const bioKey = `bio${suffix}` as keyof SpeakerDto
+
+  return (
+    <div className="grid gap-4">
+      <Field label="Имя">
+        <Input
+          name={`name${suffix}`}
+          defaultValue={(speaker?.[nameKey] as string | undefined) ?? ""}
+          className={inputClassName}
+        />
+      </Field>
+      <Field label="Должность">
+        <Input
+          name={`role${suffix}`}
+          defaultValue={(speaker?.[roleKey] as string | undefined) ?? ""}
+          className={inputClassName}
+        />
+      </Field>
+      <Field label="Организация">
+        <Input
+          name={`organization${suffix}`}
+          defaultValue={(speaker?.[organizationKey] as string | undefined) ?? ""}
+          className={inputClassName}
+        />
+      </Field>
+      <Field label="Биография (для модального окна)">
+        <textarea
+          name={`bio${suffix}`}
+          rows={4}
+          defaultValue={(speaker?.[bioKey] as string | null | undefined) ?? ""}
+          className={`${inputClassName} h-auto resize-none py-2`}
+        />
+      </Field>
+    </div>
   )
 }
 
@@ -45,6 +94,7 @@ export function SpeakerFormDialog({
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState("")
   const [previewUrl, setPreviewUrl] = useState<string | null>(speaker?.avatarUrl ?? null)
+  const [activeLocale, setActiveLocale] = useState<LocaleId>("kk")
 
   function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
@@ -68,7 +118,14 @@ export function SpeakerFormDialog({
     setSaving(false)
 
     if (!response.ok) {
-      setError("Не удалось сохранить спикера")
+      const payload = (await response.json().catch(() => null)) as {
+        error?: string
+      } | null
+      setError(
+        payload?.error === "invalid_input"
+          ? "Заполните имя, должность и организацию на всех трёх языках"
+          : "Не удалось сохранить спикера",
+      )
       return
     }
 
@@ -109,7 +166,7 @@ export function SpeakerFormDialog({
                 )}
               </div>
               <label className="grid gap-1.5 text-[13px] font-semibold text-primary-100">
-                Фотография
+                Фотография (общая для всех языков)
                 <input
                   type="file"
                   name="avatar"
@@ -120,28 +177,32 @@ export function SpeakerFormDialog({
               </label>
             </div>
 
-            <Field label="Имя">
-              <Input required name="name" defaultValue={speaker?.name} className={inputClassName} />
-            </Field>
-            <Field label="Должность">
-              <Input required name="role" defaultValue={speaker?.role} className={inputClassName} />
-            </Field>
-            <Field label="Организация">
-              <Input
-                required
-                name="organization"
-                defaultValue={speaker?.organization}
-                className={inputClassName}
-              />
-            </Field>
-            <Field label="Биография (для модального окна)">
-              <textarea
-                name="bio"
-                rows={4}
-                defaultValue={speaker?.bio ?? ""}
-                className={`${inputClassName} h-auto resize-none py-2`}
-              />
-            </Field>
+            <div className="flex gap-2 border-b border-accent/20 pb-3">
+              {locales.map((locale) => (
+                <button
+                  key={locale.id}
+                  type="button"
+                  onClick={() => setActiveLocale(locale.id)}
+                  className={`rounded-sm px-3 py-1.5 text-[12px] font-bold tracking-[0.08em] transition-colors ${
+                    activeLocale === locale.id
+                      ? "border border-accent-300 bg-accent text-primary-900"
+                      : "border border-accent/25 bg-primary-900/40 text-primary-300 hover:border-accent/50"
+                  }`}
+                >
+                  {locale.label}
+                </button>
+              ))}
+            </div>
+
+            {locales.map((locale) => (
+              <div
+                key={locale.id}
+                className={activeLocale === locale.id ? "grid" : "hidden"}
+              >
+                <LocaleFields locale={locale.id} speaker={speaker} />
+              </div>
+            ))}
+
             <Field label="Порядок отображения">
               <Input
                 type="number"

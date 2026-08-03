@@ -12,7 +12,7 @@ export function SpeakerRowActions({ speaker }: { speaker: SpeakerDto }) {
   const [deleting, setDeleting] = useState(false)
 
   async function handleDelete() {
-    if (!window.confirm(`Удалить спикера «${speaker.name}»?`)) return
+    if (!window.confirm(`Удалить спикера «${speaker.nameRu}»?`)) return
 
     setDeleting(true)
     const response = await fetch(`/api/admin/speakers/${speaker.id}`, { method: "DELETE" })
