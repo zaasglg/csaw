@@ -48,21 +48,21 @@ function LocaleFields({
   return (
     <div className="grid gap-4">
       <Field label="Имя">
-        <Input
+        <input
           name={`name${suffix}`}
           defaultValue={(speaker?.[nameKey] as string | undefined) ?? ""}
           className={inputClassName}
         />
       </Field>
       <Field label="Должность">
-        <Input
+        <input
           name={`role${suffix}`}
           defaultValue={(speaker?.[roleKey] as string | undefined) ?? ""}
           className={inputClassName}
         />
       </Field>
       <Field label="Организация">
-        <Input
+        <input
           name={`organization${suffix}`}
           defaultValue={(speaker?.[organizationKey] as string | undefined) ?? ""}
           className={inputClassName}
@@ -120,12 +120,17 @@ export function SpeakerFormDialog({
     if (!response.ok) {
       const payload = (await response.json().catch(() => null)) as {
         error?: string
+        message?: string
       } | null
-      setError(
-        payload?.error === "invalid_input"
-          ? "Заполните имя, должность и организацию на всех трёх языках"
-          : "Не удалось сохранить спикера",
-      )
+      if (payload?.error === "invalid_avatar") {
+        setError("Не удалось загрузить фото (только JPG/PNG/WEBP до 10 МБ)")
+      } else if (payload?.message) {
+        setError(payload.message)
+      } else if (payload?.error === "invalid_input") {
+        setError("Заполните имя, должность и организацию на всех трёх языках")
+      } else {
+        setError("Не удалось сохранить спикера")
+      }
       return
     }
 

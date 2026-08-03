@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 
 import { isAdminAuthenticated } from "@/lib/adminAuth"
 import { prisma } from "@/lib/prisma"
-import { parseSpeakerFormData } from "@/lib/speakers"
+import { formatSpeakerValidationError, parseSpeakerFormData } from "@/lib/speakers"
 import { saveSpeakerAvatar } from "@/lib/uploads"
 
 export async function POST(request: Request) {
@@ -17,7 +17,13 @@ export async function POST(request: Request) {
 
   const parsed = parseSpeakerFormData(formData)
   if (!parsed.success) {
-    return NextResponse.json({ error: "invalid_input" }, { status: 400 })
+    return NextResponse.json(
+      {
+        error: "invalid_input",
+        message: formatSpeakerValidationError(parsed.error),
+      },
+      { status: 400 },
+    )
   }
 
   const avatarFile = formData.get("avatar")

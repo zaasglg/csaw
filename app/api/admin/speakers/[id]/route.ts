@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 
 import { isAdminAuthenticated } from "@/lib/adminAuth"
 import { prisma } from "@/lib/prisma"
-import { parseSpeakerFormData } from "@/lib/speakers"
+import { formatSpeakerValidationError, parseSpeakerFormData } from "@/lib/speakers"
 import { deleteSpeakerAvatar, saveSpeakerAvatar } from "@/lib/uploads"
 
 export async function PATCH(
@@ -21,7 +21,13 @@ export async function PATCH(
 
   const parsed = parseSpeakerFormData(formData)
   if (!parsed.success) {
-    return NextResponse.json({ error: "invalid_input" }, { status: 400 })
+    return NextResponse.json(
+      {
+        error: "invalid_input",
+        message: formatSpeakerValidationError(parsed.error),
+      },
+      { status: 400 },
+    )
   }
 
   const existing = await prisma.speaker.findUnique({ where: { id } })
