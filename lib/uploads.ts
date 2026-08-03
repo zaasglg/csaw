@@ -13,7 +13,7 @@ const CONTENT_TYPES_BY_EXT: Record<string, string> = {
   png: "image/png",
   webp: "image/webp",
 }
-const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024
+const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024
 const SPEAKER_FILENAME_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(jpg|png|webp)$/i
 
