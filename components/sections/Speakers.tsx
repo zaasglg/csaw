@@ -26,6 +26,29 @@ const placeholderSlots = [
   { id: "placeholder-6", avatar: "https://i.pravatar.cc/400?img=21" },
 ]
 
+function SpeakerPhoto({
+  src,
+  sizes,
+  className,
+  unoptimized = false,
+}: {
+  src: string
+  sizes: string
+  className?: string
+  unoptimized?: boolean
+}) {
+  return (
+    <Image
+      src={src}
+      alt=""
+      fill
+      unoptimized={unoptimized}
+      sizes={sizes}
+      className={`object-cover object-top ${className ?? ""}`}
+    />
+  )
+}
+
 export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
   const reduceMotion = useReducedMotion()
   const t = useTranslations("speakers")
@@ -52,51 +75,43 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
 
       <div className="relative mx-auto max-w-[1480px]">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 30 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.8, ease }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.45, ease }}
           className="grid gap-8 border-b border-accent/25 pb-12 lg:grid-cols-12 lg:items-end"
         >
           <div className="lg:col-span-8">
-            <h2 className="section-title">
+            <h2 id="speakers-title" className="section-title">
               {t("headingPrefix")} {t("headingAccent")}
             </h2>
           </div>
         </motion.div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.08 } },
-          }}
-          className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {hasSpeakers
-            ? localizedSpeakers.map((speaker) => (
+            ? localizedSpeakers.map((speaker, index) => (
                 <motion.button
                   key={speaker.id}
                   type="button"
                   onClick={() => setActiveId(speaker.id)}
-                  variants={{
-                    hidden: { opacity: 0, y: 24 },
-                    visible: { opacity: 1, y: 0 },
+                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2, margin: "0px 0px -10% 0px" }}
+                  transition={{
+                    duration: 0.35,
+                    ease,
+                    delay: reduceMotion ? 0 : Math.min(index, 5) * 0.04,
                   }}
-                  transition={{ duration: 0.6, ease }}
                   className="group relative overflow-hidden border border-accent/20 bg-primary-50 text-left transition-colors duration-300 hover:border-accent/50 focus-visible:border-accent/50 focus-visible:outline-none"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-primary-100">
                     {speaker.avatarUrl ? (
-                      <Image
+                      <SpeakerPhoto
                         src={speaker.avatarUrl}
-                        alt=""
-                        fill
                         unoptimized
                         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        className="object-cover grayscale transition-[filter] duration-300 group-hover:grayscale-0"
+                        className="grayscale transition-[filter] duration-300 group-hover:grayscale-0"
                       />
                     ) : null}
                     <div
@@ -123,25 +138,26 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
                   </div>
                 </motion.button>
               ))
-            : placeholderSlots.map((slot) => (
+            : placeholderSlots.map((slot, index) => (
                 <motion.button
                   key={slot.id}
                   type="button"
                   onClick={() => setActiveId(slot.id)}
-                  variants={{
-                    hidden: { opacity: 0, y: 24 },
-                    visible: { opacity: 1, y: 0 },
+                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2, margin: "0px 0px -10% 0px" }}
+                  transition={{
+                    duration: 0.35,
+                    ease,
+                    delay: reduceMotion ? 0 : Math.min(index, 5) * 0.04,
                   }}
-                  transition={{ duration: 0.6, ease }}
                   className="group relative overflow-hidden border border-accent/20 bg-primary-50 text-left transition-colors duration-300 hover:border-accent/50 focus-visible:border-accent/50 focus-visible:outline-none"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-primary-100">
-                    <Image
+                    <SpeakerPhoto
                       src={slot.avatar}
-                      alt=""
-                      fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover grayscale transition-[filter] duration-300 group-hover:grayscale-0"
+                      className="grayscale transition-[filter] duration-300 group-hover:grayscale-0"
                     />
                     <div
                       aria-hidden
@@ -170,7 +186,7 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
                   </div>
                 </motion.button>
               ))}
-        </motion.div>
+        </div>
       </div>
 
       <Dialog
@@ -182,29 +198,27 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
         <DialogContent
           data-lenis-prevent
           showCloseButton
-          className="max-h-[calc(100dvh-2rem)] w-full max-w-3xl overflow-y-auto rounded-sm border border-accent/40 bg-white p-0 text-primary-900 shadow-[0_30px_100px_rgba(11,29,51,0.18)] sm:max-w-3xl"
+          className="max-h-[calc(100dvh-2rem)] w-full max-w-3xl overflow-y-auto rounded-sm border border-accent/40 bg-white p-0 text-primary-900 shadow-[0_30px_100px_rgba(11,29,51,0.18)] duration-150 sm:max-w-3xl"
         >
           {activeSpeaker ? (
-            <div className="grid gap-0 sm:grid-cols-[minmax(0,220px)_1fr]">
-              <div className="relative aspect-[4/5] overflow-hidden bg-primary-100 sm:aspect-auto sm:h-full">
+            <div className="grid gap-0 sm:grid-cols-[minmax(0,240px)_1fr]">
+              <div className="relative h-56 overflow-hidden bg-primary-100 sm:h-auto sm:min-h-[320px]">
                 {activeSpeaker.avatarUrl ? (
-                  <Image
+                  <SpeakerPhoto
                     src={activeSpeaker.avatarUrl}
-                    alt=""
-                    fill
                     unoptimized
-                    sizes="220px"
-                    className="object-cover grayscale"
+                    sizes="(min-width: 640px) 240px, 100vw"
+                    className="grayscale"
                   />
                 ) : null}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-900/70 via-transparent to-transparent sm:bg-gradient-to-r"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-900/50 via-transparent to-transparent sm:bg-gradient-to-r"
                 />
               </div>
 
-              <div className="flex flex-col justify-center px-8 py-10">
-                <DialogTitle className="text-3xl font-black tracking-[-0.03em] text-primary-900">
+              <div className="flex flex-col justify-center px-6 py-8 sm:px-8 sm:py-10">
+                <DialogTitle className="text-2xl font-black tracking-[-0.03em] text-primary-900 sm:text-3xl">
                   {activeSpeaker.name}
                 </DialogTitle>
                 <p className="mt-1.5 text-[15px] font-semibold text-accent-700">
@@ -216,23 +230,21 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
               </div>
             </div>
           ) : activeSlot ? (
-            <div className="grid gap-0 sm:grid-cols-[minmax(0,220px)_1fr]">
-              <div className="relative aspect-[4/5] overflow-hidden bg-primary-100 sm:aspect-auto sm:h-full">
-                <Image
+            <div className="grid gap-0 sm:grid-cols-[minmax(0,240px)_1fr]">
+              <div className="relative h-56 overflow-hidden bg-primary-100 sm:h-auto sm:min-h-[320px]">
+                <SpeakerPhoto
                   src={activeSlot.avatar}
-                  alt=""
-                  fill
-                  sizes="220px"
-                  className="object-cover grayscale"
+                  sizes="(min-width: 640px) 240px, 100vw"
+                  className="grayscale"
                 />
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-900/70 via-transparent to-transparent sm:bg-gradient-to-r"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-900/50 via-transparent to-transparent sm:bg-gradient-to-r"
                 />
               </div>
 
-              <div className="flex flex-col justify-center px-8 py-10">
-                <DialogTitle className="text-3xl font-black tracking-[-0.03em] text-primary-900">
+              <div className="flex flex-col justify-center px-6 py-8 sm:px-8 sm:py-10">
+                <DialogTitle className="text-2xl font-black tracking-[-0.03em] text-primary-900 sm:text-3xl">
                   {t("namePlaceholder")}
                 </DialogTitle>
                 <p className="mt-1.5 text-[15px] font-semibold text-accent-700">
