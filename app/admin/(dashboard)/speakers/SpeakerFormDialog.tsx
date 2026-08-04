@@ -43,7 +43,6 @@ function LocaleFields({
   const nameKey = `name${suffix}` as keyof SpeakerDto
   const roleKey = `role${suffix}` as keyof SpeakerDto
   const organizationKey = `organization${suffix}` as keyof SpeakerDto
-  const bioKey = `bio${suffix}` as keyof SpeakerDto
 
   return (
     <div className="grid gap-4">
@@ -66,14 +65,6 @@ function LocaleFields({
           name={`organization${suffix}`}
           defaultValue={(speaker?.[organizationKey] as string | undefined) ?? ""}
           className={inputClassName}
-        />
-      </Field>
-      <Field label="Биография (для модального окна)">
-        <textarea
-          name={`bio${suffix}`}
-          rows={4}
-          defaultValue={(speaker?.[bioKey] as string | null | undefined) ?? ""}
-          className={`${inputClassName} h-auto resize-none py-2`}
         />
       </Field>
     </div>

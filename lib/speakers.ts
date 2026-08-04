@@ -12,9 +12,6 @@ export const speakerFieldsSchema = z.object({
   organizationKk: z.string().trim().min(1).max(300),
   organizationRu: z.string().trim().min(1).max(300),
   organizationEn: z.string().trim().min(1).max(300),
-  bioKk: z.string().trim().max(10000).optional(),
-  bioRu: z.string().trim().max(10000).optional(),
-  bioEn: z.string().trim().max(10000).optional(),
   order: z.coerce.number().int().default(0),
 })
 
@@ -31,9 +28,6 @@ export type SpeakerRecord = {
   organizationKk: string
   organizationRu: string
   organizationEn: string
-  bioKk: string | null
-  bioRu: string | null
-  bioEn: string | null
   avatarUrl: string | null
   order: number
 }
@@ -43,7 +37,6 @@ export type LocalizedSpeaker = {
   name: string
   role: string
   organization: string
-  bio: string | null
   avatarUrl: string | null
   order: number
 }
@@ -58,20 +51,12 @@ const FIELD_LABELS: Record<string, string> = {
   organizationKk: "Организация (ҚАЗ)",
   organizationRu: "Организация (РУС)",
   organizationEn: "Организация (ENG)",
-  bioKk: "Биография (ҚАЗ)",
-  bioRu: "Биография (РУС)",
-  bioEn: "Биография (ENG)",
   order: "Порядок",
 }
 
 function formText(formData: FormData, key: string): string {
   const value = formData.get(key)
   return typeof value === "string" ? value : ""
-}
-
-function formOptionalText(formData: FormData, key: string): string | undefined {
-  const value = formText(formData, key).trim()
-  return value.length > 0 ? value : undefined
 }
 
 export function parseSpeakerFormData(formData: FormData) {
@@ -85,16 +70,11 @@ export function parseSpeakerFormData(formData: FormData) {
     organizationKk: formText(formData, "organizationKk"),
     organizationRu: formText(formData, "organizationRu"),
     organizationEn: formText(formData, "organizationEn"),
-    bioKk: formOptionalText(formData, "bioKk"),
-    bioRu: formOptionalText(formData, "bioRu"),
-    bioEn: formOptionalText(formData, "bioEn"),
     order: formText(formData, "order") || "0",
   })
 }
 
-export function formatSpeakerValidationError(
-  error: z.ZodError,
-): string {
+export function formatSpeakerValidationError(error: z.ZodError): string {
   const labels = error.issues.map((issue) => {
     const key = String(issue.path[0] ?? "")
     return FIELD_LABELS[key] ?? key
@@ -125,7 +105,6 @@ export function localizeSpeaker(
       speaker.organizationRu,
       speaker.organizationEn,
     ),
-    bio: pick(speaker.bioKk, speaker.bioRu, speaker.bioEn),
     avatarUrl: speaker.avatarUrl,
     order: speaker.order,
   }

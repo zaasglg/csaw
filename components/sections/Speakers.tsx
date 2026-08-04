@@ -10,7 +10,6 @@ import type { Locale } from "@/components/providers/LocaleProvider"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog"
 import { localizeSpeaker, type SpeakerRecord } from "@/lib/speakers"
@@ -111,7 +110,6 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
                         src={speaker.avatarUrl}
                         unoptimized
                         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        className="grayscale transition-[filter] duration-300 group-hover:grayscale-0"
                       />
                     ) : null}
                     <div
@@ -157,7 +155,6 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
                     <SpeakerPhoto
                       src={slot.avatar}
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="grayscale transition-[filter] duration-300 group-hover:grayscale-0"
                     />
                     <div
                       aria-hidden
@@ -208,7 +205,6 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
                     src={activeSpeaker.avatarUrl}
                     unoptimized
                     sizes="(min-width: 640px) 240px, 100vw"
-                    className="grayscale"
                   />
                 ) : null}
                 <div
@@ -224,9 +220,6 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
                 <p className="mt-1.5 text-[15px] font-semibold text-accent-700">
                   {activeSpeaker.role}, {activeSpeaker.organization}
                 </p>
-                <DialogDescription className="mt-5 max-w-md text-[15px] leading-[1.6] text-primary-600">
-                  {activeSpeaker.bio || t("modalBio")}
-                </DialogDescription>
               </div>
             </div>
           ) : activeSlot ? (
@@ -235,7 +228,6 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
                 <SpeakerPhoto
                   src={activeSlot.avatar}
                   sizes="(min-width: 640px) 240px, 100vw"
-                  className="grayscale"
                 />
                 <div
                   aria-hidden
@@ -250,9 +242,6 @@ export function Speakers({ speakers }: { speakers: SpeakerRecord[] }) {
                 <p className="mt-1.5 text-[15px] font-semibold text-accent-700">
                   {t("rolePlaceholder")}
                 </p>
-                <DialogDescription className="mt-5 max-w-md text-[15px] leading-[1.6] text-primary-600">
-                  {t("modalBio")}
-                </DialogDescription>
               </div>
             </div>
           ) : null}

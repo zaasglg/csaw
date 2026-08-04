@@ -48,9 +48,6 @@ model Speaker {
   organizationKk String
   organizationRu String
   organizationEn String
-  bioKk          String?
-  bioRu          String?
-  bioEn          String?
   avatarUrl      String?
   order          Int      @default(0)
   createdAt      DateTime @default(now())

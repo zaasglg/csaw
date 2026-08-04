@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Speaker" DROP COLUMN IF EXISTS "bioKk";
+ALTER TABLE "Speaker" DROP COLUMN IF EXISTS "bioRu";
+ALTER TABLE "Speaker" DROP COLUMN IF EXISTS "bioEn";
