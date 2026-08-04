@@ -26,7 +26,7 @@ const RULES_BY_LOCALE: Record<Locale, string> = {
   en: "/documents/third.pdf",
 };
 
-const HACKATHON_REGISTRATION_DEADLINE = "2026-08-04T09:00:00+05:00";
+const HACKATHON_REGISTRATION_DEADLINE = "2026-08-04T12:00:00+05:00";
 
 function useCountdown(targetIso: string) {
   const [remainingMs, setRemainingMs] = useState<number | null>(null);
