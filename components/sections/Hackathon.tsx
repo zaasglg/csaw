@@ -12,7 +12,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
-import { PointerEvent, useEffect, useRef, useState } from "react";
+import { PointerEvent, useEffect, useRef } from "react";
 
 import { Magnetic } from "@/components/interactive/Magnetic";
 import type { Locale } from "@/components/providers/LocaleProvider";
@@ -25,82 +25,6 @@ const RULES_BY_LOCALE: Record<Locale, string> = {
   ru: "/documents/second.pdf",
   en: "/documents/third.pdf",
 };
-
-const HACKATHON_REGISTRATION_DEADLINE = "2026-08-04T12:00:00+05:00";
-
-function useCountdown(targetIso: string) {
-  const [remainingMs, setRemainingMs] = useState<number | null>(null);
-
-  useEffect(() => {
-    const target = new Date(targetIso).getTime();
-
-    function tick() {
-      setRemainingMs(Math.max(0, target - Date.now()));
-    }
-
-    tick();
-    const interval = setInterval(tick, 1000);
-    return () => clearInterval(interval);
-  }, [targetIso]);
-
-  return remainingMs;
-}
-
-function CountdownUnit({ value, label }: { value: number; label: string }) {
-  return (
-    <div className="flex flex-col items-center gap-1.5">
-      <span className="font-mono text-2xl font-black tabular-nums text-primary-900 sm:text-3xl">
-        {String(value).padStart(2, "0")}
-      </span>
-      <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary-500">
-        {label}
-      </span>
-    </div>
-  );
-}
-
-function CountdownDisplay() {
-  const t = useTranslations("hackathon");
-  const remainingMs = useCountdown(HACKATHON_REGISTRATION_DEADLINE);
-
-  if (remainingMs === null) return null;
-
-  const isExpired = remainingMs <= 0;
-
-  return (
-    <div>
-      <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-accent-800">
-        {t("countdownLabel")}
-      </p>
-      {isExpired ? (
-        <p className="mt-4 text-lg font-bold text-primary-900">{t("countdownExpired")}</p>
-      ) : (
-        <CountdownDigits remainingMs={remainingMs} />
-      )}
-    </div>
-  );
-}
-
-function CountdownDigits({ remainingMs }: { remainingMs: number }) {
-  const t = useTranslations("hackathon");
-  const totalSeconds = Math.floor(remainingMs / 1000);
-  const days = Math.floor(totalSeconds / 86400);
-  const hours = Math.floor((totalSeconds % 86400) / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  return (
-    <div className="mt-4 flex flex-wrap items-center gap-5 sm:gap-8">
-      <CountdownUnit value={days} label={t("countdownDays")} />
-      <span className="text-xl font-black text-accent-300 sm:text-2xl">:</span>
-      <CountdownUnit value={hours} label={t("countdownHours")} />
-      <span className="text-xl font-black text-accent-300 sm:text-2xl">:</span>
-      <CountdownUnit value={minutes} label={t("countdownMinutes")} />
-      <span className="text-xl font-black text-accent-300 sm:text-2xl">:</span>
-      <CountdownUnit value={seconds} label={t("countdownSeconds")} />
-    </div>
-  );
-}
 
 function PrizeCard({
   progress,
@@ -270,8 +194,6 @@ function PrizeCard({
         style={reduceMotion ? undefined : { y: springY }}
         className="relative z-10 flex flex-col gap-6 border-t border-[#E0A82E]/30 pt-6"
       >
-        <CountdownDisplay />
-
         <Magnetic className="inline-block w-fit">
           <a
             href={HACKATHON_REGISTER_URL}
